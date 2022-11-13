@@ -7,18 +7,23 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class LaunchPage extends JFrame {
+    private static final LaunchPage instance = new LaunchPage();
+
     private final NormalButton startButton = new NormalButton(ButtonNameUtil.OPEN_POS);
     private final NormalButton endButton = new NormalButton(ButtonNameUtil.END_APPLICATION);
     private final Container container = getContentPane();
 
-    public LaunchPage() {
+    public static LaunchPage getInstance() {
+        return instance;
+    }
+
+    private LaunchPage() {
         initializePage();
         container.setLayout(null);
         container.add(startButton);
         container.add(endButton);
         startButton.setBounds(350, 100, 150, 150);
         endButton.setBounds(350, 300, 150, 150);
-        setVisible(true);
     }
 
     private void initializePage() {

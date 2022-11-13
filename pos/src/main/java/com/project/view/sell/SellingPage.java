@@ -10,9 +10,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class SellingPage extends JFrame {
+    private static final SellingPage instance = new SellingPage();
 
     private JPanel buttonPanel;
     private JPanel tablePanel;
+    private TablePanel[] tablePanels = new TablePanel[9];
 
     private final Container container = getContentPane();
     private final NormalButton closeButton = new NormalButton(ButtonNameUtil.CLOSE_POS);
@@ -20,7 +22,15 @@ public class SellingPage extends JFrame {
     private final NormalButton billButton = new NormalButton(
             ButtonNameUtil.BILL_CHECK);
 
-    public SellingPage() {
+    public static SellingPage getInstance() {
+        return instance;
+    }
+
+    public TablePanel[] getTablePanels() {
+        return tablePanels;
+    }
+
+    private SellingPage() {
         initializePage();
         buttonPanel = new JPanel();
         buttonPanel.setLayout(null);
@@ -30,8 +40,9 @@ public class SellingPage extends JFrame {
         tablePanel = new JPanel();
         tablePanel.setLayout(new GridLayout(3, 3, 3, 3));// 어떻게 하면 생성자로 빼서 수정이 쉬워질까?
 
-        for (int i = 1; i <= 9; i++) {
-            tablePanel.add(new TablePanel(String.valueOf(i)));
+        for (int i = 0; i < 9; i++) {
+            tablePanels[i] = new TablePanel(String.valueOf(i + 1));
+            tablePanel.add(tablePanels[i]);
         }
         container.add(tablePanel);
         container.add(buttonPanel);
@@ -39,7 +50,6 @@ public class SellingPage extends JFrame {
         billButton.setBounds(500, 430, 150, 100);
         orderButton.setBounds(650, 430, 150, 100);
         closeButton.setBounds(650, 30, 150, 100);
-        setVisible(true);
     }
 
     private void initializePage() {
