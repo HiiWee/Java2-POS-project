@@ -2,7 +2,7 @@ package com.project.controller;
 
 
 import com.project.view.common.LaunchPage;
-import com.project.view.sales.SellingPage;
+import com.project.view.sell.SellingPage;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

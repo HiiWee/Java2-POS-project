@@ -1,4 +1,4 @@
-package com.project.view.sales;
+package com.project.view.sell;
 
 import java.awt.Color;
 import java.awt.event.MouseAdapter;

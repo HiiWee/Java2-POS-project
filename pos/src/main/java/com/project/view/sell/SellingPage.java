@@ -1,4 +1,4 @@
-package com.project.view.sales;
+package com.project.view.sell;
 
 import com.project.utils.ButtonNameUtil;
 import com.project.utils.InitializationGuiUtil;

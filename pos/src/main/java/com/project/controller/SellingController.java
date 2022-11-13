@@ -2,7 +2,7 @@ package com.project.controller;
 
 
 import com.project.view.common.LaunchPage;
-import com.project.view.sales.SellingPage;
+import com.project.view.sell.SellingPage;
 
 public class SellingController {
     private final LaunchPage launchPage = new LaunchPage();
