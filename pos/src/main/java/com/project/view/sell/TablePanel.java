@@ -1,14 +1,17 @@
 package com.project.view.sell;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 
-public class ConstructorTablePanel extends JPanel {
+public class TablePanel extends JPanel {
     private final JTextField tableNumber = new JTextField();
 
-    public ConstructorTablePanel(String name) {
+    public TablePanel(String name) {
         setBackground(Color.WHITE);
         tableNumber.setText(name);
         tableNumber.setEditable(false);

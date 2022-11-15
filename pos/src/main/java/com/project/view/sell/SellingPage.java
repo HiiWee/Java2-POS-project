@@ -15,7 +15,7 @@ public class SellingPage extends JFrame {
 
     private JPanel buttonPanel;
     private JPanel tablePanel;
-    private ConstructorTablePanel[] tablePanels = new ConstructorTablePanel[TableNumberUtil.NUMBER_OF_TABLE];
+    private TablePanel[] tablePanels = new TablePanel[TableNumberUtil.NUMBER_OF_TABLE];
 
     private final Container container = getContentPane();
     private final NormalButton closeButton = new NormalButton(ButtonNameUtil.CLOSE_POS);
@@ -27,7 +27,7 @@ public class SellingPage extends JFrame {
         return instance;
     }
 
-    public ConstructorTablePanel[] getTablePanels() {
+    public TablePanel[] getTablePanels() {
         return tablePanels;
     }
 
@@ -42,7 +42,7 @@ public class SellingPage extends JFrame {
         tablePanel.setLayout(new GridLayout(3, 3, 3, 3));
 
         for (int i = 0; i < TableNumberUtil.NUMBER_OF_TABLE; i++) {
-            tablePanels[i] = new ConstructorTablePanel(String.valueOf(i + 1));
+            tablePanels[i] = new TablePanel(String.valueOf(i + 1));
             tablePanel.add(tablePanels[i]);
         }
         container.add(tablePanel);

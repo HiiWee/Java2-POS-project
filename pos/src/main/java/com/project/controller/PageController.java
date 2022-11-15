@@ -2,7 +2,7 @@ package com.project.controller;
 
 
 import com.project.view.common.LaunchPage;
-import com.project.view.sell.ConstructorTablePanel;
+import com.project.view.sell.TablePanel;
 import com.project.view.sell.DetailTablePage;
 import com.project.view.sell.SellingPage;
 import java.awt.event.MouseEvent;
@@ -24,8 +24,8 @@ public class PageController implements MouseListener {
     }
 
     private void initSellingPage() {
-        ConstructorTablePanel[] tablePanels = sellingPage.getTablePanels();
-        for (ConstructorTablePanel tablePanel : tablePanels) {
+        TablePanel[] tablePanels = sellingPage.getTablePanels();
+        for (TablePanel tablePanel : tablePanels) {
             tablePanel.addMouseListener(this);
         }
     }
@@ -79,7 +79,7 @@ public class PageController implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        ConstructorTablePanel tablePanel = (ConstructorTablePanel) e.getSource();
+        TablePanel tablePanel = (TablePanel) e.getSource();
         detailTablePage.setTablePanel(tablePanel);
         sellingPage.setVisible(false);
         detailTablePage.setVisible(true);
