@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 
 public class DetailTablePage extends JFrame {
     private static final DetailTablePage instance = new DetailTablePage();
-    private final NormalButton normalButton = new NormalButton(ButtonNameUtil.BACK);
+    private final NormalButton DetailTableBackButton = new NormalButton(ButtonNameUtil.BACK);
     private TablePanel tablePanel;
 
     public static DetailTablePage getInstance() {
@@ -25,8 +25,8 @@ public class DetailTablePage extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(InitializationGuiUtil.FRAME_WIDTH, InitializationGuiUtil.FRAME_HEIGHT);
         setResizable(false);
-        normalButton.setBounds(500, 430, 150, 100);
-        add(normalButton);
+        DetailTableBackButton.setBounds(500, 430, 150, 100);
+        add(DetailTableBackButton);
     }
 
     public void setTablePanel(TablePanel tablePanel) {
@@ -37,7 +37,7 @@ public class DetailTablePage extends JFrame {
 
 
     public JButton getBackButton() {
-        return normalButton;
+        return DetailTableBackButton;
     }
 
     public void removeExistTablePanel() {
