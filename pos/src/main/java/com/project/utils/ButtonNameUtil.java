@@ -9,5 +9,5 @@ public class ButtonNameUtil {
     public static final String BACK = "뒤로";
     public static final String BILL_CHECK = "영수증 조회";
     public static final String OPEN_POS = "영업 개시";
-
+    public static final String TABLE_NUMBER="Table_NO";
 }

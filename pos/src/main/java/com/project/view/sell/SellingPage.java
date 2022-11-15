@@ -39,7 +39,7 @@ public class SellingPage extends JFrame {
         buttonPanel.add(billButton);
         buttonPanel.add(orderButton);
         tablePanel = new JPanel();
-        tablePanel.setLayout(new GridLayout(3, 3, 3, 3));// 어떻게 하면 생성자로 빼서 수정이 쉬워질까?
+        tablePanel.setLayout(new GridLayout(3, 3, 3, 3));
 
         for (int i = 0; i < TableNumberUtil.NUMBER_OF_TABLE; i++) {
             tablePanels[i] = new ConstructorTablePanel(String.valueOf(i + 1));
