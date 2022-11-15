@@ -2,6 +2,7 @@ package com.project.view.sell;
 
 import com.project.utils.ButtonNameUtil;
 import com.project.utils.InitializationGuiUtil;
+import com.project.utils.TableNumberUtil;
 import com.project.view.common.NormalButton;
 import java.awt.Container;
 import java.awt.GridLayout;
@@ -40,7 +41,7 @@ public class SellingPage extends JFrame {
         tablePanel = new JPanel();
         tablePanel.setLayout(new GridLayout(3, 3, 3, 3));// 어떻게 하면 생성자로 빼서 수정이 쉬워질까?
 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < TableNumberUtil.NUMBER_OF_TABLE; i++) {
             tablePanels[i] = new TablePanel(String.valueOf(i + 1));
             tablePanel.add(tablePanels[i]);
         }
