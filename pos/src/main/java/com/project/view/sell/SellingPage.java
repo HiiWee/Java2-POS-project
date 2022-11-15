@@ -15,7 +15,7 @@ public class SellingPage extends JFrame {
 
     private JPanel buttonPanel;
     private JPanel tablePanel;
-    private TablePanel[] tablePanels = new TablePanel[9];
+    private TablePanel[] tablePanels = new TablePanel[TableNumberUtil.NUMBER_OF_TABLE];
 
     private final Container container = getContentPane();
     private final NormalButton closeButton = new NormalButton(ButtonNameUtil.CLOSE_POS);
