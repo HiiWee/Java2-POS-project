@@ -5,6 +5,8 @@ import com.project.utils.InitializationGuiUtil;
 import com.project.view.common.NormalButton;
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,11 +17,16 @@ import javax.swing.JTextField;
 public class DetailTablePage extends JFrame {
     private static final DetailTablePage instance = new DetailTablePage();
     private final NormalButton detailTableBackButton = new NormalButton(ButtonNameUtil.BACK);
+    private final NormalButton detailTableDiscountButton = new NormalButton(ButtonNameUtil.DISCOUNT);
+    private final NormalButton detailTablePayButton = new NormalButton(ButtonNameUtil.PAYMEANT);
+    private final NormalButton detailTableOrderButton = new NormalButton(ButtonNameUtil.ORDER);
+    private final NormalButton detailTableBillButton = new NormalButton(ButtonNameUtil.BILL_CHECK);
     private final JTextArea jTextAreamenu=new JTextArea();
-   //private final JTextField jTextFieldTable_No = new JTextField(ButtonNameUtil.TABLE_NUMBER);
     private final JTextField jTextFieldTotal =new JTextField();
     private TablePanel tablePanel;
     private final Container container = getContentPane();
+    private final JPanel ButtonPanelRight=new JPanel(new GridLayout(1,2));
+    private final JPanel ButtonPanelLeft=new JPanel(new GridLayout(1,3));
 
     public static DetailTablePage getInstance() {
         return instance;
@@ -27,9 +34,15 @@ public class DetailTablePage extends JFrame {
 
     private DetailTablePage() {
         initializePage();
-        detailTableBackButton.setBounds(500, 430, 150, 100);
-        container.add(detailTableBackButton);
-
+        ButtonPanelRight.add(detailTableOrderButton);
+        ButtonPanelRight.add(detailTableBillButton);
+        ButtonPanelLeft.add(detailTablePayButton);
+        ButtonPanelLeft.add(detailTableDiscountButton);
+        ButtonPanelLeft.add(detailTableBackButton);
+        container.add(ButtonPanelRight);
+        container.add(ButtonPanelLeft);
+        ButtonPanelLeft.setBounds(50,425,300,100);
+        ButtonPanelRight.setBounds(550,425,200,100);
     }
 
     private void initializePage() {
