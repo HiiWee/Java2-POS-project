@@ -54,6 +54,8 @@ public class PageController implements MouseListener {
                 .addActionListener(e -> {
                     moveDetailToSellingPage();
                     detailTablePage.removeExistTablePanel();
+                    detailTablePage.clearjTextAreamenu();
+                    detailTablePage.clearjTextFieldTotal();
                 });
     }
 

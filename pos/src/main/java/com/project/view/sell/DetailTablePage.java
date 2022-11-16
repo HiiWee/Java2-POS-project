@@ -3,7 +3,7 @@ package com.project.view.sell;
 import com.project.utils.ButtonNameUtil;
 import com.project.utils.InitializationGuiUtil;
 import com.project.view.common.NormalButton;
-import java.awt.Color;
+import java.awt.BorderLayout;
 import java.awt.Container;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,9 +15,9 @@ import javax.swing.JTextField;
 public class DetailTablePage extends JFrame {
     private static final DetailTablePage instance = new DetailTablePage();
     private final NormalButton detailTableBackButton = new NormalButton(ButtonNameUtil.BACK);
-    private final JTextArea jTextArea = new JTextArea("test");
-    private final JTextField jTextField = new JTextField(ButtonNameUtil.TABLE_NUMBER);
-    private final JTextField jTextField1 = new JTextField("합계");
+    private final JTextArea jTextAreamenu=new JTextArea();
+   //private final JTextField jTextFieldTable_No = new JTextField(ButtonNameUtil.TABLE_NUMBER);
+    private final JTextField jTextFieldTotal =new JTextField();
     private TablePanel tablePanel;
     private final Container container = getContentPane();
 
@@ -41,22 +41,19 @@ public class DetailTablePage extends JFrame {
 
     public void setTablePanel(TablePanel tablePanel) {
         this.tablePanel = new TablePanel(String.valueOf(tablePanel.getTableNumber()));
-        jTextField1.setText(String.valueOf(tablePanel.getTableNumber()));
-        this.tablePanel.setBackground(Color.gray);
+       // jTextFieldTable_No.setText("Table_NO_"+String.valueOf(tablePanel.getTableNumber()));
         JPanel test = new JPanel();
-        test.setBounds(50, 50, 200, 200);
-        test.setBackground(Color.YELLOW);
-        test.add(jTextField);
-        test.add(jTextArea);
-        test.add(jTextField1);
+        test.setLayout(new BorderLayout());
+        test.add(jTextFieldTotal,BorderLayout.SOUTH);
+        test.add(jTextAreamenu,BorderLayout.CENTER);
+       //test.add(jTextFieldTable_No,BorderLayout.NORTH);
         this.tablePanel.add(test);
-        jTextField.setColumns(10);
-        jTextField.setLocation(100, 10);
-        jTextArea.setColumns(10);
-        jTextArea.setRows(20);
-        JScrollPane jScrollPane = new JScrollPane(jTextArea);
+        jTextAreamenu.setColumns(34);
+        jTextAreamenu.setRows(21);//jTextfieldTable 넣고 싶으면 20으로
+        jTextAreamenu.setEditable(false);
+        jTextFieldTotal.setEditable(false);
+        JScrollPane jScrollPane = new JScrollPane(jTextAreamenu);
         test.add(jScrollPane);
-//        jTextArea.setBounds(500, 100, 200, 200);
         container.add(this.tablePanel);
         this.tablePanel.setBounds(410, 0, 400, 400);
     }
@@ -68,5 +65,11 @@ public class DetailTablePage extends JFrame {
 
     public void removeExistTablePanel() {
         remove(tablePanel);
+    }
+    public void clearjTextFieldTotal(){
+       jTextFieldTotal.setText(" ");
+    }
+    public void clearjTextAreamenu(){
+        jTextAreamenu.setText(" ");
     }
 }
