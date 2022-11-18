@@ -1,4 +1,4 @@
-package com.project.pages.sell;
+package com.project.view.sell;
 
 import com.project.utils.ButtonNameUtil;
 import com.project.utils.InitializationGuiUtil;
@@ -6,13 +6,14 @@ import com.project.view.common.NormalButton;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class DetailTablePage extends JPanel {
-    private static final DetailTablePage instance = new DetailTablePage();
+public class DetailTableSubPage extends JFrame {
+    private static final DetailTableSubPage instance = new DetailTableSubPage();
     private final NormalButton detailTableBackButton = new NormalButton(ButtonNameUtil.BACK);
     private final NormalButton detailTableDiscountButton = new NormalButton(ButtonNameUtil.DISCOUNT);
     private final NormalButton detailTablePayButton = new NormalButton(ButtonNameUtil.PAYMENT);
@@ -20,15 +21,15 @@ public class DetailTablePage extends JPanel {
     private final NormalButton detailTableBillButton = new NormalButton(ButtonNameUtil.BILL_CHECK);
     private final JTextArea jTextAreaMenu = new JTextArea();
     private final JTextField jTextFieldTotal = new JTextField();
-    private TablePanel tablePanel;
+    private TableSubPanel tablePanel;
     private final JPanel ButtonPanelRight = new JPanel(new GridLayout(1, 2));
     private final JPanel ButtonPanelLeft = new JPanel(new GridLayout(1, 3));
 
-    public static DetailTablePage getInstance() {
+    public static DetailTableSubPage getInstance() {
         return instance;
     }
 
-    private DetailTablePage() {
+    private DetailTableSubPage() {
         initializePage();
         ButtonPanelRight.add(detailTableOrderButton);
         ButtonPanelRight.add(detailTableBillButton);
@@ -46,8 +47,8 @@ public class DetailTablePage extends JPanel {
         setSize(InitializationGuiUtil.FRAME_WIDTH, InitializationGuiUtil.FRAME_HEIGHT);
     }
 
-    public void setTablePanel(TablePanel tablePanel) {
-        this.tablePanel = new TablePanel(String.valueOf(tablePanel.getTableNumber()));
+    public void setTablePanel(TableSubPanel tablePanel) {
+        this.tablePanel = new TableSubPanel(String.valueOf(tablePanel.getTableNumber()));
         JPanel test = new JPanel();
         test.setLayout(new BorderLayout());
         test.add(jTextFieldTotal, BorderLayout.SOUTH);

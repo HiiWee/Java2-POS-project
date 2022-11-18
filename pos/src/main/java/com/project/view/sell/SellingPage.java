@@ -1,4 +1,4 @@
-package com.project.pages.sell;
+package com.project.view.sell;
 
 import com.project.utils.ButtonNameUtil;
 import com.project.utils.InitializationGuiUtil;
@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 public class SellingPage extends JPanel {
     private static final SellingPage instance = new SellingPage();
     private final JPanel tablePanel = new JPanel();
-    private final TablePanel[] tablePanels = new TablePanel[TableNumberUtil.NUMBER_OF_TABLE];
+    private final TableSubPanel[] tablePanels = new TableSubPanel[TableNumberUtil.NUMBER_OF_TABLE];
     private final NormalButton closeButton = new NormalButton(ButtonNameUtil.CLOSE_POS);
     private final NormalButton orderButton = new NormalButton(ButtonNameUtil.ORDER);
     private final NormalButton billButton = new NormalButton(ButtonNameUtil.BILL_CHECK);
@@ -20,7 +20,7 @@ public class SellingPage extends JPanel {
         return instance;
     }
 
-    public TablePanel[] getTablePanels() {
+    public TableSubPanel[] getTablePanels() {
         return tablePanels;
     }
 
@@ -33,7 +33,7 @@ public class SellingPage extends JPanel {
         tablePanel.setLayout(new GridLayout(3, 3, 3, 3));
 
         for (int i = 0; i < TableNumberUtil.NUMBER_OF_TABLE; i++) {
-            tablePanels[i] = new TablePanel(String.valueOf(i + 1));
+            tablePanels[i] = new TableSubPanel(String.valueOf(i + 1));
             tablePanel.add(tablePanels[i]);
         }
         add(tablePanel);

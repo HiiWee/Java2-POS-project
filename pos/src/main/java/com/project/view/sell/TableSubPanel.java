@@ -1,14 +1,14 @@
-package com.project.pages.sell;
+package com.project.view.sell;
 
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 
-public class TablePanel extends JPanel {
+public class TableSubPanel extends JPanel {
     private final JTextField tableNumber = new JTextField();
 
-    public TablePanel(String name) {
+    public TableSubPanel(String name) {
         setBackground(Color.WHITE);
         tableNumber.setText(name);
         tableNumber.setEditable(false);
