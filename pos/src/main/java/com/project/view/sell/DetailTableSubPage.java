@@ -13,6 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
+import javax.swing.border.LineBorder;
 
 public class DetailTableSubPage extends JFrame {
     private static final DetailTableSubPage instance = new DetailTableSubPage();
@@ -74,14 +75,13 @@ public class DetailTableSubPage extends JFrame {
         centerPanel = new JPanel();
         centerPanel.setBounds(0, 50, 400, 300);
         centerPanel.setLayout(null);
-        centerPanel.setBorder(new BevelBorder(BevelBorder.RAISED));
         centerPanel.setBackground(Color.WHITE);
         menuPanel.add(centerPanel);
         for (int y = 0; y < 4; y++) {     //지금은 패널을 계속 초기화해서 추가했지만 나중에 JPanel 배열하는법을 알면 수정 예정
             for (int x = 0; x < 4; x++) {
                 menuList = new JPanel();
                 menuList.setBounds(4 + 99 * x, 4 + 74 * y, 95, 70);
-                menuList.setBorder(new BevelBorder(BevelBorder.RAISED));
+                menuList.setBorder(new LineBorder(Color.BLACK, 1));
                 menuList.setBackground(Color.WHITE);
                 centerPanel.add(menuList);
             }
