@@ -38,7 +38,7 @@ public class BillCheckPage extends JFrame {
         container.add(scroll);
         billCheckPageBackButton.setBounds(650, 450, 150, 100);
         billCheckPageRefundButton.setBounds(650, 50, 150, 100);
-        scroll.setBounds(10, 10, 600, 540);//https://woongbin96.tistory.com/105 Scroll은 Layout이 null이면 출력되지않음
+        scroll.setBounds(10, 10, 500, 525);//https://woongbin96.tistory.com/105
     }
 
     private void initializePage() {
