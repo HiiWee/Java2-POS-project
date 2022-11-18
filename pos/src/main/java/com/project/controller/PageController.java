@@ -2,7 +2,7 @@ package com.project.controller;
 
 
 import com.project.view.MainFrame;
-import com.project.view.billCheck.BillCheckPage;
+import com.project.view.billcheck.BillCheckPage;
 import com.project.view.common.LaunchPage;
 import com.project.view.sell.DetailTableSubPage;
 import com.project.view.sell.SellingPage;
