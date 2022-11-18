@@ -1,22 +1,25 @@
 package com.project.controller;
 
 
+import com.project.view.MainFrame;
 import com.project.view.common.LaunchPage;
-import com.project.view.sell.DetailTablePage;
+import com.project.view.management.ManagementPage;
+import com.project.view.sales.SalesPage;
+import com.project.view.sell.TableSubPanel;
+import com.project.view.sell.DetailTableSubPage;
 import com.project.view.sell.SellingPage;
-import com.project.view.sell.TablePanel;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class PageController implements MouseListener {
+    private MainFrame mainPage = MainFrame.getInstance();
     private final LaunchPage launchPage = LaunchPage.getInstance();
     private final SellingPage sellingPage = SellingPage.getInstance();
-    private final DetailTablePage detailTablePage = DetailTablePage.getInstance();
+    private final DetailTableSubPage detailTablePage = DetailTableSubPage.getInstance();
 
     public void startPos() {
         launchPage.setVisible(true);
         initSellingPage();
-        sellingPage.setVisible(false);
         addActionStartButtonOnLaunchPage();
         addActionCloseButtonOnSellingPage();
         addActionEndButtonOnLaunchPage();
@@ -24,8 +27,8 @@ public class PageController implements MouseListener {
     }
 
     private void initSellingPage() {
-        TablePanel[] tablePanels = sellingPage.getTablePanels();
-        for (TablePanel tablePanel : tablePanels) {
+        TableSubPanel[] tablePanels = sellingPage.getTablePanels();
+        for (TableSubPanel tablePanel : tablePanels) {
             tablePanel.addMouseListener(this);
         }
     }
@@ -34,9 +37,9 @@ public class PageController implements MouseListener {
         System.exit(0);
     }
 
-    private void moveLaunchToSellingPage() {
+    private void moveLaunchToMainPage() {
         launchPage.setVisible(false);
-        sellingPage.setVisible(true);
+        mainPage.setVisible(true);
     }
 
     private void moveSellingToLaunchPage() {
@@ -54,6 +57,8 @@ public class PageController implements MouseListener {
                 .addActionListener(e -> {
                     moveDetailToSellingPage();
                     detailTablePage.removeExistTablePanel();
+                    detailTablePage.clearjTextAreaMenu();
+                    detailTablePage.clearjTextFieldTotal();
                 });
     }
 
@@ -64,14 +69,13 @@ public class PageController implements MouseListener {
 
     private void addActionStartButtonOnLaunchPage() {
         launchPage.getStartButton()
-                .addActionListener(e -> moveLaunchToSellingPage());
+                .addActionListener(e -> moveLaunchToMainPage());
     }
 
     private void addActionCloseButtonOnSellingPage() {
         sellingPage.getCloseButton()
                 .addActionListener(e -> moveSellingToLaunchPage());
     }
-
     @Override
     public void mouseClicked(MouseEvent e) {
 
@@ -79,7 +83,7 @@ public class PageController implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        TablePanel tablePanel = (TablePanel) e.getSource();
+        TableSubPanel tablePanel = (TableSubPanel) e.getSource();
         detailTablePage.setTablePanel(tablePanel);
         sellingPage.setVisible(false);
         detailTablePage.setVisible(true);
