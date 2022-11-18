@@ -61,7 +61,7 @@ public class DetailTablePage extends JFrame {
         test.add(jTextAreamenu,BorderLayout.CENTER);
        //test.add(jTextFieldTable_No,BorderLayout.NORTH);
         this.tablePanel.add(test);
-        jTextAreamenu.setColumns(33);
+        jTextAreamenu.setColumns(34);
         jTextAreamenu.setRows(21);//jTextfieldTable 넣고 싶으면 20으로
         jTextAreamenu.setEditable(false);
         jTextFieldTotal.setEditable(false);
