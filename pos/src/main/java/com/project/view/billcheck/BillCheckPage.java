@@ -1,11 +1,10 @@
-package com.project.view.billCheck;
+package com.project.view.billcheck;
 
 import com.project.utils.ButtonNameUtil;
 import com.project.utils.InitializationGuiUtil;
 import com.project.view.common.NormalButton;
 import java.awt.BorderLayout;
 import java.awt.Container;
-import java.util.Scanner;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
