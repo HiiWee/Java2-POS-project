@@ -1,9 +1,6 @@
-package com.project.view.sell;
+package com.project.pages.sell;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
