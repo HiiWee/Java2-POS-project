@@ -57,6 +57,8 @@ public class DetailTableSubPage extends JFrame {
         setLayout(null);
         setMenuPage();
         setSize(InitializationGuiUtil.FRAME_WIDTH, InitializationGuiUtil.FRAME_HEIGHT);
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     private void setMenuPage() {
