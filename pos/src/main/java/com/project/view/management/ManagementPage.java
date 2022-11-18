@@ -1,8 +1,6 @@
 package com.project.view.management;
 
 import com.project.utils.InitializationGuiUtil;
-import java.awt.Container;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class ManagementPage extends JPanel {

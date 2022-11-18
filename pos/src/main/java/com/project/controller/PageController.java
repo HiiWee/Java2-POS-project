@@ -3,11 +3,9 @@ package com.project.controller;
 
 import com.project.view.MainFrame;
 import com.project.view.common.LaunchPage;
-import com.project.view.management.ManagementPage;
-import com.project.view.sales.SalesPage;
-import com.project.view.sell.TableSubPanel;
 import com.project.view.sell.DetailTableSubPage;
 import com.project.view.sell.SellingPage;
+import com.project.view.sell.TableSubPanel;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -76,6 +74,7 @@ public class PageController implements MouseListener {
         sellingPage.getCloseButton()
                 .addActionListener(e -> moveSellingToLaunchPage());
     }
+
     @Override
     public void mouseClicked(MouseEvent e) {
 

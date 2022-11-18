@@ -1,9 +1,9 @@
 package com.project.view.common;
+
 import com.project.utils.ButtonNameUtil;
 import com.project.utils.InitializationGuiUtil;
 import com.project.utils.TimeUtil;
 import java.awt.Container;
-import java.time.format.TextStyle;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -14,7 +14,8 @@ public class LaunchPage extends JFrame {
     private final NormalButton startButton = new NormalButton(ButtonNameUtil.OPEN_POS);
     private final NormalButton endButton = new NormalButton(ButtonNameUtil.END_APPLICATION);
     private final Container container = getContentPane();
-    private final JTextField jTextFieldTime=new JTextField(String.valueOf(TimeUtil.nowDateTime));
+    private final JTextField jTextFieldTime = new JTextField(String.valueOf(TimeUtil.nowDateTime));
+
     public static LaunchPage getInstance() {
         return instance;
     }
@@ -26,7 +27,7 @@ public class LaunchPage extends JFrame {
         container.add(endButton);
         container.add(jTextFieldTime);
         jTextFieldTime.setEditable(false);
-        jTextFieldTime.setBounds(350,0,150,100);
+        jTextFieldTime.setBounds(350, 0, 150, 100);
         startButton.setBounds(350, 100, 150, 150);
         endButton.setBounds(350, 300, 150, 150);
     }
