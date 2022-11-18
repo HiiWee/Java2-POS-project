@@ -21,11 +21,10 @@ public class DetailTableSubPage extends JFrame {
     private final NormalButton detailTableDiscountButton = new NormalButton(ButtonNameUtil.DISCOUNT);
     private final NormalButton detailTablePayButton = new NormalButton(ButtonNameUtil.PAYMENT);
     private final NormalButton detailTableOrderButton = new NormalButton(ButtonNameUtil.ORDER);
-    private final NormalButton detailTableBillButton = new NormalButton(ButtonNameUtil.BILL_CHECK);
     private final JTextArea jTextAreaMenu = new JTextArea();
     private final JTextField jTextFieldTotal = new JTextField();
     private TableSubPanel tablePanel;
-    private final JPanel ButtonPanelRight = new JPanel(new GridLayout(1, 2));
+   // private final JPanel ButtonPanelRight = new JPanel(new GridLayout(1, 1));
     private final JPanel ButtonPanelLeft = new JPanel(new GridLayout(1, 3));
 
     private final NormalButton leftButton = new NormalButton("left");
@@ -42,15 +41,13 @@ public class DetailTableSubPage extends JFrame {
 
     private DetailTableSubPage() {
         initializePage();
-        ButtonPanelRight.add(detailTableOrderButton);
-        ButtonPanelRight.add(detailTableBillButton);
         ButtonPanelLeft.add(detailTablePayButton);
         ButtonPanelLeft.add(detailTableDiscountButton);
         ButtonPanelLeft.add(detailTableBackButton);
-        add(ButtonPanelRight);
         add(ButtonPanelLeft);
+        add(detailTableOrderButton);
         ButtonPanelLeft.setBounds(50, 425, 300, 100);
-        ButtonPanelRight.setBounds(550, 425, 200, 100);
+        detailTableOrderButton.setBounds(550, 425, 150, 100);
     }
 
     private void initializePage() {
