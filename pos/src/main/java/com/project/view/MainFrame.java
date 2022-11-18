@@ -23,6 +23,7 @@ public class MainFrame extends JFrame {
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(InitializationGuiUtil.FRAME_WIDTH, InitializationGuiUtil.FRAME_HEIGHT);
+        setResizable(false);
         posTab.setSize(InitializationGuiUtil.TAB_WIDTH, InitializationGuiUtil.TAB_HEIGHT);
         posTab.addTab("영업", sellingPage);
         posTab.addTab("판매", salesPage);
@@ -31,7 +32,5 @@ public class MainFrame extends JFrame {
 
     }
 
-    private void initializeTab() {
-    }
 }
 

@@ -6,6 +6,7 @@ import com.project.utils.TableNumberUtil;
 import com.project.view.common.NormalButton;
 import java.awt.GridLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class SellingPage extends JPanel {
