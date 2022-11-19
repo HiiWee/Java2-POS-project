@@ -1,5 +1,6 @@
 package com.project.view.sell;
 
+
 import com.project.utils.ButtonNameUtil;
 import com.project.utils.InitializationGuiUtil;
 import com.project.view.common.NormalButton;
@@ -14,8 +15,13 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class DetailTableSubPage extends JFrame {
+
+
+
+public class DetailTableSubPage extends JFrame implements ActionListener{
     private static final DetailTableSubPage instance = new DetailTableSubPage();
     private final NormalButton detailTableBackButton = new NormalButton(ButtonNameUtil.BACK);
     private final NormalButton detailTableDiscountButton = new NormalButton(ButtonNameUtil.DISCOUNT);
@@ -32,9 +38,9 @@ public class DetailTableSubPage extends JFrame {
     private final NormalButton rightButton = new NormalButton("right");
     private JPanel menuPanel;
     private JPanel menuList;
-    private JPanel centerPanel;
+    private CenterPanel[] centerPanel = new CenterPanel[3];
     private JTextField menuTitle;
-    private int PageNum = 1;
+    private int pageNum = 1;
 
     public static DetailTableSubPage getInstance() {
         return instance;
@@ -68,30 +74,21 @@ public class DetailTableSubPage extends JFrame {
         add(menuPanel);
         menuTitle = new JTextField();
         menuTitle.setBounds(10, 0, 380, 50);
-        menuTitle.setText("Page " + PageNum);
+        menuTitle.setText("Page " + pageNum);
         menuTitle.setEditable(false);
         menuTitle.setHorizontalAlignment(JTextField.CENTER);
         menuPanel.add(menuTitle);
-        centerPanel = new JPanel();
-        centerPanel.setBounds(0, 50, 400, 300);
-        centerPanel.setLayout(null);
-        centerPanel.setBackground(Color.WHITE);
-        menuPanel.add(centerPanel);
-        for (int y = 0; y < 4; y++) {     //지금은 패널을 계속 초기화해서 추가했지만 나중에 JPanel 배열하는법을 알면 수정 예정
-            for (int x = 0; x < 4; x++) {
-                menuList = new JPanel();
-                menuList.setBounds(4 + 99 * x, 4 + 74 * y, 95, 70);
-                menuList.setBorder(new LineBorder(Color.BLACK, 1));
-                menuList.setBackground(Color.WHITE);
-                centerPanel.add(menuList);
-            }
+        for(int i = 0; i < 3; i++){
+            centerPanel[i] = new CenterPanel();
         }
-        leftButton.setBounds(10, 355, 100, 40);
-        rightButton.setBounds(290, 355, 100, 40);
-        menuPanel.add(leftButton);      //현재 버튼만 추가했고 세부 버튼 리스너는 작성하지 않은 상태
-        menuPanel.add(rightButton);     //버튼을 누르면 centerPanel을 안보이게 하고 2번째 centerPanel을 생성하여 Page 2를 만들 예정
-
+        for(int i = 1; i < 3; i++){
+            centerPanel[i].setVisible(false);
+        }
+          //버튼을 누르면 centerPanel을 안보이게 하고 2번째 centerPanel을 생성하여 Page 2를 만들 예정
+        ButtonAction();
     }
+
+
 
     public void setTablePanel(TableSubPanel tablePanel) {
         this.tablePanel = new TableSubPanel(String.valueOf(tablePanel.getTableNumber()));
@@ -110,7 +107,55 @@ public class DetailTableSubPage extends JFrame {
         this.tablePanel.setBounds(410, 0, 400, 400);
     }
 
+    public void ButtonAction(){
 
+        leftButton.setBounds(10, 355, 100, 40);
+        rightButton.setBounds(290, 355, 100, 40);
+        leftButton.addActionListener(this);
+        rightButton.addActionListener(this);
+        menuPanel.add(leftButton);      //현재 버튼만 추가했고 세부 버튼 리스너는 작성하지 않은 상태
+        menuPanel.add(rightButton);
+
+
+    }
+    @Override
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource() == leftButton){
+            if(pageNum != 1){
+                centerPanel[pageNum-1].setVisible(false);
+                centerPanel[pageNum-2].setVisible(true);
+                pageNum--;
+                menuTitle.setText("Page " + pageNum);
+
+            }
+        }else if(e.getSource() == rightButton){
+            if(pageNum != 3){
+                centerPanel[pageNum-1].setVisible(false);
+                centerPanel[pageNum].setVisible(true);
+                pageNum++;
+                menuTitle.setText("Page " + pageNum);
+            }
+        }
+    }
+
+    private class CenterPanel extends JPanel{
+        CenterPanel(){
+            this.setBounds(0, 50, 400, 300);
+            this.setLayout(null);
+            this.setBackground(Color.WHITE);
+            for (int y = 0; y < 4; y++) {     //지금은 패널을 계속 초기화해서 추가했지만 나중에 JPanel 배열하는법을 알면 수정 예정
+                for (int x = 0; x < 4; x++) {
+                    menuList = new JPanel();
+                    menuList.setBounds(4 + 99 * x, 4 + 74 * y, 95, 70);
+                    menuList.setBorder(new LineBorder(Color.BLACK, 1));
+                    menuList.setBackground(Color.WHITE);
+                    this.add(menuList);
+                }
+            }
+            menuPanel.add(this);
+
+        }
+    }
     public JButton getBackButton() {
         return detailTableBackButton;
     }
@@ -126,4 +171,9 @@ public class DetailTableSubPage extends JFrame {
     public void clearjTextAreaMenu() {
         jTextAreaMenu.setText("");
     }
+
+
+
+
+
 }
