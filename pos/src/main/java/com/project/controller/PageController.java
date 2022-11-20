@@ -4,7 +4,6 @@ package com.project.controller;
 import com.project.view.MainFrame;
 import com.project.view.billcheck.BillCheckPage;
 import com.project.view.common.LaunchPage;
-import com.project.view.management.ManagementLogin;
 import com.project.view.management.ManagementPage;
 import com.project.view.sell.DetailTableSubPage;
 import com.project.view.sell.SellingPage;
@@ -21,7 +20,6 @@ public class PageController implements MouseListener {
     private final DetailTableSubPage detailTablePage = DetailTableSubPage.getInstance();
     private final BillCheckPage billCheckPage = BillCheckPage.getInstance();
     private final ManagementPage managementPage = ManagementPage.getInstance();
-    private final ManagementLogin managementLogin = ManagementLogin.getInstance();
 
     public void startPos() {
         launchPage.setVisible(true);
@@ -32,8 +30,6 @@ public class PageController implements MouseListener {
         addActionBackButtonOnDetailPage();
         addActionBillButtonOnSellingPage();
         addActionBackButtonOnBillCheckPage();
-        addActionOpenLoginPage();
-        addActionBackButtonOnManagementLogin();
     }
 
     private void initSellingPage() {
@@ -72,14 +68,7 @@ public class PageController implements MouseListener {
         mainPage.setVisible(true);
     }
 
-    private void openLoginPage() {
-        managementLogin.setVisible(true);
-    }
 
-    private void cloeseLoginPage() {
-        managementLogin.setVisible(false);
-        managementLogin.clearJPasswordField();
-    }
 
     private void addActionBackButtonOnDetailPage() {
         detailTablePage.getBackButton()
@@ -124,23 +113,6 @@ public class PageController implements MouseListener {
         });
     }
 
-    private void addActionOpenLoginPage() {
-        managementPage.getPressPasswardButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                openLoginPage();
-            }
-        });
-    }
-
-    private void addActionBackButtonOnManagementLogin() {
-        managementLogin.getBackButtonOnManagementLogin().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cloeseLoginPage();
-            }
-        });
-    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
