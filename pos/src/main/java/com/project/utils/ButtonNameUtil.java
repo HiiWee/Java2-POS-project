@@ -10,6 +10,9 @@ public class ButtonNameUtil {
     public static final String DISCOUNT = "할인";
     public static final String PAYMENT = "결제";
     public static final String REFUND="환불";
+    public static final String INPUT_PASSWORD="비밀번호 입력";
+    public static final String LOGIN="login";
+    public static final String PASSWORD="비밀번호";
 
     private ButtonNameUtil() {
     }

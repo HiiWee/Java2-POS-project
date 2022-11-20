@@ -1,6 +1,7 @@
 package com.project.view.management;
 
 import com.project.utils.ButtonNameUtil;
+import com.project.utils.InitializationGuiUtil;
 import com.project.view.common.NormalButton;
 import java.awt.GridLayout;
 import javax.swing.JButton;
@@ -10,8 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
 public class ManagementLogin extends JFrame {
-    private final JLabel passward = new JLabel("비밀번호");
-    private final NormalButton loginButton = new NormalButton("Login");
+    private final JLabel passward = new JLabel(ButtonNameUtil.PASSWORD);
+    private final NormalButton loginButton = new NormalButton(ButtonNameUtil.LOGIN);
     private final NormalButton backButtonOnManagementLogin = new NormalButton(ButtonNameUtil.BACK);
     private final JPasswordField pressPassward = new JPasswordField();
     private final JPanel JButtonPanel = new JPanel(new GridLayout(1, 2));
@@ -35,7 +36,7 @@ public class ManagementLogin extends JFrame {
 
     private void initializePage() {
         setTitle("MANAGER LOGIN");
-        setSize(300, 150);
+        setSize(InitializationGuiUtil.LOGIN_WIDTH,InitializationGuiUtil.LOGIN_HEIGHT);
         setResizable(false);
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

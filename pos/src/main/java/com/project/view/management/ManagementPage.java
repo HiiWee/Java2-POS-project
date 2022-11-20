@@ -1,5 +1,6 @@
 package com.project.view.management;
 
+import com.project.utils.ButtonNameUtil;
 import com.project.utils.InitializationGuiUtil;
 import com.project.view.common.NormalButton;
 import javax.swing.JButton;
@@ -12,7 +13,7 @@ public class ManagementPage extends JPanel {
     public static ManagementPage getInstance() {
         return instance;
     }
-    private final NormalButton pressPassWardButton=new NormalButton("Passward입력");
+    private final NormalButton pressPassWardButton=new NormalButton(ButtonNameUtil.INPUT_PASSWORD);
 
     public ManagementPage() {
         setSize(InitializationGuiUtil.FRAME_WIDTH, InitializationGuiUtil.FRAME_HEIGHT);

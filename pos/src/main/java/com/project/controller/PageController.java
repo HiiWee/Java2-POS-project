@@ -76,7 +76,7 @@ public class PageController implements MouseListener {
         managementLogin.setVisible(true);
     }
 
-    private void cloesLoginPage() {
+    private void cloeseLoginPage() {
         managementLogin.setVisible(false);
         managementLogin.clearJPasswordField();
     }
@@ -137,7 +137,7 @@ public class PageController implements MouseListener {
         managementLogin.getBackButtonOnManagementLogin().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cloesLoginPage();
+                cloeseLoginPage();
             }
         });
     }
