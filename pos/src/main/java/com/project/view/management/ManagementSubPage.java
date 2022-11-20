@@ -7,18 +7,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
-public class ManagementPage extends JPanel {
+public class ManagementSubPage extends JPanel {
 
-    private static final ManagementPage instance = new ManagementPage();
+    private static final ManagementSubPage instance = new ManagementSubPage();
 
-    public static ManagementPage getInstance() {
+    public static ManagementSubPage getInstance() {
         return instance;
     }
     private final JPasswordField passwordField = new JPasswordField();
     private final JLabel info = new JLabel("관리자 모드로 진입하기 위해서는 비밀번호가 필요합니다");
     private final NormalButton loginButton = new NormalButton(ButtonNameUtil.LOGIN);
 
-    public ManagementPage() {
+    public ManagementSubPage() {
         setSize(InitializationGuiUtil.FRAME_WIDTH, InitializationGuiUtil.FRAME_HEIGHT);
         this.setLayout(null);
         add(passwordField);

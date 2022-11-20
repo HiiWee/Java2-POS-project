@@ -4,7 +4,7 @@ package com.project.controller;
 import com.project.view.MainFrame;
 import com.project.view.billcheck.BillCheckPage;
 import com.project.view.common.LaunchPage;
-import com.project.view.management.ManagementPage;
+import com.project.view.management.ManagementSubPage;
 import com.project.view.sell.DetailTableSubPage;
 import com.project.view.sell.SellingPage;
 import com.project.view.sell.TableSubPanel;
@@ -19,7 +19,7 @@ public class PageController implements MouseListener {
     private final SellingPage sellingPage = SellingPage.getInstance();
     private final DetailTableSubPage detailTablePage = DetailTableSubPage.getInstance();
     private final BillCheckPage billCheckPage = BillCheckPage.getInstance();
-    private final ManagementPage managementPage = ManagementPage.getInstance();
+    private final ManagementSubPage managementSubPage = ManagementSubPage.getInstance();
 
     public void startPos() {
         launchPage.setVisible(true);
