@@ -4,6 +4,8 @@ package com.project.controller;
 import com.project.view.MainFrame;
 import com.project.view.billcheck.BillCheckPage;
 import com.project.view.common.LaunchPage;
+import com.project.view.management.ManagementLogin;
+import com.project.view.management.ManagementPage;
 import com.project.view.sell.DetailTableSubPage;
 import com.project.view.sell.SellingPage;
 import com.project.view.sell.TableSubPanel;
@@ -17,7 +19,9 @@ public class PageController implements MouseListener {
     private final LaunchPage launchPage = LaunchPage.getInstance();
     private final SellingPage sellingPage = SellingPage.getInstance();
     private final DetailTableSubPage detailTablePage = DetailTableSubPage.getInstance();
-    private final BillCheckPage billCheckPage=BillCheckPage.getInstance();
+    private final BillCheckPage billCheckPage = BillCheckPage.getInstance();
+    private final ManagementPage managementPage = ManagementPage.getInstance();
+    private final ManagementLogin managementLogin = ManagementLogin.getInstance();
 
     public void startPos() {
         launchPage.setVisible(true);
@@ -28,6 +32,8 @@ public class PageController implements MouseListener {
         addActionBackButtonOnDetailPage();
         addActionBillButtonOnSellingPage();
         addActionBackButtonOnBillCheckPage();
+        addActionOpenLoginPage();
+        addActionBackButtonOnManagementLogin();
     }
 
     private void initSellingPage() {
@@ -55,14 +61,26 @@ public class PageController implements MouseListener {
         detailTablePage.setVisible(false);
         sellingPage.setVisible(true);
     }
-    private void moveSellingToBillCheckPage(){
+
+    private void moveSellingToBillCheckPage() {
         mainPage.setVisible(false);
         billCheckPage.setVisible(true);
     }
-    private void moveBillCheckPageToMainPage(){
+
+    private void moveBillCheckPageToMainPage() {
         billCheckPage.setVisible(false);
         mainPage.setVisible(true);
     }
+
+    private void openLoginPage() {
+        managementLogin.setVisible(true);
+    }
+
+    private void cloesLoginPage() {
+        managementLogin.setVisible(false);
+        managementLogin.clearJPasswordField();
+    }
+
     private void addActionBackButtonOnDetailPage() {
         detailTablePage.getBackButton()
                 .addActionListener(e -> {
@@ -87,7 +105,8 @@ public class PageController implements MouseListener {
         sellingPage.getCloseButton()
                 .addActionListener(e -> moveSellingToLaunchPage());
     }
-    private void addActionBillButtonOnSellingPage(){
+
+    private void addActionBillButtonOnSellingPage() {
         sellingPage.getBillButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -95,7 +114,8 @@ public class PageController implements MouseListener {
             }
         });
     }
-    private void addActionBackButtonOnBillCheckPage(){
+
+    private void addActionBackButtonOnBillCheckPage() {
         billCheckPage.getBackButtonOnBillCheckPage().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -103,6 +123,25 @@ public class PageController implements MouseListener {
             }
         });
     }
+
+    private void addActionOpenLoginPage() {
+        managementPage.getPressPasswardButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openLoginPage();
+            }
+        });
+    }
+
+    private void addActionBackButtonOnManagementLogin() {
+        managementLogin.getBackButtonOnManagementLogin().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cloesLoginPage();
+            }
+        });
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
 
