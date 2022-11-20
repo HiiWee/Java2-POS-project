@@ -118,11 +118,11 @@ public class DetailTableSubPage extends JFrame {
         remove(tablePanel);
     }
 
-    public void clearjTextFieldTotal() {
+    public void clearJTextFieldTotal() {
         jTextFieldTotal.setText("");
     }
 
-    public void clearjTextAreaMenu() {
+    public void clearJTextAreaMenu() {
         jTextAreaMenu.setText("");
     }
 }
