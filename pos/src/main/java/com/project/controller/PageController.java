@@ -69,7 +69,6 @@ public class PageController implements MouseListener {
     }
 
 
-
     private void addActionBackButtonOnDetailPage() {
         detailTablePage.getBackButton()
                 .addActionListener(e -> {

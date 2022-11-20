@@ -24,7 +24,7 @@ public class DetailTableSubPage extends JFrame {
     private final JTextArea jTextAreaMenu = new JTextArea();
     private final JTextField jTextFieldTotal = new JTextField();
     private TableSubPanel tablePanel;
-   // private final JPanel ButtonPanelRight = new JPanel(new GridLayout(1, 1));
+    // private final JPanel ButtonPanelRight = new JPanel(new GridLayout(1, 1));
     private final JPanel ButtonPanelLeft = new JPanel(new GridLayout(1, 3));
 
     private final NormalButton leftButton = new NormalButton("left");
