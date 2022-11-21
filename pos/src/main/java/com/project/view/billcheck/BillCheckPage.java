@@ -29,13 +29,12 @@ public class BillCheckPage extends JFrame {
         container.add(billCheckPageRefundButton);
         container.add(billCheckPageBackButton);
         scroll.setLayout(new BorderLayout());
-        scroll.add(detailOfBillArea,BorderLayout.CENTER);
-        detailOfBillArea.setRows(30);
-        detailOfBillArea.setColumns(30);
+        scroll.add(detailOfBillArea, BorderLayout.CENTER);
+        detailOfBillArea.setEditable(false);
         JScrollPane jScrollPane = new JScrollPane(detailOfBillArea);
         scroll.add(jScrollPane);
         container.add(scroll);
-        billCheckPageBackButton.setBounds(650, 450, 150, 100);
+        billCheckPageBackButton.setBounds(650, 435, 150, 100);
         billCheckPageRefundButton.setBounds(650, 50, 150, 100);
         scroll.setBounds(10, 10, 500, 525);//https://woongbin96.tistory.com/105
     }

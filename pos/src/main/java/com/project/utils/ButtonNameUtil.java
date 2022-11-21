@@ -9,7 +9,10 @@ public class ButtonNameUtil {
     public static final String OPEN_POS = "영업 개시";
     public static final String DISCOUNT = "할인";
     public static final String PAYMENT = "결제";
-    public static final String REFUND="환불";
+    public static final String REFUND = "환불";
+    public static final String LOGIN = "login";
+    public static final String ADD_STUFF = "물품 추가";
+    public static final String DELETE_STUFF = "물품 삭제";
 
     private ButtonNameUtil() {
     }
