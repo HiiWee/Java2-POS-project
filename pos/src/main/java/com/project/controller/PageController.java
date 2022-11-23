@@ -14,7 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class PageController implements MouseListener {
-    private MainFrame mainPage = MainFrame.getInstance();
+    private final MainFrame mainPage = MainFrame.getInstance();
     private final LaunchPage launchPage = LaunchPage.getInstance();
     private final SellingPage sellingPage = SellingPage.getInstance();
     private final DetailTableSubPage detailTablePage = DetailTableSubPage.getInstance();
