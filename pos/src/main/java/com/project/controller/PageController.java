@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.table.DefaultTableModel;
 
 public class PageController implements MouseListener {
     private final MainFrame mainPage = MainFrame.getInstance();
@@ -76,6 +77,10 @@ public class PageController implements MouseListener {
         mainPage.setVisible(true);
     }
 
+    private void refreshJTable(){
+        DefaultTableModel tableModel= (DefaultTableModel) managementPage.table.getModel();
+        tableModel.setNumRows(0);
+    }
 
     private void addActionBackButtonOnDetailPage() {
         detailTablePage.getBackButton()
@@ -124,7 +129,8 @@ public class PageController implements MouseListener {
         managementPage.getRefreshButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                jTable.Select();
+                refreshJTable();
+                jTable.select();
             }
         });
     }

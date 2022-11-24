@@ -1,11 +1,11 @@
 package com.project.DB;
 
+import com.project.table.Product;
 import com.project.utils.DButil;
 import com.project.view.management.ManagementPage;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class JTable {
@@ -19,7 +19,7 @@ public class JTable {
     private PreparedStatement pstmt = null;
     private ResultSet rs = null;
 
-    public void Select() {
+    public void select() {
         String query = "select id, name, price from product";
         try {
             DButil.connect();
@@ -60,6 +60,7 @@ public class JTable {
         } finally {
             try {
                 pstmt.close();
+                DButil.disConnect();
             } catch (Exception i) {}
         }
         tableModel.removeRow(row);
