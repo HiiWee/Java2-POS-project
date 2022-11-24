@@ -24,13 +24,14 @@ public class ManagementPage extends JFrame {
     private final NormalButton deleteStuffButton = new NormalButton(ButtonNameUtil.DELETE_STUFF);
     private final NormalButton refreshButton = new NormalButton("상품갱신");
     private final String header[] = {"고유번호", "이름", "가격"};
-    public DefaultTableModel tableModel = new DefaultTableModel(header, 0);
-    public JTable table = new JTable(tableModel);
+    public DefaultTableModel tableModel;
+    public JTable table;
     private final JPanel jPanel = new JPanel();
     private final JPanel buttonPanel = new JPanel(new GridLayout(3, 1));
 
     public ManagementPage() {
         initializePage();
+        setTable();
         jPanel.setLayout(new BorderLayout());
         jPanel.add(table, BorderLayout.CENTER);
         JScrollPane scrollPane = new JScrollPane(table);
@@ -53,6 +54,21 @@ public class ManagementPage extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Management Page");
+    }
+    private void setTable(){
+        tableModel=new DefaultTableModel(header,0){
+            public boolean isCellEditable(int row,int column){
+                if(column>=0){
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            }
+        };
+        table=new JTable(tableModel);
+        table.getTableHeader().setReorderingAllowed(false);
+        table.getTableHeader().setReorderingAllowed(false);
     }
 
     public JButton getRefreshButton() {
