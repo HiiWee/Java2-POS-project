@@ -1,6 +1,7 @@
 package com.project;
 
 import com.project.controller.PageController;
+import com.project.utils.DButil;
 import com.project.view.management.ManagementEditPage;
 import com.project.view.management.ManagementPage;
 
@@ -10,5 +11,6 @@ public class Application {
         controller.startPos();
         new ManagementPage();
         new ManagementEditPage();
+
     }
 }

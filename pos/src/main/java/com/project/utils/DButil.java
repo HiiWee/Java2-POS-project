@@ -42,5 +42,7 @@ public class DButil {
             e.printStackTrace();
         }
     }
-    private DButil(){}
+
+    private DButil() {
+    }
 }

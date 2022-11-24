@@ -4,6 +4,7 @@ import com.project.utils.ButtonNameUtil;
 import com.project.utils.InitializationGuiUtil;
 import com.project.view.common.NormalButton;
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -20,28 +21,28 @@ public class ManagementPage extends JFrame {
     private final NormalButton backButtonOnManagementPage = new NormalButton(ButtonNameUtil.BACK);
     private final NormalButton addStuffButton = new NormalButton(ButtonNameUtil.ADD_STUFF);
     private final NormalButton deleteStuffButton = new NormalButton(ButtonNameUtil.DELETE_STUFF);
-    //private final String header[] = {"고유번호", "이름", "가격"};
-    //private final DefaultTableModel tableModel=new DefaultTableModel(header,0);
-    //private final JTable table = new JTable(tableModel);
+    private final NormalButton refreshButton=new NormalButton("상품갱신");
+    private final String header[] = {"고유번호", "이름", "가격"};
+    private final DefaultTableModel tableModel=new DefaultTableModel(header,0);
+    private final JTable table = new JTable(tableModel);
     private final JPanel jPanel = new JPanel();
-    private final JTextArea jTextArea = new JTextArea(
-            "JTable 이용해서 이부분 나타낼지 백엔드와 논의 필요함 https://reakwon.tistory.com/167 예시");
+    private final JPanel buttonPanel =new JPanel(new GridLayout(3,1));
 
     public ManagementPage() {
         initializePage();
         jPanel.setLayout(new BorderLayout());
-        jPanel.add(jTextArea, BorderLayout.CENTER);
-        JScrollPane scrollPane = new JScrollPane(jTextArea);
+        jPanel.add(table, BorderLayout.CENTER);
+        JScrollPane scrollPane = new JScrollPane(table);
         jPanel.add(scrollPane);
-        jTextArea.setEditable(false);
+        buttonPanel.add(refreshButton);
+        buttonPanel.add(addStuffButton);
+        buttonPanel.add(deleteStuffButton);
+        add(buttonPanel);
         add(jPanel);
         add(backButtonOnManagementPage);
-        add(addStuffButton);
-        add(deleteStuffButton);
         backButtonOnManagementPage.setBounds(230, 480, 150, 100);
-        addStuffButton.setBounds(600, 100, 150, 100);
-        deleteStuffButton.setBounds(600, 300, 150, 100);
         jPanel.setBounds(50, 50, 500, 400);
+        buttonPanel.setBounds(600,100,150,300);
         setVisible(true);
     }
 
