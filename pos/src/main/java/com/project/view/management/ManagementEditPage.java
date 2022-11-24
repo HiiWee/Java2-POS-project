@@ -3,6 +3,7 @@ package com.project.view.management;
 import com.project.utils.InitializationGuiUtil;
 import com.project.view.common.NormalButton;
 import java.awt.Font;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
@@ -38,7 +39,7 @@ public class ManagementEditPage extends JFrame {
         add(checkButton);
         add(cancelButton);
         add(addButtom);
-        jTextFieldNumber.setEditable(false);
+        //jTextFieldNumber.setEditable(false);
         jLabelNumber.setBounds(50, 20, 100, 100);
         jLabelStuffName.setBounds(75, 75, 100, 100);
         jLabelStuffPrice.setBounds(75, 125, 100, 100);
@@ -62,5 +63,20 @@ public class ManagementEditPage extends JFrame {
         jLabelNumber.setFont(jLabelNumber.getFont().deriveFont(15f));
         jLabelStuffName.setFont(jLabelStuffName.getFont().deriveFont(15f));
         jLabelStuffPrice.setFont(jLabelStuffPrice.getFont().deriveFont(15f));
+    }
+    public JTextField getjTextFieldStuffName(){
+        return jTextFieldStuffName;
+    }
+
+    public JTextField getjTextFieldStuffPrice() {
+        return jTextFieldStuffPrice;
+    }
+
+    public JTextField getjTextFieldNumber() {
+        return jTextFieldNumber;
+    }
+
+    public JButton getAddButtom() {
+        return addButtom;
     }
 }

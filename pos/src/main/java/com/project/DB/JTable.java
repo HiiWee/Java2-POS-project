@@ -1,15 +1,15 @@
 package com.project.DB;
 
-import com.project.table.Product;
 import com.project.utils.DButil;
+import com.project.view.management.ManagementEditPage;
 import com.project.view.management.ManagementPage;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class JTable {
     ManagementPage managementPage = ManagementPage.getInstance();
+    ManagementEditPage managementEditPage = ManagementEditPage.getInstance();
     private static final JTable instance = new JTable();
 
     public static JTable getInstance() {
@@ -37,18 +37,40 @@ public class JTable {
                 pstmt.close();
                 DButil.disConnect();
             } catch (Exception e2) {
+                e2.printStackTrace();
             }
         }
     }
 
     public void insert() {
+        String query = "insert into product(id,name,price)" + "values(?,?,?)";
+        try {
+            DButil.connect();
+            pstmt = DButil.connection.prepareStatement(query);
+            pstmt.setString(1,managementEditPage.getjTextFieldNumber().getText());
+            pstmt.setString(2, managementEditPage.getjTextFieldStuffName().getText());
+            pstmt.setString(3, managementEditPage.getjTextFieldStuffPrice().getText());
+            int insert = pstmt.executeUpdate();
+            System.out.println("1성공 " + insert);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                pstmt.close();
+                DButil.disConnect();
+            }catch (Exception ee){
+                ee.printStackTrace();
+        }
     }
+
+}
 
     public void drop() {
         DefaultTableModel tableModel = (DefaultTableModel) managementPage.table.getModel();
         int row = managementPage.table.getSelectedRow();
-        if (row < 0)
+        if (row < 0) {
             return;
+        }
         String query = "delete from product where id=?";
         try {
             DButil.connect();
@@ -61,7 +83,8 @@ public class JTable {
             try {
                 pstmt.close();
                 DButil.disConnect();
-            } catch (Exception i) {}
+            } catch (Exception i) {
+            }
         }
         tableModel.removeRow(row);
     }

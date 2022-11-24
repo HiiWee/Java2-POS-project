@@ -39,6 +39,7 @@ public class PageController implements MouseListener {
         addActionBackButtonOnBillCheckPage();
         addActionRefreshButtonOnManagementPage();
         addActionDeleteButtonOnManagementPage();
+        addActionAddButtonOnManagementEditPage();
     }
 
     private void initSellingPage() {
@@ -139,6 +140,14 @@ public class PageController implements MouseListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 jTable.drop();
+            }
+        });
+    }
+    private void addActionAddButtonOnManagementEditPage(){
+        managementEditPage.getAddButtom().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jTable.insert();
             }
         });
     }
