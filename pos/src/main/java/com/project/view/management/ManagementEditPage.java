@@ -9,17 +9,19 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class ManagementEditPage extends JFrame {
-    /*  private static final ManagementEditPage instance = new ManagementEditPage();
+    private static final ManagementEditPage instance = new ManagementEditPage();
 
-      public static ManagementEditPage getInstance() {
-          return instance;
-      }*/
+    public static ManagementEditPage getInstance() {
+        return instance;
+    }
+
     private final JTextField jTextFieldNumber = new JTextField();
     private final JTextField jTextFieldStuffName = new JTextField();
     private final JTextField jTextFieldStuffPrice = new JTextField();
     private final JLabel jLabelNumber = new JLabel("고유번호");
     private final JLabel jLabelStuffName = new JLabel("이름");
     private final JLabel jLabelStuffPrice = new JLabel("가격");
+    private final NormalButton addButtom = new NormalButton("추가");
     private final NormalButton checkButton = new NormalButton("확인");
     private final NormalButton cancelButton = new NormalButton("취소");
 
@@ -35,6 +37,7 @@ public class ManagementEditPage extends JFrame {
         add(jTextFieldStuffPrice);
         add(checkButton);
         add(cancelButton);
+        add(addButtom);
         jTextFieldNumber.setEditable(false);
         jLabelNumber.setBounds(50, 20, 100, 100);
         jLabelStuffName.setBounds(75, 75, 100, 100);
@@ -44,6 +47,7 @@ public class ManagementEditPage extends JFrame {
         jTextFieldStuffPrice.setBounds(150, 160, 250, 30);
         checkButton.setBounds(150, 220, 100, 50);
         cancelButton.setBounds(300, 220, 100, 50);
+        addButtom.setBounds(0,220,100,50);
     }
 
     private void initializePage() {

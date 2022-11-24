@@ -10,7 +10,7 @@ public class DButil {
     private static final String url = "jdbc:mysql://localhost/pos?serverTimezone=UTC";
     private static final String id = "YuGwangun";
     private static final String password = "sun1213@@";
-    private static Connection connection = null;
+    public static Connection connection = null;
 
 
     public static Connection connect() {

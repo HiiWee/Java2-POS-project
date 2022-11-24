@@ -1,9 +1,12 @@
 package com.project.controller;
 
 
+import com.project.DB.JTable;
 import com.project.view.MainFrame;
 import com.project.view.billcheck.BillCheckPage;
 import com.project.view.common.LaunchPage;
+import com.project.view.management.ManagementEditPage;
+import com.project.view.management.ManagementPage;
 import com.project.view.management.ManagementSubPage;
 import com.project.view.sell.DetailTableSubPage;
 import com.project.view.sell.SellingPage;
@@ -20,6 +23,9 @@ public class PageController implements MouseListener {
     private final DetailTableSubPage detailTablePage = DetailTableSubPage.getInstance();
     private final BillCheckPage billCheckPage = BillCheckPage.getInstance();
     private final ManagementSubPage managementSubPage = ManagementSubPage.getInstance();
+    private final ManagementEditPage managementEditPage=ManagementEditPage.getInstance();
+    private final ManagementPage managementPage = ManagementPage.getInstance();
+    private final JTable jTable = JTable.getInstance();
 
     public void startPos() {
         launchPage.setVisible(true);
@@ -30,6 +36,8 @@ public class PageController implements MouseListener {
         addActionBackButtonOnDetailPage();
         addActionBillButtonOnSellingPage();
         addActionBackButtonOnBillCheckPage();
+        addActionRefreshButtonOnManagementPage();
+        addActionDeleteButtonOnManagementPage();
     }
 
     private void initSellingPage() {
@@ -112,6 +120,22 @@ public class PageController implements MouseListener {
         });
     }
 
+    private void addActionRefreshButtonOnManagementPage() {
+        managementPage.getRefreshButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jTable.Select();
+            }
+        });
+    }
+    private void addActionDeleteButtonOnManagementPage(){
+        managementPage.getDeleteButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jTable.drop();
+            }
+        });
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
