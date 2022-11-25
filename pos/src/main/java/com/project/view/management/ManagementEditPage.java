@@ -48,7 +48,7 @@ public class ManagementEditPage extends JFrame {
         jTextFieldStuffPrice.setBounds(150, 160, 250, 30);
         checkButton.setBounds(150, 220, 100, 50);
         cancelButton.setBounds(300, 220, 100, 50);
-        addButtom.setBounds(0,220,100,50);
+        addButtom.setBounds(0, 220, 100, 50);
     }
 
     private void initializePage() {
@@ -64,7 +64,8 @@ public class ManagementEditPage extends JFrame {
         jLabelStuffName.setFont(jLabelStuffName.getFont().deriveFont(15f));
         jLabelStuffPrice.setFont(jLabelStuffPrice.getFont().deriveFont(15f));
     }
-    public JTextField getjTextFieldStuffName(){
+
+    public JTextField getjTextFieldStuffName() {
         return jTextFieldStuffName;
     }
 
@@ -79,4 +80,5 @@ public class ManagementEditPage extends JFrame {
     public JButton getAddButtom() {
         return addButtom;
     }
+    public JButton getcheckButton(){return checkButton;}
 }

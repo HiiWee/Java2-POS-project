@@ -24,7 +24,7 @@ public class PageController implements MouseListener {
     private final DetailTableSubPage detailTablePage = DetailTableSubPage.getInstance();
     private final BillCheckPage billCheckPage = BillCheckPage.getInstance();
     private final ManagementSubPage managementSubPage = ManagementSubPage.getInstance();
-    private final ManagementEditPage managementEditPage=ManagementEditPage.getInstance();
+    private final ManagementEditPage managementEditPage = ManagementEditPage.getInstance();
     private final ManagementPage managementPage = ManagementPage.getInstance();
     private final JTable jTable = JTable.getInstance();
 
@@ -40,6 +40,7 @@ public class PageController implements MouseListener {
         addActionRefreshButtonOnManagementPage();
         addActionDeleteButtonOnManagementPage();
         addActionAddButtonOnManagementEditPage();
+        addActionCheckButtonOnManagementEditPage();
     }
 
     private void initSellingPage() {
@@ -78,8 +79,8 @@ public class PageController implements MouseListener {
         mainPage.setVisible(true);
     }
 
-    private void refreshJTable(){
-        DefaultTableModel tableModel= (DefaultTableModel) managementPage.table.getModel();
+    private void refreshJTable() {
+        DefaultTableModel tableModel = (DefaultTableModel) managementPage.table.getModel();
         tableModel.setNumRows(0);
     }
 
@@ -135,7 +136,8 @@ public class PageController implements MouseListener {
             }
         });
     }
-    private void addActionDeleteButtonOnManagementPage(){
+
+    private void addActionDeleteButtonOnManagementPage() {
         managementPage.getDeleteButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -143,11 +145,21 @@ public class PageController implements MouseListener {
             }
         });
     }
-    private void addActionAddButtonOnManagementEditPage(){
+
+    private void addActionAddButtonOnManagementEditPage() {
         managementEditPage.getAddButtom().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 jTable.insert();
+                jTable.clearList();
+            }
+        });
+    }
+    private void addActionCheckButtonOnManagementEditPage(){
+        managementEditPage.getcheckButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jTable.saveList();
             }
         });
     }

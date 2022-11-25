@@ -55,20 +55,21 @@ public class ManagementPage extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Management Page");
     }
-    private void setTable(){
-        tableModel=new DefaultTableModel(header,0){
-            public boolean isCellEditable(int row,int column){
-                if(column>=0){
+
+    private void setTable() {
+        tableModel = new DefaultTableModel(header, 0) {
+            public boolean isCellEditable(int row, int column) {
+                if (column >= 0) {
                     return false;
-                }
-                else {
+                } else {
                     return true;
                 }
             }
         };
-        table=new JTable(tableModel);
+        table = new JTable(tableModel);
         table.getTableHeader().setReorderingAllowed(false);
         table.getTableHeader().setReorderingAllowed(false);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
     }
 
     public JButton getRefreshButton() {

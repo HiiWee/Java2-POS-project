@@ -1,5 +1,8 @@
 package com.project.table;
 
+import com.project.view.management.ManagementEditPage;
+import java.util.ArrayList;
+
 public class Product {
     private Long id;
     private String name;
@@ -28,4 +31,5 @@ public class Product {
     public void setPrice(int price) {
         this.price = price;
     }
+
 }

@@ -5,11 +5,13 @@ import com.project.view.management.ManagementEditPage;
 import com.project.view.management.ManagementPage;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 public class JTable {
-    ManagementPage managementPage = ManagementPage.getInstance();
-    ManagementEditPage managementEditPage = ManagementEditPage.getInstance();
+    private final ArrayList<String> product = new ArrayList<>();
+    private final ManagementPage managementPage = ManagementPage.getInstance();
+    private final ManagementEditPage managementEditPage = ManagementEditPage.getInstance();
     private static final JTable instance = new JTable();
 
     public static JTable getInstance() {
@@ -43,27 +45,31 @@ public class JTable {
     }
 
     public void insert() {
-        String query = "insert into product(id,name,price)" + "values(?,?,?)";
+        String query = "insert into product(id,name,price) values(?,?,?)";
         try {
             DButil.connect();
             pstmt = DButil.connection.prepareStatement(query);
-            pstmt.setString(1,managementEditPage.getjTextFieldNumber().getText());
+
+                //pstmt.setString(1, product.get(rs));
+                //pstmt.setString(2, product.get());
+                //pstmt.setString(3, product.get());
+
+            pstmt.setString(1, managementEditPage.getjTextFieldNumber().getText());
             pstmt.setString(2, managementEditPage.getjTextFieldStuffName().getText());
             pstmt.setString(3, managementEditPage.getjTextFieldStuffPrice().getText());
-            int insert = pstmt.executeUpdate();
-            System.out.println("1성공 " + insert);
+            pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
                 pstmt.close();
                 DButil.disConnect();
-            }catch (Exception ee){
+            } catch (Exception ee) {
                 ee.printStackTrace();
+            }
         }
-    }
 
-}
+    }
 
     public void drop() {
         DefaultTableModel tableModel = (DefaultTableModel) managementPage.table.getModel();
@@ -87,5 +93,16 @@ public class JTable {
             }
         }
         tableModel.removeRow(row);
+    }
+
+    public void saveList() {
+        product.add(managementEditPage.getjTextFieldNumber().getText());
+        product.add(managementEditPage.getjTextFieldStuffName().getText());
+        product.add(managementEditPage.getjTextFieldStuffPrice().getText());
+        System.out.println(product);
+    }
+
+    public void clearList() {
+        product.clear();
     }
 }
