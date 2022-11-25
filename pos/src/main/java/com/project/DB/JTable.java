@@ -32,7 +32,7 @@ public class JTable {
                         , rs.getString("name"), rs.getString("price")});
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } finally {
             try {
                 rs.close();
@@ -50,9 +50,9 @@ public class JTable {
             DButil.connect();
             pstmt = DButil.connection.prepareStatement(query);
 
-                //pstmt.setString(1, product.get(rs));
-                //pstmt.setString(2, product.get());
-                //pstmt.setString(3, product.get());
+            //pstmt.setString(1, product.get(rs));
+            //pstmt.setString(2, product.get());
+            //pstmt.setString(3, product.get());
 
             pstmt.setString(1, managementEditPage.getjTextFieldNumber().getText());
             pstmt.setString(2, managementEditPage.getjTextFieldStuffName().getText());
@@ -84,7 +84,7 @@ public class JTable {
             pstmt.setString(1, (String) tableModel.getValueAt(row, 0));
             pstmt.executeUpdate();
         } catch (Exception a) {
-            System.out.println(a.getMessage());
+            a.printStackTrace();
         } finally {
             try {
                 pstmt.close();
@@ -93,6 +93,27 @@ public class JTable {
             }
         }
         tableModel.removeRow(row);
+    }
+
+    public void update() {
+        String query = "update product set name=?, price=? where id=?";
+        try {
+            DButil.connect();
+            pstmt = DButil.connection.prepareStatement(query);
+            pstmt.setString(1, managementEditPage.getjTextFieldStuffName().getText());
+            pstmt.setString(2, managementEditPage.getjTextFieldStuffPrice().getText());
+            pstmt.setString(3, managementEditPage.getjTextFieldNumber().getText());
+            pstmt.executeUpdate();
+        } catch (Exception o) {
+            o.printStackTrace();
+        } finally {
+            try {
+                pstmt.close();
+                DButil.disConnect();
+            } catch (Exception ee) {
+                ee.printStackTrace();
+            }
+        }
     }
 
     public void saveList() {

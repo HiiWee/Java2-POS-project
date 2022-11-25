@@ -80,5 +80,8 @@ public class ManagementEditPage extends JFrame {
     public JButton getAddButtom() {
         return addButtom;
     }
-    public JButton getcheckButton(){return checkButton;}
+
+    public JButton getcheckButton() {
+        return checkButton;
+    }
 }

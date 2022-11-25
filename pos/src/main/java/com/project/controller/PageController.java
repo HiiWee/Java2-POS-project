@@ -155,11 +155,12 @@ public class PageController implements MouseListener {
             }
         });
     }
-    private void addActionCheckButtonOnManagementEditPage(){
+
+    private void addActionCheckButtonOnManagementEditPage() {
         managementEditPage.getcheckButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                jTable.saveList();
+                jTable.update();
             }
         });
     }
