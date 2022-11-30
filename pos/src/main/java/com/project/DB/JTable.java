@@ -11,8 +11,8 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class JTable {
-    private static final List<Product> productList = new ArrayList<>();
-    private final Product product = new Product();
+    private final List<Product> productList = new ArrayList<>();
+    private final Product product=new Product();
     private final ManagementPage managementPage = ManagementPage.getInstance();
     private final ManagementEditPage managementEditPage = ManagementEditPage.getInstance();
     private static final JTable instance = new JTable();
@@ -52,9 +52,11 @@ public class JTable {
         try {
             DButil.connect();
             pstmt = DButil.connection.prepareStatement(query);
-            pstmt.setString(1, product.getName());
-            pstmt.setInt(2, product.getPrice());
-            pstmt.executeUpdate();
+            for (Product i:productList)
+            {   pstmt.setString(1, i.getName());
+                pstmt.setInt(2, i.getPrice());
+                pstmt.executeUpdate();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -65,7 +67,7 @@ public class JTable {
                 ee.printStackTrace();
             }
         }
-
+        System.out.println(product);
     }
 
     public void drop() {
@@ -113,10 +115,11 @@ public class JTable {
     }
 
     public void saveList() {// TODO: 2022-11-25 리스트 이용해 보자
+        Product product=new Product();
         product.setName(managementEditPage.getjTextFieldStuffName().getText());
         product.setPrice(Integer.parseInt(managementEditPage.getjTextFieldStuffPrice().getText()));
         productList.add(product);
-        System.out.println(product);
+        System.out.println(productList);
     }
 
     public void clearList() {
