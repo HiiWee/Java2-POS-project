@@ -1,15 +1,18 @@
 package com.project.DB;
 
+import com.project.table.Product;
 import com.project.utils.DButil;
 import com.project.view.management.ManagementEditPage;
 import com.project.view.management.ManagementPage;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class JTable {
-    private final ArrayList<String> product = new ArrayList<>();
+    private static final List<Product> productList = new ArrayList<>();
+    private final Product product = new Product();
     private final ManagementPage managementPage = ManagementPage.getInstance();
     private final ManagementEditPage managementEditPage = ManagementEditPage.getInstance();
     private static final JTable instance = new JTable();
@@ -28,8 +31,8 @@ public class JTable {
             pstmt = DButil.connection.prepareStatement(query);
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                managementPage.tableModel.addRow(new Object[]{rs.getString("id")
-                        , rs.getString("name"), rs.getString("price")});
+                managementPage.tableModel.addRow(new Object[]{rs.getInt("id")
+                        , rs.getString("name"), rs.getInt("price")});
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -44,19 +47,13 @@ public class JTable {
         }
     }
 
-    public void insert() {
-        String query = "insert into product(id,name,price) values(?,?,?)";
+    public void insert() {// TODO: 2022-11-25 id 값 사용 하지 않고 해보기 및 리스트 이용해서 한번에 DB접근 구현
+        String query = "insert into product(name,price) values(?,?)";
         try {
             DButil.connect();
             pstmt = DButil.connection.prepareStatement(query);
-
-            //pstmt.setString(1, product.get(rs));
-            //pstmt.setString(2, product.get());
-            //pstmt.setString(3, product.get());
-
-            pstmt.setString(1, managementEditPage.getjTextFieldNumber().getText());
-            pstmt.setString(2, managementEditPage.getjTextFieldStuffName().getText());
-            pstmt.setString(3, managementEditPage.getjTextFieldStuffPrice().getText());
+            pstmt.setString(1, product.getName());
+            pstmt.setInt(2, product.getPrice());
             pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,7 +78,7 @@ public class JTable {
         try {
             DButil.connect();
             pstmt = DButil.connection.prepareStatement(query);
-            pstmt.setString(1, (String) tableModel.getValueAt(row, 0));
+            pstmt.setLong(1, Long.parseLong(String.valueOf(managementPage.table.getValueAt(row, 0))));
             pstmt.executeUpdate();
         } catch (Exception a) {
             a.printStackTrace();
@@ -95,12 +92,11 @@ public class JTable {
         tableModel.removeRow(row);
     }
 
-    public void update() {
+    public void update() {// TODO: 2022-11-25 id 값 접근하지 않을 예정
         String query = "update product set name=?, price=? where id=?";
         try {
             DButil.connect();
             pstmt = DButil.connection.prepareStatement(query);
-            pstmt.setString(1, managementEditPage.getjTextFieldStuffName().getText());
             pstmt.setString(2, managementEditPage.getjTextFieldStuffPrice().getText());
             pstmt.setString(3, managementEditPage.getjTextFieldNumber().getText());
             pstmt.executeUpdate();
@@ -116,14 +112,14 @@ public class JTable {
         }
     }
 
-    public void saveList() {
-        product.add(managementEditPage.getjTextFieldNumber().getText());
-        product.add(managementEditPage.getjTextFieldStuffName().getText());
-        product.add(managementEditPage.getjTextFieldStuffPrice().getText());
+    public void saveList() {// TODO: 2022-11-25 리스트 이용해 보자
+        product.setName(managementEditPage.getjTextFieldStuffName().getText());
+        product.setPrice(Integer.parseInt(managementEditPage.getjTextFieldStuffPrice().getText()));
+        productList.add(product);
         System.out.println(product);
     }
 
     public void clearList() {
-        product.clear();
+        productList.clear();
     }
 }

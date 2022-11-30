@@ -39,7 +39,7 @@ public class ManagementEditPage extends JFrame {
         add(checkButton);
         add(cancelButton);
         add(addButtom);
-        //jTextFieldNumber.setEditable(false);
+        jTextFieldNumber.setEditable(false);
         jLabelNumber.setBounds(50, 20, 100, 100);
         jLabelStuffName.setBounds(75, 75, 100, 100);
         jLabelStuffPrice.setBounds(75, 125, 100, 100);

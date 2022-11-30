@@ -1,7 +1,7 @@
 package com.project.table;
 
-import com.project.view.management.ManagementEditPage;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Product {
     private Long id;
