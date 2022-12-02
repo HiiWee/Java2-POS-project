@@ -1,23 +1,22 @@
 package com.project.view.sell;
 
-import com.project.utils.ButtonNameUtil;
-import com.project.utils.InitializationGuiUtil;
-import com.project.utils.TableNumberUtil;
+import com.project.utils.ButtonNameMessage;
+import com.project.utils.InitializationGuiConstant;
+import com.project.utils.TableNumberConstant;
 import com.project.view.common.NormalButton;
 import java.awt.GridLayout;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class SellingPage extends JPanel {
-    private static final SellingPage instance = new SellingPage();
+public class SellingPanelTab extends JPanel {
+    private static final SellingPanelTab instance = new SellingPanelTab();
     private final JPanel tablePanel = new JPanel();
-    private final TableSubPanel[] tablePanels = new TableSubPanel[TableNumberUtil.NUMBER_OF_TABLE];
-    private final NormalButton closeButton = new NormalButton(ButtonNameUtil.CLOSE_POS);
-    private final NormalButton orderButton = new NormalButton(ButtonNameUtil.ORDER);
-    private final NormalButton billButton = new NormalButton(ButtonNameUtil.BILL_CHECK);
+    private final TableSubPanel[] tablePanels = new TableSubPanel[TableNumberConstant.NUMBER_OF_TABLE];
+    private final NormalButton closeButton = new NormalButton(ButtonNameMessage.CLOSE_POS);
+    private final NormalButton orderButton = new NormalButton(ButtonNameMessage.ORDER);
+    private final NormalButton billButton = new NormalButton(ButtonNameMessage.BILL_CHECK);
 
-    public static SellingPage getInstance() {
+    public static SellingPanelTab getInstance() {
         return instance;
     }
 
@@ -25,15 +24,15 @@ public class SellingPage extends JPanel {
         return tablePanels;
     }
 
-    private SellingPage() {
+    private SellingPanelTab() {
         setLayout(null);
-        setSize(InitializationGuiUtil.FRAME_WIDTH, InitializationGuiUtil.FRAME_HEIGHT);
+        setSize(InitializationGuiConstant.FRAME_WIDTH, InitializationGuiConstant.FRAME_HEIGHT);
         add(closeButton);
         add(billButton);
         add(orderButton);
         tablePanel.setLayout(new GridLayout(3, 3, 3, 3));
 
-        for (int i = 0; i < TableNumberUtil.NUMBER_OF_TABLE; i++) {
+        for (int i = 0; i < TableNumberConstant.NUMBER_OF_TABLE; i++) {
             tablePanels[i] = new TableSubPanel(String.valueOf(i + 1));
             tablePanel.add(tablePanels[i]);
         }

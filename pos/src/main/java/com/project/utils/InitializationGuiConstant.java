@@ -1,6 +1,6 @@
 package com.project.utils;
 
-public class InitializationGuiUtil {
+public class InitializationGuiConstant {
 
     public static final int FRAME_WIDTH = 850;
     public static final int FRAME_HEIGHT = 630;
@@ -9,6 +9,6 @@ public class InitializationGuiUtil {
     public static final int EDIT_WIDTH = 500;
     public static final int EDIT_HEIGHT = 350;
 
-    private InitializationGuiUtil() {
+    private InitializationGuiConstant() {
     }
 }

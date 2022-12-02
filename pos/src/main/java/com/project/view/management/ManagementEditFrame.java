@@ -1,19 +1,13 @@
 package com.project.view.management;
 
-import com.project.utils.InitializationGuiUtil;
+import com.project.utils.InitializationGuiConstant;
 import com.project.view.common.NormalButton;
-import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class ManagementEditPage extends JFrame {
-    /*  private static final ManagementEditPage instance = new ManagementEditPage();
-
-      public static ManagementEditPage getInstance() {
-          return instance;
-      }*/
+public class ManagementEditFrame extends JFrame {
+    private static final ManagementEditFrame instance = new ManagementEditFrame();
     private final JTextField jTextFieldNumber = new JTextField();
     private final JTextField jTextFieldStuffName = new JTextField();
     private final JTextField jTextFieldStuffPrice = new JTextField();
@@ -23,9 +17,13 @@ public class ManagementEditPage extends JFrame {
     private final NormalButton checkButton = new NormalButton("확인");
     private final NormalButton cancelButton = new NormalButton("취소");
 
-    public ManagementEditPage() {
+    public static ManagementEditFrame getInstance() {
+        return instance;
+    }
+
+    public ManagementEditFrame() {
         initializePage();
-        setVisible(true);
+        setVisible(false);
         labelSetting();
         add(jLabelNumber);
         add(jLabelStuffName);
@@ -48,7 +46,7 @@ public class ManagementEditPage extends JFrame {
 
     private void initializePage() {
         setLayout(null);
-        setSize(InitializationGuiUtil.EDIT_WIDTH, InitializationGuiUtil.EDIT_HEIGHT);
+        setSize(InitializationGuiConstant.EDIT_WIDTH, InitializationGuiConstant.EDIT_HEIGHT);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Management Edit Page");

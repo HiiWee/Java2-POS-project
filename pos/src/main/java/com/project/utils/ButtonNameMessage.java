@@ -1,6 +1,6 @@
 package com.project.utils;
 
-public class ButtonNameUtil {
+public class ButtonNameMessage {
     public static final String END_APPLICATION = "종료";
     public static final String ORDER = "주문";
     public static final String CLOSE_POS = "마감";
@@ -14,6 +14,6 @@ public class ButtonNameUtil {
     public static final String ADD_STUFF = "물품 추가";
     public static final String DELETE_STUFF = "물품 삭제";
 
-    private ButtonNameUtil() {
+    private ButtonNameMessage() {
     }
 }

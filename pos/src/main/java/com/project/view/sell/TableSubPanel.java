@@ -19,4 +19,5 @@ public class TableSubPanel extends JPanel {
     public int getTableNumber() {
         return Integer.parseInt(tableNumber.getText());
     }
+
 }
