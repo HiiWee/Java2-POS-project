@@ -14,8 +14,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
@@ -29,10 +27,12 @@ public class DetailTableFrame extends JFrame {
     private final NormalButton detailTableDiscountButton = new NormalButton(ButtonNameMessage.DISCOUNT);
     private final NormalButton detailTablePayButton = new NormalButton(ButtonNameMessage.PAYMENT);
     private final NormalButton detailTableOrderButton = new NormalButton(ButtonNameMessage.ORDER);
-    private final JTextArea jTextAreaMenu = new JTextArea();
-    private final JTextField jTextFieldTotal = new JTextField();
     private TableSubPanel tablePanel;
-    private final DefaultTableModel tableModel = new DefaultTableModel(new String[]{"id", "이름", "개당 가격", "수량"}, 0);
+    private final DefaultTableModel tableModel = new DefaultTableModel(new String[]{"id", "이름", "개당 가격", "수량"}, 0) {
+        public boolean isCellEditable(int row, int column) {
+            return column < 0;
+        }
+    };
     private final JTable menuSelectTable = new JTable(tableModel);
     private final JPanel ButtonPanelLeft = new JPanel(new GridLayout(1, 3));
 
@@ -87,7 +87,6 @@ public class DetailTableFrame extends JFrame {
         menuPanel.add(rightButton);
     }
 
-
     public void setTablePanel(TableSubPanel tablePanel) {
         this.tablePanel = new TableSubPanel(tablePanel.getTableNumber() + "번 테이블");
         menuSelectTable.getTableHeader().setReorderingAllowed(false);
@@ -99,21 +98,12 @@ public class DetailTableFrame extends JFrame {
         this.tablePanel.setBounds(480, 20, 360, 350);
     }
 
-
     public JButton getBackButton() {
         return detailTableBackButton;
     }
 
     public void removeExistTablePanel() {
         remove(tablePanel);
-    }
-
-    public void clearJTextFieldTotal() {
-        jTextFieldTotal.setText("");
-    }
-
-    public void clearJTextAreaMenu() {
-        jTextAreaMenu.setText("");
     }
 
     // DB 관련 메소드 모음

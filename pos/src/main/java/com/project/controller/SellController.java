@@ -1,6 +1,6 @@
 package com.project.controller;
 
-import com.project.service.ProductService;
+import com.project.service.SellService;
 import com.project.view.common.NormalButton;
 import com.project.view.sell.DetailTableFrame;
 import com.project.view.sell.ProductListPanel;
@@ -8,7 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class SellController {
-    private final ProductService productService = new ProductService();
+    private final SellService productService = new SellService();
     private final DetailTableFrame detailTableFrame = DetailTableFrame.getInstance();
 
     public void initSellPage() {

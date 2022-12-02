@@ -21,7 +21,7 @@ public class PageController {
     private final ManagementFrame managementFrame = ManagementFrame.getInstance();
     private final ManagementEditFrame managementEditFrame = ManagementEditFrame.getInstance();
 
-    private final ProductController productController = new ProductController();
+    private final SellController sellController = new SellController();
 
     public void startPos() {
         launchPage.setVisible(true);
@@ -40,7 +40,7 @@ public class PageController {
         addActionBackButtonOnBillCheckPage();
 
         // 각 페이지 초기 작업 초기화
-        productController.initSellPage();
+        sellController.initSellPage();
     }
 
     private void initSellingPage() {
@@ -93,8 +93,6 @@ public class PageController {
                 .addActionListener(e -> {
                     moveDetailToSellingPage();
                     detailTableFrame.removeExistTablePanel();
-                    detailTableFrame.clearJTextAreaMenu();
-                    detailTableFrame.clearJTextFieldTotal();
                 });
     }
 

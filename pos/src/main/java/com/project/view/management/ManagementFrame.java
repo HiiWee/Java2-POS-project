@@ -59,11 +59,7 @@ public class ManagementFrame extends JFrame {
     private void setTable() {
         tableModel = new DefaultTableModel(header, 0) {
             public boolean isCellEditable(int row, int column) {
-                if (column >= 0) {
-                    return false;
-                } else {
-                    return true;
-                }
+                return column < 0;
             }
         };
         table = new JTable(tableModel);

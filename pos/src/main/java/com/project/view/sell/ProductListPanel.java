@@ -2,10 +2,8 @@ package com.project.view.sell;
 
 import com.project.domain.Product;
 import com.project.view.common.NormalButton;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
