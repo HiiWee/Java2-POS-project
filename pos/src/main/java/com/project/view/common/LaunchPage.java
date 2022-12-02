@@ -1,7 +1,7 @@
 package com.project.view.common;
 
-import com.project.utils.ButtonNameUtil;
-import com.project.utils.InitializationGuiUtil;
+import com.project.utils.ButtonNameMessage;
+import com.project.utils.InitializationGuiConstant;
 import com.project.utils.TimeUtil;
 import java.awt.Container;
 import javax.swing.JButton;
@@ -11,8 +11,8 @@ import javax.swing.JTextField;
 public class LaunchPage extends JFrame {
     private static final LaunchPage instance = new LaunchPage();
 
-    private final NormalButton startButton = new NormalButton(ButtonNameUtil.OPEN_POS);
-    private final NormalButton endButton = new NormalButton(ButtonNameUtil.END_APPLICATION);
+    private final NormalButton startButton = new NormalButton(ButtonNameMessage.OPEN_POS);
+    private final NormalButton endButton = new NormalButton(ButtonNameMessage.END_APPLICATION);
     private final Container container = getContentPane();
     private final JTextField jTextFieldTime = new JTextField(String.valueOf(TimeUtil.nowDateTime));
 
@@ -35,7 +35,7 @@ public class LaunchPage extends JFrame {
     private void initializePage() {
         setTitle("POS SYSTEM");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(InitializationGuiUtil.FRAME_WIDTH, InitializationGuiUtil.FRAME_HEIGHT);
+        setSize(InitializationGuiConstant.FRAME_WIDTH, InitializationGuiConstant.FRAME_HEIGHT);
         setResizable(false);
     }
 

@@ -1,8 +1,8 @@
 package com.project.utils;
 
-public class TableNumberUtil {
+public class TableNumberConstant {
     public static final int NUMBER_OF_TABLE = 9;
 
-    private TableNumberUtil() {
+    private TableNumberConstant() {
     }
 }

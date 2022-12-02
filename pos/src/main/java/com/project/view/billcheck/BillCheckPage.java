@@ -1,7 +1,7 @@
 package com.project.view.billcheck;
 
-import com.project.utils.ButtonNameUtil;
-import com.project.utils.InitializationGuiUtil;
+import com.project.utils.ButtonNameMessage;
+import com.project.utils.InitializationGuiConstant;
 import com.project.view.common.NormalButton;
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -18,8 +18,8 @@ public class BillCheckPage extends JFrame {
         return instance;
     }
 
-    private final NormalButton billCheckPageBackButton = new NormalButton(ButtonNameUtil.BACK);
-    private final NormalButton billCheckPageRefundButton = new NormalButton(ButtonNameUtil.REFUND);
+    private final NormalButton billCheckPageBackButton = new NormalButton(ButtonNameMessage.BACK);
+    private final NormalButton billCheckPageRefundButton = new NormalButton(ButtonNameMessage.REFUND);
     private final JTextArea detailOfBillArea = new JTextArea();
     private final Container container = getContentPane();
     private final JPanel scroll = new JPanel();
@@ -41,7 +41,7 @@ public class BillCheckPage extends JFrame {
 
     private void initializePage() {
         setLayout(null);
-        setSize(InitializationGuiUtil.FRAME_WIDTH, InitializationGuiUtil.FRAME_HEIGHT);
+        setSize(InitializationGuiConstant.FRAME_WIDTH, InitializationGuiConstant.FRAME_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setTitle("POS SYSTEM");
