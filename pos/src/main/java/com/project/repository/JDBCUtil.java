@@ -8,8 +8,8 @@ import java.sql.Statement;
 
 public class JDBCUtil {
     public static final String DATABASE_URL = "jdbc:mysql://localhost:3306/pos";
-    public static final String USER = "hoseok";
-    public static final String PASSWORD = "1234";
+    public static final String USER = "YuGwangun";
+    public static final String PASSWORD = "sun1213@@";
 
     private JDBCUtil() {
     }

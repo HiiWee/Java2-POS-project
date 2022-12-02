@@ -4,7 +4,7 @@ package com.project.controller;
 import com.project.view.MainFrame;
 import com.project.view.billcheck.BillCheckPage;
 import com.project.view.common.LaunchPage;
-import com.project.view.management.ManagementEditFrame;
+import com.project.view.management.ManagementAddFrame;
 import com.project.view.management.ManagementFrame;
 import com.project.view.sell.DetailTableFrame;
 import com.project.view.sell.SellingPanelTab;
@@ -19,9 +19,10 @@ public class PageController {
     private final DetailTableFrame detailTableFrame = DetailTableFrame.getInstance();
     private final BillCheckPage billCheckPage = BillCheckPage.getInstance();
     private final ManagementFrame managementFrame = ManagementFrame.getInstance();
-    private final ManagementEditFrame managementEditFrame = ManagementEditFrame.getInstance();
+    private final ManagementAddFrame managementAddFrame = ManagementAddFrame.getInstance();
 
     private final SellController sellController = new SellController();
+    private final ManagementController managementController = new ManagementController();
 
     public void startPos() {
         launchPage.setVisible(true);
@@ -41,6 +42,13 @@ public class PageController {
 
         // 각 페이지 초기 작업 초기화
         sellController.initSellPage();
+
+        managementController.addActionCheck();
+        managementController.addActionDrop();
+        managementController.addActionRefresh();
+        managementController.addActionSave();
+        managementController.addMouesAction();
+        managementController.addActionUpdate();
     }
 
     private void initSellingPage() {

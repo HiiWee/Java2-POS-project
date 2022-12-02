@@ -132,7 +132,8 @@ public class DetailTableFrame extends JFrame {
                 return;
             }
         }
-        tableModel.addRow(new String[]{panel.getIdText(), panel.getNameText(), panel.getPriceText(), String.valueOf(1)});
+        tableModel.addRow(
+                new String[]{panel.getIdText(), panel.getNameText(), panel.getPriceText(), String.valueOf(1)});
     }
 
     // 테이블에 메뉴 제거
@@ -142,7 +143,8 @@ public class DetailTableFrame extends JFrame {
         for (int row = 0; row < tableModel.getRowCount(); row++) {
             Long id = Long.parseLong((String) tableModel.getValueAt(row, ID_COLUMN));
             if (id == putId) {
-                productCount = Math.max(Integer.parseInt((String) tableModel.getValueAt(row, COUNT_COLUMN)) - 1, productCount);
+                productCount = Math.max(Integer.parseInt((String) tableModel.getValueAt(row, COUNT_COLUMN)) - 1,
+                        productCount);
                 tableModel.setValueAt(String.valueOf(productCount), row, COUNT_COLUMN);
                 deleteZeroCountRow(productCount, row);
                 return;

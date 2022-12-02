@@ -1,10 +1,15 @@
 package com.project.view.management;
 
+import com.project.controller.ManagementController;
+import com.project.domain.Product;
 import com.project.utils.ButtonNameMessage;
 import com.project.utils.InitializationGuiConstant;
 import com.project.view.common.NormalButton;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -45,7 +50,7 @@ public class ManagementFrame extends JFrame {
         backButtonOnManagementPage.setBounds(230, 480, 150, 100);
         jPanel.setBounds(50, 50, 500, 400);
         buttonPanel.setBounds(600, 100, 150, 300);
-        setVisible(false);
+        setVisible(true);
     }
 
     private void initializePage() {
@@ -75,4 +80,13 @@ public class ManagementFrame extends JFrame {
     public JButton getDeleteButton() {
         return deleteStuffButton;
     }
+
+    public void addRowTable(List<Product> products) {
+        for (Product i : products) {
+            tableModel.addRow(new Object[]{
+                    i.getId(), i.getName(), i.getPrice()
+            });
+        }
+    }
+
 }
