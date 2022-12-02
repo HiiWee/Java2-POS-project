@@ -6,7 +6,6 @@ import com.project.view.sell.DetailTableFrame;
 import com.project.view.sell.ProductListPanel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JPanel;
 
 public class ProductController {
     private final ProductService productService = new ProductService();
@@ -20,22 +19,32 @@ public class ProductController {
 
     private void addActionOnProductListPanels(final ProductListPanel[] productListPanels) {
         for (ProductListPanel productListPanel : productListPanels) {
-            productListPanel.getAddButton()
-                    .addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mousePressed(final MouseEvent e) {
-                            ProductListPanel panel = (ProductListPanel) ((NormalButton) e.getSource()).getParentComponent();
-                            detailTableFrame.putProduct(panel);
-                        }
-                    });
-            productListPanel.getMinusButton()
-                    .addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mousePressed(final MouseEvent e) {
-                            ProductListPanel panel = (ProductListPanel) ((NormalButton) e.getSource()).getParentComponent();
-                            detailTableFrame.minusProduct(panel);
-                        }
-                    });
+            addListenerToAddButton(productListPanel);
+            addListenerToMinusButton(productListPanel);
         }
+    }
+
+    private void addListenerToMinusButton(final ProductListPanel productListPanel) {
+        productListPanel.getMinusButton()
+                .addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(final MouseEvent e) {
+                        ProductListPanel panel = (ProductListPanel) ((NormalButton) e.getSource()).getParentComponent();
+                        detailTableFrame.minusProduct(panel);
+                    }
+
+                });
+    }
+
+
+    private void addListenerToAddButton(final ProductListPanel productListPanel) {
+        productListPanel.getAddButton()
+                .addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(final MouseEvent e) {
+                        ProductListPanel panel = (ProductListPanel) ((NormalButton) e.getSource()).getParentComponent();
+                        detailTableFrame.putProduct(panel);
+                    }
+                });
     }
 }
