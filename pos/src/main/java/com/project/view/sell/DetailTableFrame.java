@@ -26,11 +26,10 @@ public class DetailTableFrame extends JFrame {
     public static final int COUNT_COLUMN = 3;
     public static final int PRICE_COLUMN = 2;
 
-    private final DetailTableFrameListener detailTableFrameListener = new DetailTableFrameListener();
-    private final NormalButton detailTableBackButton = new NormalButton(ButtonNameMessage.BACK);
-    private final NormalButton detailTableDiscountButton = new NormalButton(ButtonNameMessage.DISCOUNT);
-    private final NormalButton detailTablePayButton = new NormalButton(ButtonNameMessage.PAYMENT);
-    private final NormalButton detailTableOrderButton = new NormalButton(ButtonNameMessage.ORDER);
+    private final NormalButton backButton = new NormalButton(ButtonNameMessage.BACK);
+    private final NormalButton discountButton = new NormalButton(ButtonNameMessage.DISCOUNT);
+    private final NormalButton payButton = new NormalButton(ButtonNameMessage.PAYMENT);
+    private final NormalButton orderButton = new NormalButton(ButtonNameMessage.ORDER);
     private TableSubPanel tablePanel;
     private final DefaultTableModel tableModel = new DefaultTableModel(new String[]{"id", "이름", "개당 가격", "수량"}, 0) {
         public boolean isCellEditable(int row, int column) {
@@ -48,6 +47,8 @@ public class DetailTableFrame extends JFrame {
     private ProductListPanel[] productListPanels;
     // 페이징시 사용되는 index
     private int startIndexOfProduct;
+    private int productsSize = 16;
+    private List<Product> products;
     private final JLabel totalPriceLabel = new JLabel();
 
     public static DetailTableFrame getInstance() {
@@ -56,18 +57,25 @@ public class DetailTableFrame extends JFrame {
 
     private DetailTableFrame() {
         initializePage();
+        initializeActionCommandOnBUtton();
         add(buttonPanelLeft);
-        add(detailTableOrderButton);
+        add(orderButton);
         add(totalPriceLabel);
-        buttonPanelLeft.add(detailTablePayButton);
-        buttonPanelLeft.add(detailTableDiscountButton);
-        buttonPanelLeft.add(detailTableBackButton);
+        buttonPanelLeft.add(payButton);
+        buttonPanelLeft.add(discountButton);
+        buttonPanelLeft.add(backButton);
         buttonPanelLeft.setBounds(50, 430, 300, 100);
-        detailTableOrderButton.setBounds(550, 425, 150, 100);
+        orderButton.setBounds(550, 425, 150, 100);
         totalPriceLabel.setText("총 가격");
         totalPriceLabel.setBounds(480, 380, 360, 20);
         totalPriceLabel.setOpaque(true);
         totalPriceLabel.setBackground(Color.WHITE);
+    }
+
+    private void initializeActionCommandOnBUtton() {
+        orderButton.setActionCommand(ButtonNameMessage.ORDER);
+        discountButton.setActionCommand(ButtonNameMessage.DISCOUNT);
+        payButton.setActionCommand(ButtonNameMessage.PAYMENT);
     }
 
     private void initializePage() {
@@ -110,7 +118,7 @@ public class DetailTableFrame extends JFrame {
     }
 
     public JButton getBackButton() {
-        return detailTableBackButton;
+        return backButton;
     }
 
     public void removeExistTablePanel() {
@@ -121,16 +129,76 @@ public class DetailTableFrame extends JFrame {
         return productListPanels;
     }
 
+    public NormalButton getOrderButton() {
+        return orderButton;
+    }
+
+    public NormalButton getPayButton() {
+        return payButton;
+    }
+
+    public NormalButton getDiscountButton() {
+        return payButton;
+    }
+
+    public NormalButton getLeftButton() {
+        return leftButton;
+    }
+
+    public NormalButton getRightButton() {
+        return rightButton;
+    }
+
+    /**
+     * <, > 선택시 메뉴 다음 페이지 이동
+     */
+    public void movePrevPage() {
+        if (startIndexOfProduct > 0) {
+            startIndexOfProduct--;
+            productsSize -= 16;
+        }
+        reInitProduct();
+    }
+
+    public void moveNextPage() {
+        if (productsSize % 16 == 0) {
+            startIndexOfProduct++;
+            productsSize += 16;
+            reInitProduct();
+        }
+    }
+
     /**
      * 데이터 삽입 관련 메소드
      */
     public void initProduct(final List<Product> products) {
-        int productsSize = 16;
-        if (products.size() < 16) {
+        clearProduct();
+        this.products = products;
+        productsSize = 16;
+        startIndexOfProduct = 0;
+        if (products.size() < 16 * (startIndexOfProduct + 1)) {
             productsSize = products.size();
         }
-        for (int i = startIndexOfProduct; i < productsSize; i++) {
+        for (int i = startIndexOfProduct * 16; i < productsSize; i++) {
             productListPanels[i].setProduct(products.get(i));
+        }
+    }
+
+    public void reInitProduct() {
+        clearProduct();
+        productsSize = 16 * (startIndexOfProduct + 1);
+        if (products.size() < 16 * (startIndexOfProduct + 1)) {
+            productsSize = products.size();
+        }
+        int index = 0;
+        for (int i = startIndexOfProduct * 16; i < productsSize; i++) {
+            productListPanels[index++].setProduct(products.get(i));
+        }
+    }
+
+    private void clearProduct() {
+        for (int i = 0; i < 16; i++) {
+            productListPanels[i].clear();
         }
     }
 
@@ -186,4 +254,5 @@ public class DetailTableFrame extends JFrame {
             tableModel.removeRow(row);
         }
     }
+
 }

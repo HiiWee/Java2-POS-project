@@ -54,4 +54,10 @@ public class ProductListPanel extends JPanel {
     public NormalButton getMinusButton() {
         return minusButton;
     }
+
+    public void clear() {
+        id = null;
+        name.setText(null);
+        price.setText(null);
+    }
 }

@@ -3,6 +3,8 @@ package com.project.view.sell.listener;
 import com.project.view.common.NormalButton;
 import com.project.view.sell.DetailTableFrame;
 import com.project.view.sell.ProductListPanel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -17,8 +19,13 @@ public class DetailTableFrameListener {
             addListenerToAddButton(productListPanel);
             addListenerToMinusButton(productListPanel);
         }
+        addListenerToRightButton();
+        addListenerToLeftButton();
     }
 
+    /**
+     * 각 메뉴에 대한 plus, minus 버튼 동작 리스너 추가
+     */
     private void addListenerToMinusButton(final ProductListPanel productListPanel) {
         productListPanel.getMinusButton()
                 .addMouseListener(new MouseAdapter() {
@@ -40,4 +47,16 @@ public class DetailTableFrameListener {
                     }
                 });
     }
+
+    private void addListenerToLeftButton() {
+        detailTableFrame.getLeftButton()
+                .addActionListener(e -> detailTableFrame.movePrevPage());
+    }
+
+    private void addListenerToRightButton() {
+        detailTableFrame.getRightButton()
+                .addActionListener(e -> detailTableFrame.moveNextPage());
+    }
+
+
 }
