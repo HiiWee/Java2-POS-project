@@ -18,15 +18,19 @@ public class JDBCUtil {
         return DriverManager.getConnection(DATABASE_URL, USER, PASSWORD);
     }
 
-    public static void closeAll(final ResultSet rs, final Statement stmt, final Connection conn) throws SQLException {
-        if (rs != null) {
-            rs.close();
+    public static void closeAll(
+            final ResultSet resultSet,
+            final Statement statement,
+            final Connection connection
+    ) throws SQLException {
+        if (resultSet != null) {
+            resultSet.close();
         }
-        if (stmt != null) {
-            stmt.close();
+        if (statement != null) {
+            statement.close();
         }
-        if (conn != null) {
-            conn.close();
+        if (connection != null) {
+            connection.close();
         }
     }
 
