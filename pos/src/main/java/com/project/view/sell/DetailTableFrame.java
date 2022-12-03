@@ -1,14 +1,15 @@
 package com.project.view.sell;
 
 import com.project.domain.Product;
+import com.project.domain.SeatProduct;
 import com.project.utils.ButtonNameMessage;
 import com.project.utils.InitializationGuiConstant;
 import com.project.view.common.NormalButton;
-import com.project.view.sell.listener.DetailTableFrameListener;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,8 +24,9 @@ import javax.swing.table.DefaultTableModel;
 public class DetailTableFrame extends JFrame {
     private static final DetailTableFrame instance = new DetailTableFrame();
     public static final int ID_COLUMN = 0;
-    public static final int COUNT_COLUMN = 3;
+    public static final int NAME_COLUMN = 1;
     public static final int PRICE_COLUMN = 2;
+    public static final int QUANTITY_COLUMN = 3;
 
     private final NormalButton backButton = new NormalButton(ButtonNameMessage.BACK);
     private final NormalButton discountButton = new NormalButton(ButtonNameMessage.DISCOUNT);
@@ -169,7 +171,7 @@ public class DetailTableFrame extends JFrame {
     }
 
     /**
-     * 데이터 삽입 관련 메소드
+     * 메뉴 데이터 삽입 관련 메소드
      */
     public void initProduct(final List<Product> products) {
         clearProduct();
@@ -208,8 +210,8 @@ public class DetailTableFrame extends JFrame {
         for (int row = 0; row < tableModel.getRowCount(); row++) {
             Long id = Long.parseLong((String) tableModel.getValueAt(row, ID_COLUMN));
             if (id == putId) {
-                int productCount = Integer.parseInt((String) tableModel.getValueAt(row, COUNT_COLUMN)) + 1;
-                tableModel.setValueAt(String.valueOf(productCount), row, COUNT_COLUMN);
+                int productCount = Integer.parseInt((String) tableModel.getValueAt(row, QUANTITY_COLUMN)) + 1;
+                tableModel.setValueAt(String.valueOf(productCount), row, QUANTITY_COLUMN);
                 updateTotalPrice();
                 return;
             }
@@ -226,9 +228,9 @@ public class DetailTableFrame extends JFrame {
         for (int row = 0; row < tableModel.getRowCount(); row++) {
             Long id = Long.parseLong((String) tableModel.getValueAt(row, ID_COLUMN));
             if (id == putId) {
-                productCount = Math.max(Integer.parseInt((String) tableModel.getValueAt(row, COUNT_COLUMN)) - 1,
+                productCount = Math.max(Integer.parseInt((String) tableModel.getValueAt(row, QUANTITY_COLUMN)) - 1,
                         productCount);
-                tableModel.setValueAt(String.valueOf(productCount), row, COUNT_COLUMN);
+                tableModel.setValueAt(String.valueOf(productCount), row, QUANTITY_COLUMN);
                 deleteZeroCountRow(productCount, row);
                 updateTotalPrice();
                 return;
@@ -241,7 +243,7 @@ public class DetailTableFrame extends JFrame {
     private void updateTotalPrice() {
         int totalPrice = 0;
         for (int row = 0; row < tableModel.getRowCount(); row++) {
-            int count = Integer.parseInt((String) tableModel.getValueAt(row, COUNT_COLUMN));
+            int count = Integer.parseInt((String) tableModel.getValueAt(row, QUANTITY_COLUMN));
             int eachPrice = Integer.parseInt((String) tableModel.getValueAt(row, PRICE_COLUMN));
             totalPrice += count * eachPrice;
         }
@@ -255,4 +257,16 @@ public class DetailTableFrame extends JFrame {
         }
     }
 
+    // 사용자가 선택한 메뉴에 대한 리스트 받기
+    public List<SeatProduct> getSeatProductList() {
+        List<SeatProduct> selectedProducts = new ArrayList<>();
+        for (int row = 0; row < tableModel.getRowCount(); row++) {
+            long productId = Long.parseLong((String) tableModel.getValueAt(row, ID_COLUMN));
+            String productName = (String) tableModel.getValueAt(row, NAME_COLUMN);
+            int price = Integer.parseInt((String) tableModel.getValueAt(row, PRICE_COLUMN));
+            long quantity = Long.parseLong((String) tableModel.getValueAt(row, QUANTITY_COLUMN));
+            selectedProducts.add(new SeatProduct(quantity, price, productId, productName, tablePanel.getTableNumber()));
+        }
+        return selectedProducts;
+    }
 }

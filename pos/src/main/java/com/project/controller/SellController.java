@@ -1,11 +1,13 @@
 package com.project.controller;
 
+import com.project.domain.SeatProduct;
 import com.project.service.SellService;
 import com.project.utils.ButtonNameMessage;
 import com.project.view.sell.DetailTableFrame;
 import com.project.view.sell.listener.DetailTableFrameListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class SellController implements ActionListener {
     private final SellService sellService = new SellService();
@@ -21,20 +23,21 @@ public class SellController implements ActionListener {
         setActionPerformed();
     }
 
+    private void setActionPerformed() {
+        detailTableFrame.getOrderButton().addActionListener(this);
+        detailTableFrame.getPayButton().addActionListener(this);
+        detailTableFrame.getDiscountButton().addActionListener(this);
+    }
+
     // 주문 버튼 클릭시 동작
     private void orderProduct() {
-
+        sellService.saveSeatProducts(detailTableFrame.getSeatProductList());
     }
 
     private void payProduct() {
 
     }
 
-    private void setActionPerformed() {
-        detailTableFrame.getOrderButton().addActionListener(this);
-        detailTableFrame.getPayButton().addActionListener(this);
-        detailTableFrame.getDiscountButton().addActionListener(this);
-    }
 
     @Override
     public void actionPerformed(final ActionEvent e) {
