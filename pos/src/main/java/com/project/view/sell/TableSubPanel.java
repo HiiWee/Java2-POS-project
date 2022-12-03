@@ -16,8 +16,8 @@ public class TableSubPanel extends JPanel {
         setBorder(new BevelBorder(BevelBorder.RAISED));
     }
 
-    public int getTableNumber() {
-        return Integer.parseInt(tableNumber.getText());
+    public long getTableNumber() {
+        return Integer.parseInt(String.valueOf(tableNumber.getText().charAt(0)));
     }
 
 }
