@@ -163,6 +163,10 @@ public class DetailTableFrame extends JFrame {
         return rightButton;
     }
 
+    public long getTableNumber() {
+        return tablePanel.getTableNumber();
+    }
+
     /**
      * <, > 선택시 메뉴 다음 페이지 이동
      */
@@ -223,7 +227,9 @@ public class DetailTableFrame extends JFrame {
         for (int row = 0; row < tableModels[getCurrentSeatIndex()].getRowCount(); row++) {
             Long id = Long.parseLong((String) tableModels[getCurrentSeatIndex()].getValueAt(row, ID_COLUMN));
             if (id == putId) {
-                int productCount = Integer.parseInt((String) tableModels[getCurrentSeatIndex()].getValueAt(row, QUANTITY_COLUMN)) + 1;
+                int productCount =
+                        Integer.parseInt((String) tableModels[getCurrentSeatIndex()].getValueAt(row, QUANTITY_COLUMN))
+                                + 1;
                 tableModels[getCurrentSeatIndex()].setValueAt(String.valueOf(productCount), row, QUANTITY_COLUMN);
                 updateTotalPrice();
                 return;
@@ -245,8 +251,9 @@ public class DetailTableFrame extends JFrame {
         for (int row = 0; row < tableModels[getCurrentSeatIndex()].getRowCount(); row++) {
             Long id = Long.parseLong((String) tableModels[getCurrentSeatIndex()].getValueAt(row, ID_COLUMN));
             if (id == putId) {
-                productCount = Math.max(Integer.parseInt((String) tableModels[getCurrentSeatIndex()].getValueAt(row, QUANTITY_COLUMN)) - 1,
-                        productCount);
+                productCount = Math.max(
+                        Integer.parseInt((String) tableModels[getCurrentSeatIndex()].getValueAt(row, QUANTITY_COLUMN))
+                                - 1, productCount);
                 tableModels[getCurrentSeatIndex()].setValueAt(String.valueOf(productCount), row, QUANTITY_COLUMN);
                 deleteZeroCountRow(productCount, row);
                 updateTotalPrice();
@@ -281,7 +288,8 @@ public class DetailTableFrame extends JFrame {
             long productId = Long.parseLong((String) tableModels[getCurrentSeatIndex()].getValueAt(row, ID_COLUMN));
             String productName = (String) tableModels[getCurrentSeatIndex()].getValueAt(row, NAME_COLUMN);
             int price = Integer.parseInt((String) tableModels[getCurrentSeatIndex()].getValueAt(row, PRICE_COLUMN));
-            long quantity = Long.parseLong((String) tableModels[getCurrentSeatIndex()].getValueAt(row, QUANTITY_COLUMN));
+            long quantity = Long.parseLong(
+                    (String) tableModels[getCurrentSeatIndex()].getValueAt(row, QUANTITY_COLUMN));
             selectedProducts.add(new SeatProduct(quantity, price, productId, productName, tablePanel.getTableNumber()));
         }
         return selectedProducts;

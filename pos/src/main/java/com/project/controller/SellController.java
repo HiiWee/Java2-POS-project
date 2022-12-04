@@ -31,7 +31,7 @@ public class SellController implements ActionListener {
 
     // 주문 버튼 클릭시 동작
     private void orderProduct() {
-        sellService.saveSeatProducts(detailTableFrame.getSeatProductList());
+        sellService.saveSeatProducts(detailTableFrame.getSeatProductList(), detailTableFrame.getTableNumber());
     }
 
     private void payProduct() {
