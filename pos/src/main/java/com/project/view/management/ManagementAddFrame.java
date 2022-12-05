@@ -19,7 +19,7 @@ public class ManagementAddFrame extends JFrame {
     private final JLabel jLabelStuffName = new JLabel("이름");
     private final JLabel jLabelStuffPrice = new JLabel("가격");
     private final NormalButton cancelButton = new NormalButton("취소");
-    private final NormalButton addButtom = new NormalButton("추가");
+    private final NormalButton addButton = new NormalButton("추가");
 
     public static ManagementAddFrame getInstance() {
         return instance;
@@ -36,7 +36,7 @@ public class ManagementAddFrame extends JFrame {
         add(jTextFieldStuffName);
         add(jTextFieldStuffPrice);
         add(cancelButton);
-        add(addButtom);
+        add(addButton);
         jTextFieldNumber.setEditable(false);
         jLabelNumber.setBounds(50, 20, 100, 100);
         jLabelStuffName.setBounds(75, 75, 100, 100);
@@ -45,7 +45,7 @@ public class ManagementAddFrame extends JFrame {
         jTextFieldStuffName.setBounds(150, 110, 250, 30);
         jTextFieldStuffPrice.setBounds(150, 160, 250, 30);
         cancelButton.setBounds(300, 220, 100, 50);
-        addButtom.setBounds(50, 220, 100, 50);
+        addButton.setBounds(150, 220, 100, 50);
     }
 
     private void initializePage() {
@@ -62,19 +62,12 @@ public class ManagementAddFrame extends JFrame {
         jLabelStuffPrice.setFont(jLabelStuffPrice.getFont().deriveFont(15f));
     }
 
-    public String getjTextFieldStuffName() {
-        return jTextFieldStuffName.getText();
-    }
-
-    public String getjTextFieldStuffPrice() {
-        return jTextFieldStuffPrice.getText();
-    }
     public NormalButton getCancelButton() {
         return cancelButton;
     }
 
-    public NormalButton getAddButtom() {
-        return addButtom;
+    public NormalButton getAddButton() {
+        return addButton;
     }
 
     public void clearTextField() {

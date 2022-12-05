@@ -11,8 +11,8 @@ public class ButtonNameMessage {
     public static final String PAYMENT = "결제";
     public static final String REFUND = "환불";
     public static final String LOGIN = "login";
-    public static final String ADD_STUFF = "물품 추가";
-    public static final String DELETE_STUFF = "물품 삭제";
+    public static final String ADD_STUFF = "추가";
+    public static final String DELETE_STUFF = "삭제";
 
     private ButtonNameMessage() {
     }

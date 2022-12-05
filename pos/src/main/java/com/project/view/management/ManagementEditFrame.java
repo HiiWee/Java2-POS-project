@@ -17,7 +17,7 @@ public class ManagementEditFrame extends JFrame{
     private final JLabel jLabelStuffName = new JLabel("이름");
     private final JLabel jLabelStuffPrice = new JLabel("가격");
 
-    //private final NormalButton deleteStuffButton = new NormalButton(ButtonNameMessage.DELETE_STUFF);
+    private final NormalButton deleteStuffButton = new NormalButton(ButtonNameMessage.DELETE_STUFF);
     private final NormalButton cancelButton = new NormalButton("뒤로");
     private final NormalButton editButton = new NormalButton("수정");
 
@@ -37,6 +37,7 @@ public class ManagementEditFrame extends JFrame{
         add(jTextFieldStuffPrice);
         add(cancelButton);
         add(editButton);
+        add(deleteStuffButton);
         jTextFieldNumber.setEditable(false);
         jLabelNumber.setBounds(50, 20, 100, 100);
         jLabelStuffName.setBounds(75, 75, 100, 100);
@@ -46,6 +47,7 @@ public class ManagementEditFrame extends JFrame{
         jTextFieldStuffPrice.setBounds(150, 160, 250, 30);
         cancelButton.setBounds(300, 220, 100, 50);
         editButton.setBounds(50, 220, 100, 50);
+        deleteStuffButton.setBounds(175,220,100,50);
     }
 
     private void initializePage() {
@@ -80,6 +82,11 @@ public class ManagementEditFrame extends JFrame{
     public NormalButton getEditButton() {
         return editButton;
     }
+
+    public NormalButton getDeleteStuffButton() {
+        return deleteStuffButton;
+    }
+
     public void clearTextField(){
         jTextFieldStuffName.setText("");
         jTextFieldStuffPrice.setText("");

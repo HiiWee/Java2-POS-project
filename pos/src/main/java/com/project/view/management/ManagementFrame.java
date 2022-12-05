@@ -26,13 +26,11 @@ public class ManagementFrame extends JFrame {
 
     private final NormalButton backButtonOnManagementPage = new NormalButton(ButtonNameMessage.BACK);
     private final NormalButton addStuffButton = new NormalButton(ButtonNameMessage.ADD_STUFF);
-    private final NormalButton deleteStuffButton = new NormalButton(ButtonNameMessage.DELETE_STUFF);
-    private final NormalButton refreshButton = new NormalButton("상품갱신");
     private final String header[] = {"고유번호", "이름", "가격"};
     private DefaultTableModel tableModel;
     public JTable table;
     private final JPanel jPanel = new JPanel();
-    private final JPanel buttonPanel = new JPanel(new GridLayout(3, 1));
+    private final JPanel buttonPanel=new JPanel(new GridLayout(2,1));
 
     public ManagementFrame() {
         initializePage();
@@ -41,15 +39,12 @@ public class ManagementFrame extends JFrame {
         jPanel.add(table, BorderLayout.CENTER);
         JScrollPane scrollPane = new JScrollPane(table);
         jPanel.add(scrollPane);
-        buttonPanel.add(refreshButton);
         buttonPanel.add(addStuffButton);
-        buttonPanel.add(deleteStuffButton);
-        add(buttonPanel);
+        buttonPanel.add(backButtonOnManagementPage);
         add(jPanel);
-        add(backButtonOnManagementPage);
-        backButtonOnManagementPage.setBounds(230, 480, 150, 100);
-        jPanel.setBounds(50, 50, 500, 400);
-        buttonPanel.setBounds(600, 100, 150, 300);
+        add(buttonPanel);
+        jPanel.setBounds(50, 50, 500, 500);
+        buttonPanel.setBounds(600, 125, 150, 250);
         setVisible(true);
     }
 
@@ -71,14 +66,6 @@ public class ManagementFrame extends JFrame {
         table.getTableHeader().setReorderingAllowed(false);
         table.getTableHeader().setReorderingAllowed(false);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-    }
-
-    public JButton getRefreshButton() {
-        return refreshButton;
-    }
-
-    public JButton getDeleteButton() {
-        return deleteStuffButton;
     }
 
     public void addRowTable(List<Product> products) {

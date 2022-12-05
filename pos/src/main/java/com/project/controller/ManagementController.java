@@ -6,12 +6,12 @@ import com.project.view.management.ManagementEditFrame;
 import com.project.view.management.ManagementFrame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-public class ManagementController implements MouseListener {
+public class ManagementController extends MouseAdapter {
     private final ManagementService productService = new ManagementService();
     private final ManagementFrame managementFrame = ManagementFrame.getInstance();
     private final ManagementAddFrame managementAddFrame = ManagementAddFrame.getInstance();
@@ -32,36 +32,35 @@ public class ManagementController implements MouseListener {
     private void update() {
         productService.update(managementEditFrame.getEditedProduct());
     }
-
+    private void refreshTable(){
+        initTable();
+        callTable();
+    }
+    private void deleteStuff(){
+        deleteTableRow();
+        dropTable();
+    }
     public void addMouesAction() {
         managementFrame.table.addMouseListener(this);
     }
 
     public void addActionSave() {
-        managementAddFrame.getAddButtom().addActionListener(new ActionListener() {
+        managementAddFrame.getAddButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 insert();
+                managementAddFrame.clearTextField();
+                refreshTable();
             }
         });
     }
-
-
-    public void addActionRefresh() {
-        managementFrame.getRefreshButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                initTable();
-                callTable();
-            }
-        });
-    }
-
     public void addActionDrop() {
-        managementFrame.getDeleteButton().addActionListener(new ActionListener() {
+        managementEditFrame.getDeleteStuffButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dropTable();
+              deleteStuff();
+              managementEditFrame.clearTextField();
+              refreshTable();
             }
         });
     }
@@ -71,6 +70,8 @@ public class ManagementController implements MouseListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 update();
+                managementEditFrame.clearTextField();
+                refreshTable();
             }
         });
     }
@@ -79,7 +80,14 @@ public class ManagementController implements MouseListener {
         DefaultTableModel tableModel = (DefaultTableModel) managementFrame.table.getModel();
         tableModel.setNumRows(0);
     }
-
+    private void deleteTableRow(){
+        DefaultTableModel tableModel = (DefaultTableModel) managementFrame.table.getModel();
+        int row = managementFrame.table.getSelectedRow();
+        if (row < 0) {
+            return;
+        }
+        tableModel.removeRow(row);
+    }
     @Override
     public void mouseClicked(MouseEvent e) {
         int row = managementFrame.table.getSelectedRow();
@@ -91,26 +99,5 @@ public class ManagementController implements MouseListener {
         managementEditFrame.getjTextFieldStuffName().setText(name);
         managementEditFrame.getjTextFieldStuffPrice().setText(String.valueOf(price));
         managementEditFrame.setVisible(true);
-    }
-
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
     }
 }

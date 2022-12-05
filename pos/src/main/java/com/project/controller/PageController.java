@@ -44,7 +44,6 @@ public class PageController {
         sellController.initSellPage();
         managementController.addActionUpdate();
         managementController.addActionDrop();
-        managementController.addActionRefresh();
         managementController.addActionSave();
         managementController.addMouesAction();
     }
