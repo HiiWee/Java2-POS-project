@@ -65,9 +65,9 @@ public class DetailTableFrame extends JFrame {
         buttonPanelLeft.add(discountButton);
         buttonPanelLeft.add(backButton);
         buttonPanelLeft.setBounds(50, 430, 300, 100);
-        orderButton.setBounds(550, 425, 150, 100);
+        orderButton.setBounds(480, 510, 360, 50);
         totalPriceLabel.setText("총 가격");
-        totalPriceLabel.setBounds(480, 380, 360, 20);
+        totalPriceLabel.setBounds(480, 480, 360, 20);
         totalPriceLabel.setOpaque(true);
         totalPriceLabel.setBackground(Color.WHITE);
     }
@@ -111,12 +111,12 @@ public class DetailTableFrame extends JFrame {
         this.tablePanel = new TableSubPanel(tablePanel.getTableNumber() + "번 테이블", false);
         menuSelectTables[getCurrentSeatIndex()].getTableHeader().setReorderingAllowed(false);
         menuSelectTables[getCurrentSeatIndex()].getTableHeader().setReorderingAllowed(false);
+        menuSelectTables[getCurrentSeatIndex()].setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         JScrollPane jScrollPane = new JScrollPane();
-        menuSelectTables[getCurrentSeatIndex()].setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         jScrollPane.setViewportView(menuSelectTables[getCurrentSeatIndex()]);
         this.tablePanel.add(jScrollPane);
         add(this.tablePanel);
-        this.tablePanel.setBounds(480, 20, 360, 350);
+        this.tablePanel.setBounds(480, 20, 360, 450);
     }
 
     private void initializeSeatProductTable() {

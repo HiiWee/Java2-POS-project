@@ -2,6 +2,7 @@ package com.project.view.sell;
 
 import com.project.domain.SeatProduct;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.List;
 import javax.swing.JPanel;
@@ -26,28 +27,13 @@ public class TableSubPanel extends JPanel {
         tableNumber.setEditable(false);
         add(tableNumber);
         if (hasProductArea) {
-            setTableColumnSize();
             table.getTableHeader().setReorderingAllowed(false);
             table.getTableHeader().setReorderingAllowed(false);
-            table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-            JScrollPane jScrollPane = new JScrollPane(table);
+            table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+            JScrollPane jScrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+            jScrollPane.setPreferredSize(new Dimension(300, 120));
             add(jScrollPane);
         }
-    }
-
-    private void setTableColumnSize() {
-        table.getTableHeader().getColumnModel().getColumn(0).setWidth(130);
-        table.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(130);
-        table.getTableHeader().getColumnModel().getColumn(0).setMinWidth(130);
-        table.getTableHeader().getColumnModel().getColumn(1).setWidth(80);
-        table.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(80);
-        table.getTableHeader().getColumnModel().getColumn(1).setMinWidth(80);
-        table.getTableHeader().getColumnModel().getColumn(2).setWidth(90);
-        table.getTableHeader().getColumnModel().getColumn(2).setMaxWidth(90);
-        table.getTableHeader().getColumnModel().getColumn(2).setMinWidth(90);
-        table.getTableHeader().getColumnModel().getColumn(3).setWidth(40);
-        table.getTableHeader().getColumnModel().getColumn(3).setMaxWidth(40);
-        table.getTableHeader().getColumnModel().getColumn(3).setMinWidth(40);
     }
 
     public long getTableNumber() {
