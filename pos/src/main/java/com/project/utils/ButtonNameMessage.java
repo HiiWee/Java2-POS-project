@@ -11,8 +11,12 @@ public class ButtonNameMessage {
     public static final String PAYMENT = "결제";
     public static final String REFUND = "환불";
     public static final String LOGIN = "login";
-    public static final String ADD_STUFF = "물품 추가";
-    public static final String DELETE_STUFF = "물품 삭제";
+    public static final String DELETE_STUFF = "삭제";
+    public static final String ITEM_NUMBER="고유번호";
+    public static final String ITEM_NAME="이름";
+    public static final String ITEM_PRICE="가격";
+    public static final String ITEM_EDIT="수정";
+    public static final String ITEM_ADD="추가";
 
     private ButtonNameMessage() {
     }

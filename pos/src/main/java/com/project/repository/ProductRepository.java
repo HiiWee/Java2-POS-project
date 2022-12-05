@@ -5,6 +5,7 @@ import static com.project.repository.JDBCUtil.getConnection;
 
 import com.project.domain.Product;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -45,5 +46,69 @@ public class ProductRepository {
         return products;
     }
 
+    public Long findById() {
+        Long id = null;
+        try {
+            Connection conn = getConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select id from product");
+
+            while (rs.next()) {
+                id = rs.getLong("id");
+            }
+            closeAll(rs, stmt, conn);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return id;
+    }
+
+    public void dropById(Long getId) {
+        PreparedStatement psmt = null;
+        String query = "delete from product where id=?";
+        try {
+            Connection conn = getConnection();
+            psmt = conn.prepareStatement(query);
+            psmt.setLong(1, getId);
+            psmt.executeUpdate();
+            psmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void update(Product products) {
+        PreparedStatement psmt = null;
+        String query = "update product set name=?, price=? where id=?";
+        try {
+            Connection conn = getConnection();
+            psmt = conn.prepareStatement(query);
+            psmt.setString(1, products.getName());
+            psmt.setInt(2, products.getPrice());
+            psmt.setLong(3, products.getId());
+            psmt.executeUpdate();
+            psmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void insert(Product products) {
+        String query = "insert into product(name,price) values(?,?)";
+        PreparedStatement psmt = null;
+        try {
+            Connection conn = getConnection();
+            psmt = conn.prepareStatement(query);
+            psmt.setString(1, products.getName());
+            psmt.setInt(2, products.getPrice());
+            psmt.executeUpdate();
+            psmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

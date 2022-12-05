@@ -4,6 +4,7 @@ package com.project.controller;
 import com.project.view.MainFrame;
 import com.project.view.billcheck.BillCheckPage;
 import com.project.view.common.LaunchPage;
+import com.project.view.management.ManagementAddFrame;
 import com.project.view.management.ManagementEditFrame;
 import com.project.view.management.ManagementFrame;
 import com.project.view.sell.DetailTableFrame;
@@ -19,9 +20,11 @@ public class PageController {
     private final DetailTableFrame detailTableFrame = DetailTableFrame.getInstance();
     private final BillCheckPage billCheckPage = BillCheckPage.getInstance();
     private final ManagementFrame managementFrame = ManagementFrame.getInstance();
-    private final ManagementEditFrame managementEditFrame = ManagementEditFrame.getInstance();
+    private final ManagementAddFrame managementAddFrame = ManagementAddFrame.getInstance();
+    private final ManagementEditFrame managementEditFrame=ManagementEditFrame.getInstance();
 
     private final SellController sellController = new SellController();
+    private final ManagementController managementController = new ManagementController();
 
     public void startPos() {
         launchPage.setVisible(true);
@@ -38,9 +41,15 @@ public class PageController {
         addActionBillButtonOnSellingPage();
         // 영수증 조회에서 뒤로 버튼
         addActionBackButtonOnBillCheckPage();
-
+        //managementFrame->addFrame
+        addActionAddButtonOnManagementFrame();
+        //add->managementFrame
+        addActionBackButtonOnAdd();
+        //edit->managementFrame
+        addActionBackButtonOnEdit();
         // 각 페이지 초기 작업 초기화
         sellController.initSellPage();
+        managementController.initManagementController();
     }
 
     private void initSellingPage() {
@@ -86,6 +95,17 @@ public class PageController {
         billCheckPage.setVisible(false);
         mainFrame.setVisible(true);
     }
+    private void openAddFrame(){
+        managementAddFrame.setVisible(true);
+    }
+    private void moveAddToManagementFrame(){
+        managementAddFrame.setVisible(false);
+        managementFrame.setVisible(true);
+    }
+    private void moveEditToManagementFrane(){
+        managementEditFrame.setVisible(false);
+        managementFrame.setVisible(true);
+    }
 
 
     private void addActionBackButtonOnDetailPage() {
@@ -117,6 +137,15 @@ public class PageController {
 
     private void addActionBackButtonOnBillCheckPage() {
         billCheckPage.getBackButtonOnBillCheckPage().addActionListener(e -> moveBillCheckPageToMainPage());
+    }
+    private void addActionBackButtonOnAdd(){
+        managementAddFrame.getCancelButton().addActionListener(e -> moveAddToManagementFrame());
+    }
+    private void addActionAddButtonOnManagementFrame(){
+        managementFrame.getAddStuffButton().addActionListener(e -> openAddFrame());
+    }
+    private void addActionBackButtonOnEdit(){
+        managementEditFrame.getCancelButton().addActionListener(e -> moveEditToManagementFrane());
     }
 
 }
