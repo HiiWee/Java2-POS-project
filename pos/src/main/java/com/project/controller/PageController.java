@@ -21,7 +21,7 @@ public class PageController {
     private final BillCheckPage billCheckPage = BillCheckPage.getInstance();
     private final ManagementFrame managementFrame = ManagementFrame.getInstance();
     private final ManagementAddFrame managementAddFrame = ManagementAddFrame.getInstance();
-    private final ManagementEditFrame managementEditFrame=ManagementEditFrame.getInstance();
+    private final ManagementEditFrame managementEditFrame = ManagementEditFrame.getInstance();
 
     private final SellController sellController = new SellController();
     private final ManagementController managementController = new ManagementController();
@@ -58,6 +58,7 @@ public class PageController {
             tablePanel.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(final MouseEvent e) {
+                    sellController.refreshProducts();
                     TableSubPanel tablePanel = (TableSubPanel) e.getSource();
                     detailTableFrame.setTablePanel(tablePanel);
                     mainFrame.setVisible(false);
@@ -95,14 +96,17 @@ public class PageController {
         billCheckPage.setVisible(false);
         mainFrame.setVisible(true);
     }
-    private void openAddFrame(){
+
+    private void openAddFrame() {
         managementAddFrame.setVisible(true);
     }
-    private void moveAddToManagementFrame(){
+
+    private void moveAddToManagementFrame() {
         managementAddFrame.setVisible(false);
         managementFrame.setVisible(true);
     }
-    private void moveEditToManagementFrane(){
+
+    private void moveEditToManagementFrane() {
         managementEditFrame.setVisible(false);
         managementFrame.setVisible(true);
     }
@@ -138,13 +142,16 @@ public class PageController {
     private void addActionBackButtonOnBillCheckPage() {
         billCheckPage.getBackButtonOnBillCheckPage().addActionListener(e -> moveBillCheckPageToMainPage());
     }
-    private void addActionBackButtonOnAdd(){
+
+    private void addActionBackButtonOnAdd() {
         managementAddFrame.getCancelButton().addActionListener(e -> moveAddToManagementFrame());
     }
-    private void addActionAddButtonOnManagementFrame(){
+
+    private void addActionAddButtonOnManagementFrame() {
         managementFrame.getAddStuffButton().addActionListener(e -> openAddFrame());
     }
-    private void addActionBackButtonOnEdit(){
+
+    private void addActionBackButtonOnEdit() {
         managementEditFrame.getCancelButton().addActionListener(e -> moveEditToManagementFrane());
     }
 
