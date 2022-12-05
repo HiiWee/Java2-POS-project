@@ -29,7 +29,6 @@ public class MainFrame extends JFrame {
         posTab.addTab("판매", salesPage);
         posTab.addTab("관리", managementEnterPanel);
         add(posTab);
-
     }
 
 }

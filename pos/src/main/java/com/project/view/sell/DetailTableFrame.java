@@ -4,6 +4,7 @@ import com.project.domain.Product;
 import com.project.domain.SeatProduct;
 import com.project.utils.ButtonNameMessage;
 import com.project.utils.InitializationGuiConstant;
+import com.project.utils.TableNumberConstant;
 import com.project.view.common.NormalButton;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -33,8 +34,8 @@ public class DetailTableFrame extends JFrame {
     private final NormalButton payButton = new NormalButton(ButtonNameMessage.PAYMENT);
     private final NormalButton orderButton = new NormalButton(ButtonNameMessage.ORDER);
     private TableSubPanel tablePanel;
-    private final DefaultTableModel[] tableModels = new DefaultTableModel[9];
-    private final JTable[] menuSelectTables = new JTable[9];
+    private final DefaultTableModel[] tableModels = new DefaultTableModel[TableNumberConstant.NUMBER_OF_TABLE];
+    private final JTable[] menuSelectTables = new JTable[TableNumberConstant.NUMBER_OF_TABLE];
     private final JPanel buttonPanelLeft = new JPanel(new GridLayout(1, 3));
 
     // 메뉴 이동 버튼
@@ -107,11 +108,12 @@ public class DetailTableFrame extends JFrame {
 
     public void setTablePanel(TableSubPanel tablePanel) {
         initializeSeatProductTable();
-        this.tablePanel = new TableSubPanel(tablePanel.getTableNumber() + "번 테이블");
+        this.tablePanel = new TableSubPanel(tablePanel.getTableNumber() + "번 테이블", false);
         menuSelectTables[getCurrentSeatIndex()].getTableHeader().setReorderingAllowed(false);
         menuSelectTables[getCurrentSeatIndex()].getTableHeader().setReorderingAllowed(false);
-        menuSelectTables[getCurrentSeatIndex()].setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        JScrollPane jScrollPane = new JScrollPane(menuSelectTables[getCurrentSeatIndex()]);
+        JScrollPane jScrollPane = new JScrollPane();
+        menuSelectTables[getCurrentSeatIndex()].setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        jScrollPane.setViewportView(menuSelectTables[getCurrentSeatIndex()]);
         this.tablePanel.add(jScrollPane);
         add(this.tablePanel);
         this.tablePanel.setBounds(480, 20, 360, 350);
@@ -222,7 +224,6 @@ public class DetailTableFrame extends JFrame {
 
     // 테이블에 메뉴 추가
     public void putProduct(final ProductListPanel panel) {
-        System.out.println(getCurrentSeatIndex());
         long putId = Long.parseLong(panel.getIdText());
         for (int row = 0; row < tableModels[getCurrentSeatIndex()].getRowCount(); row++) {
             Long id = Long.parseLong((String) tableModels[getCurrentSeatIndex()].getValueAt(row, ID_COLUMN));

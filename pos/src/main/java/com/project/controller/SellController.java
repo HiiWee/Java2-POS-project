@@ -1,13 +1,13 @@
 package com.project.controller;
 
-import com.project.domain.SeatProduct;
 import com.project.service.SellService;
 import com.project.utils.ButtonNameMessage;
+import com.project.view.MainFrame;
 import com.project.view.sell.DetailTableFrame;
+import com.project.view.sell.SellingPanelTab;
 import com.project.view.sell.listener.DetailTableFrameListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 public class SellController implements ActionListener {
     private final SellService sellService = new SellService();
@@ -32,6 +32,11 @@ public class SellController implements ActionListener {
     // 주문 버튼 클릭시 동작
     private void orderProduct() {
         sellService.saveSeatProducts(detailTableFrame.getSeatProductList(), detailTableFrame.getTableNumber());
+        detailTableFrame.setVisible(false);
+        MainFrame.getInstance().setVisible(true);
+        detailTableFrame.removeExistTablePanel();
+        SellingPanelTab.getInstance()
+                .setSeatProductList(detailTableFrame.getSeatProductList(), (int) detailTableFrame.getTableNumber());
     }
 
     private void payProduct() {
