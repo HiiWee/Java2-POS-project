@@ -2,9 +2,6 @@ package com.project.service;
 
 import com.project.domain.Product;
 import com.project.repository.ProductRepository;
-import com.project.view.management.ManagementAddFrame;
-import com.project.view.management.ManagementEditFrame;
-import com.project.view.management.ManagementFrame;
 import java.util.List;
 
 public class ManagementService {

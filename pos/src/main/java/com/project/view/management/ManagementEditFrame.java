@@ -27,7 +27,6 @@ public class ManagementEditFrame extends JFrame{
 
     public ManagementEditFrame() {
         initializePage();
-        setVisible(true);
         labelSetting();
         add(jLabelNumber);
         add(jLabelStuffName);
@@ -88,6 +87,7 @@ public class ManagementEditFrame extends JFrame{
     }
 
     public void clearTextField(){
+        jTextFieldNumber.setText("");
         jTextFieldStuffName.setText("");
         jTextFieldStuffPrice.setText("");
     }

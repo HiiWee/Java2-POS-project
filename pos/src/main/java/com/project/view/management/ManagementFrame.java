@@ -72,9 +72,9 @@ public class ManagementFrame extends JFrame {
     }
 
     public void addRowTable(List<Product> products) {
-        for (Product i : products) {
+        for (Product product : products) {
             tableModel.addRow(new Object[]{
-                    i.getId(), i.getName(), i.getPrice()
+                    product.getId(), product.getName(), product.getPrice()
             });
         }
     }

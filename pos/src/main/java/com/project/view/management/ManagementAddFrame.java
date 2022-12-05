@@ -28,7 +28,6 @@ public class ManagementAddFrame extends JFrame {
 
     private ManagementAddFrame() {
         initializePage();
-        setVisible(true);
         labelSetting();
         add(jLabelNumber);
         add(jLabelStuffName);
