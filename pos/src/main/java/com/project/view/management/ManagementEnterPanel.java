@@ -29,4 +29,7 @@ public class ManagementEnterPanel extends JPanel {
         setVisible(true);
     }
 
+    public NormalButton getLoginButton() {
+        return loginButton;
+    }
 }

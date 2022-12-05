@@ -6,6 +6,7 @@ import com.project.view.billcheck.BillCheckPage;
 import com.project.view.common.LaunchPage;
 import com.project.view.management.ManagementAddFrame;
 import com.project.view.management.ManagementEditFrame;
+import com.project.view.management.ManagementEnterPanel;
 import com.project.view.management.ManagementFrame;
 import com.project.view.sell.DetailTableFrame;
 import com.project.view.sell.SellingPanelTab;
@@ -22,6 +23,7 @@ public class PageController {
     private final ManagementFrame managementFrame = ManagementFrame.getInstance();
     private final ManagementAddFrame managementAddFrame = ManagementAddFrame.getInstance();
     private final ManagementEditFrame managementEditFrame = ManagementEditFrame.getInstance();
+    private final ManagementEnterPanel managementEnterPanel=ManagementEnterPanel.getInstance();
 
     private final SellController sellController = new SellController();
     private final ManagementController managementController = new ManagementController();
@@ -106,8 +108,12 @@ public class PageController {
         managementFrame.setVisible(true);
     }
 
-    private void moveEditToManagementFrane() {
+    private void moveEditToManagementFrame() {
         managementEditFrame.setVisible(false);
+        managementFrame.setVisible(true);
+    }
+    private void moveManagementEnterToManagementFrame(){
+        mainFrame.setVisible(false);
         managementFrame.setVisible(true);
     }
 
@@ -152,7 +158,6 @@ public class PageController {
     }
 
     private void addActionBackButtonOnEdit() {
-        managementEditFrame.getCancelButton().addActionListener(e -> moveEditToManagementFrane());
+        managementEditFrame.getCancelButton().addActionListener(e -> moveEditToManagementFrame());
     }
-
 }

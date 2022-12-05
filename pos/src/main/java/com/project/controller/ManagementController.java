@@ -1,5 +1,6 @@
 package com.project.controller;
 
+import com.project.domain.Product;
 import com.project.service.ManagementService;
 import com.project.view.management.ManagementAddFrame;
 import com.project.view.management.ManagementEditFrame;
@@ -8,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -17,12 +19,14 @@ public class ManagementController extends MouseAdapter {
     private final ManagementAddFrame managementAddFrame = ManagementAddFrame.getInstance();
     private final ManagementEditFrame managementEditFrame = ManagementEditFrame.getInstance();
 
-    public void initManagementController(){
+    public void initManagementController() {
         addActionUpdate();
         addActionDrop();
         addActionSave();
         addMouesAction();
+        refreshTable();
     }
+
     private void callTable() {
         managementFrame.addRowTable(productService.fineAllProducts());
     }
@@ -32,20 +36,32 @@ public class ManagementController extends MouseAdapter {
     }
 
     private void insert() {
-        productService.insert(managementAddFrame.getAddedProduct());
+        try {
+            productService.insert(managementAddFrame.getAddedProduct());
+        } catch (NumberFormatException exception) {
+            JOptionPane.showMessageDialog(null, "[ERROR] 가격은 숫자만 입력해야 합니다.", "ERROR", JOptionPane.ERROR_MESSAGE);
+
+        } catch (IllegalArgumentException exception) {
+            JOptionPane.showMessageDialog(null, exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }
+
+
 
     private void update() {
         productService.update(managementEditFrame.getEditedProduct());
     }
-    private void refreshTable(){
+
+    private void refreshTable() {
         initTable();
         callTable();
     }
-    private void deleteStuff(){
+
+    private void deleteStuff() {
         deleteTableRow();
         dropTable();
     }
+
     private void addMouesAction() {
         managementFrame.table.addMouseListener(this);
     }
@@ -60,13 +76,15 @@ public class ManagementController extends MouseAdapter {
             }
         });
     }
+
     private void addActionDrop() {
         managementEditFrame.getDeleteStuffButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-              deleteStuff();
-              managementEditFrame.clearTextField();
-              refreshTable();
+                deleteStuff();
+                managementEditFrame.getDeleteStuffButton().setEnabled(false);
+                managementEditFrame.clearTextField();
+                refreshTable();
             }
         });
     }
@@ -86,7 +104,8 @@ public class ManagementController extends MouseAdapter {
         DefaultTableModel tableModel = (DefaultTableModel) managementFrame.table.getModel();
         tableModel.setNumRows(0);
     }
-    private void deleteTableRow(){
+
+    private void deleteTableRow() {
         DefaultTableModel tableModel = (DefaultTableModel) managementFrame.table.getModel();
         int row = managementFrame.table.getSelectedRow();
         if (row < 0) {
@@ -94,6 +113,7 @@ public class ManagementController extends MouseAdapter {
         }
         tableModel.removeRow(row);
     }
+
     @Override
     public void mouseClicked(MouseEvent e) {
         int row = managementFrame.table.getSelectedRow();
@@ -104,6 +124,7 @@ public class ManagementController extends MouseAdapter {
         managementEditFrame.getjTextFieldNumber().setText(String.valueOf(id));
         managementEditFrame.getjTextFieldStuffName().setText(name);
         managementEditFrame.getjTextFieldStuffPrice().setText(String.valueOf(price));
+        managementEditFrame.getDeleteStuffButton().setEnabled(true);
         managementEditFrame.setVisible(true);
     }
 }
