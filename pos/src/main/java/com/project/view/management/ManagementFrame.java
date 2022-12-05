@@ -6,7 +6,9 @@ import com.project.utils.ButtonNameMessage;
 import com.project.utils.InitializationGuiConstant;
 import com.project.view.common.NormalButton;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -33,7 +35,7 @@ public class ManagementFrame extends JFrame {
     private DefaultTableModel tableModel;
     public JTable table;
     private final JPanel jPanel = new JPanel();
-    private final JPanel buttonPanel=new JPanel(new GridLayout(2,1));
+    private final JPanel buttonPanel = new JPanel(new GridLayout(2, 1));
 
     public ManagementFrame() {
         initializePage();
@@ -48,6 +50,14 @@ public class ManagementFrame extends JFrame {
         add(buttonPanel);
         jPanel.setBounds(50, 50, 500, 500);
         buttonPanel.setBounds(600, 125, 150, 250);
+        setFrame();
+    }
+
+    private void setFrame() {//가운데로 띄우기
+        Dimension frameSize = getSize();
+        Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
+        setLocation((windowSize.width - frameSize.width) / 2,
+                (windowSize.height - frameSize.height) / 2);
         setVisible(true);
     }
 
@@ -78,10 +88,12 @@ public class ManagementFrame extends JFrame {
             });
         }
     }
-    public NormalButton getAddStuffButton(){
+
+    public NormalButton getAddStuffButton() {
         return addStuffButton;
     }
-    public NormalButton getBackButton(){
+
+    public NormalButton getBackButton() {
         return backButton;
     }
 }
