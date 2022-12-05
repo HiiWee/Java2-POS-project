@@ -2,6 +2,7 @@ package com.project.repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,15 +19,29 @@ public class JDBCUtil {
         return DriverManager.getConnection(DATABASE_URL, USER, PASSWORD);
     }
 
-    public static void closeAll(final ResultSet rs, final Statement stmt, final Connection conn) throws SQLException {
-        if (rs != null) {
-            rs.close();
+    public static void closeAll(
+            final ResultSet resultSet,
+            final Statement statement,
+            final Connection connection
+    ) throws SQLException {
+        if (resultSet != null) {
+            resultSet.close();
         }
-        if (stmt != null) {
-            stmt.close();
+        if (statement != null) {
+            statement.close();
         }
-        if (conn != null) {
-            conn.close();
+        if (connection != null) {
+            connection.close();
+        }
+    }
+
+    public static void closeAll(final PreparedStatement preparedStatement, final Connection connection)
+            throws SQLException {
+        if (preparedStatement != null) {
+            preparedStatement.close();
+        }
+        if (connection != null) {
+            connection.close();
         }
     }
 

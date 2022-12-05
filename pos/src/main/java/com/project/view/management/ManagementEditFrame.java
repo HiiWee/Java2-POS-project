@@ -27,6 +27,7 @@ public class ManagementEditFrame extends JFrame{
 
     public ManagementEditFrame() {
         initializePage();
+        setVisible(false);
         labelSetting();
         add(jLabelNumber);
         add(jLabelStuffName);

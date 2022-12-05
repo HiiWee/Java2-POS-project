@@ -28,18 +28,18 @@ public class ProductRepository {
     public List<Product> findAll() {
         List<Product> products = new ArrayList<>();
         try {
-            Connection conn = getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select id,name,price from product");
+            Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from product");
 
-            while (rs.next()) {
-                Long id = rs.getLong("id");
-                String name = rs.getString("name");
-                int price = rs.getInt("price");
-                Product product = new Product(id, name, price);
-                products.add(product);
+            while (resultSet.next()) {
+                Long id = resultSet.getLong("id");
+                String name = resultSet.getString("name");
+                int price = resultSet.getInt("price");
+
+                products.add(new Product(id, name, price));
             }
-            closeAll(rs, stmt, conn);
+            closeAll(resultSet, statement, connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

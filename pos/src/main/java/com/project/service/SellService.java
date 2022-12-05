@@ -1,13 +1,47 @@
 package com.project.service;
 
+import com.project.domain.Product;
+import com.project.domain.SeatProduct;
+import com.project.domain.Sell;
+import com.project.domain.SellProduct;
 import com.project.repository.ProductRepository;
-import com.project.view.sell.DetailTableFrame;
+import com.project.repository.SeatProductRepository;
+import com.project.repository.SellProductRepository;
+import com.project.repository.SellRepository;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class SellService {
     private final ProductRepository productRepository = ProductRepository.getInstance();
+    private final SeatProductRepository seatProductRepository = SeatProductRepository.getInstance();
+    private final SellRepository sellRepository = SellRepository.getInstance();
+    private final SellProductRepository sellProductRepository = SellProductRepository.getInstance();
 
-    public void initSellPage() {
-        DetailTableFrame detailTableFrame = DetailTableFrame.getInstance();
-        detailTableFrame.initProduct(productRepository.findAll());
+    public List<Product> findAllProduct() {
+        return productRepository.findAll();
+    }
+
+    public void saveSeatProducts(final List<SeatProduct> seatProducts, Long tableNumber) {
+        seatProductRepository.deleteAllBySeatId(tableNumber);
+        seatProductRepository.saveAll(seatProducts);
+    }
+
+    public void paySeatProduct(final List<SeatProduct> seatProducts) {
+        Sell savedSell = sellRepository.save(new Sell(1L));
+        sellProductRepository.saveAll(convertSeatToSellProduct(seatProducts, savedSell.getId()));
+    }
+
+    private List<SellProduct> convertSeatToSellProduct(final List<SeatProduct> seatProducts, final Long sellId) {
+        return seatProducts.stream()
+                .map(seatProduct -> new SellProduct(seatProduct.getProductName(),
+                        seatProduct.getQuantity(),
+                        seatProduct.getPrice(),
+                        seatProduct.getProductId(),
+                        sellId))
+                .collect(Collectors.toList());
+    }
+
+    public void clearSeatProducts(final long seatId) {
+        seatProductRepository.deleteAllBySeatId(seatId);
     }
 }
