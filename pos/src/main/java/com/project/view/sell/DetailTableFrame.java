@@ -4,6 +4,7 @@ import com.project.domain.Product;
 import com.project.domain.SeatProduct;
 import com.project.utils.ButtonNameMessage;
 import com.project.utils.InitializationGuiConstant;
+import com.project.utils.TableNumberConstant;
 import com.project.view.common.NormalButton;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -33,8 +34,8 @@ public class DetailTableFrame extends JFrame {
     private final NormalButton payButton = new NormalButton(ButtonNameMessage.PAYMENT);
     private final NormalButton orderButton = new NormalButton(ButtonNameMessage.ORDER);
     private TableSubPanel tablePanel;
-    private final DefaultTableModel[] tableModels = new DefaultTableModel[9];
-    private final JTable[] menuSelectTables = new JTable[9];
+    private final DefaultTableModel[] tableModels = new DefaultTableModel[TableNumberConstant.NUMBER_OF_TABLE];
+    private final JTable[] menuSelectTables = new JTable[TableNumberConstant.NUMBER_OF_TABLE];
     private final JPanel buttonPanelLeft = new JPanel(new GridLayout(1, 3));
 
     // 메뉴 이동 버튼
@@ -64,9 +65,9 @@ public class DetailTableFrame extends JFrame {
         buttonPanelLeft.add(discountButton);
         buttonPanelLeft.add(backButton);
         buttonPanelLeft.setBounds(50, 430, 300, 100);
-        orderButton.setBounds(550, 425, 150, 100);
+        orderButton.setBounds(480, 510, 360, 50);
         totalPriceLabel.setText("총 가격");
-        totalPriceLabel.setBounds(480, 380, 360, 20);
+        totalPriceLabel.setBounds(480, 480, 360, 20);
         totalPriceLabel.setOpaque(true);
         totalPriceLabel.setBackground(Color.WHITE);
     }
@@ -107,14 +108,15 @@ public class DetailTableFrame extends JFrame {
 
     public void setTablePanel(TableSubPanel tablePanel) {
         initializeSeatProductTable();
-        this.tablePanel = new TableSubPanel(tablePanel.getTableNumber() + "번 테이블");
+        this.tablePanel = new TableSubPanel(tablePanel.getTableNumber() + "번 테이블", false);
         menuSelectTables[getCurrentSeatIndex()].getTableHeader().setReorderingAllowed(false);
         menuSelectTables[getCurrentSeatIndex()].getTableHeader().setReorderingAllowed(false);
         menuSelectTables[getCurrentSeatIndex()].setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        JScrollPane jScrollPane = new JScrollPane(menuSelectTables[getCurrentSeatIndex()]);
+        JScrollPane jScrollPane = new JScrollPane();
+        jScrollPane.setViewportView(menuSelectTables[getCurrentSeatIndex()]);
         this.tablePanel.add(jScrollPane);
         add(this.tablePanel);
-        this.tablePanel.setBounds(480, 20, 360, 350);
+        this.tablePanel.setBounds(480, 20, 360, 450);
     }
 
     private void initializeSeatProductTable() {
@@ -161,6 +163,10 @@ public class DetailTableFrame extends JFrame {
 
     public NormalButton getRightButton() {
         return rightButton;
+    }
+
+    public long getTableNumber() {
+        return tablePanel.getTableNumber();
     }
 
     /**
@@ -218,12 +224,13 @@ public class DetailTableFrame extends JFrame {
 
     // 테이블에 메뉴 추가
     public void putProduct(final ProductListPanel panel) {
-        System.out.println(getCurrentSeatIndex());
         long putId = Long.parseLong(panel.getIdText());
         for (int row = 0; row < tableModels[getCurrentSeatIndex()].getRowCount(); row++) {
             Long id = Long.parseLong((String) tableModels[getCurrentSeatIndex()].getValueAt(row, ID_COLUMN));
             if (id == putId) {
-                int productCount = Integer.parseInt((String) tableModels[getCurrentSeatIndex()].getValueAt(row, QUANTITY_COLUMN)) + 1;
+                int productCount =
+                        Integer.parseInt((String) tableModels[getCurrentSeatIndex()].getValueAt(row, QUANTITY_COLUMN))
+                                + 1;
                 tableModels[getCurrentSeatIndex()].setValueAt(String.valueOf(productCount), row, QUANTITY_COLUMN);
                 updateTotalPrice();
                 return;
@@ -245,8 +252,9 @@ public class DetailTableFrame extends JFrame {
         for (int row = 0; row < tableModels[getCurrentSeatIndex()].getRowCount(); row++) {
             Long id = Long.parseLong((String) tableModels[getCurrentSeatIndex()].getValueAt(row, ID_COLUMN));
             if (id == putId) {
-                productCount = Math.max(Integer.parseInt((String) tableModels[getCurrentSeatIndex()].getValueAt(row, QUANTITY_COLUMN)) - 1,
-                        productCount);
+                productCount = Math.max(
+                        Integer.parseInt((String) tableModels[getCurrentSeatIndex()].getValueAt(row, QUANTITY_COLUMN))
+                                - 1, productCount);
                 tableModels[getCurrentSeatIndex()].setValueAt(String.valueOf(productCount), row, QUANTITY_COLUMN);
                 deleteZeroCountRow(productCount, row);
                 updateTotalPrice();
@@ -281,7 +289,8 @@ public class DetailTableFrame extends JFrame {
             long productId = Long.parseLong((String) tableModels[getCurrentSeatIndex()].getValueAt(row, ID_COLUMN));
             String productName = (String) tableModels[getCurrentSeatIndex()].getValueAt(row, NAME_COLUMN);
             int price = Integer.parseInt((String) tableModels[getCurrentSeatIndex()].getValueAt(row, PRICE_COLUMN));
-            long quantity = Long.parseLong((String) tableModels[getCurrentSeatIndex()].getValueAt(row, QUANTITY_COLUMN));
+            long quantity = Long.parseLong(
+                    (String) tableModels[getCurrentSeatIndex()].getValueAt(row, QUANTITY_COLUMN));
             selectedProducts.add(new SeatProduct(quantity, price, productId, productName, tablePanel.getTableNumber()));
         }
         return selectedProducts;

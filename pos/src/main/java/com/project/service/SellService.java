@@ -14,11 +14,8 @@ public class SellService {
         return productRepository.findAll();
     }
 
-    public void saveSeatProducts(final List<SeatProduct> seatProducts) {
-        if (seatProducts.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 주문할 상품이 없습니다.");
-        }
-        seatProductRepository.deleteAllBySeatId(seatProducts.get(0).getSeatId());
+    public void saveSeatProducts(final List<SeatProduct> seatProducts, Long tableNumber) {
+        seatProductRepository.deleteAllBySeatId(tableNumber);
         seatProductRepository.saveSeatProductList(seatProducts);
     }
 }
