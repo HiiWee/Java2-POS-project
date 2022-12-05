@@ -29,7 +29,7 @@ public class ManagementFrame extends JFrame {
     private final NormalButton deleteStuffButton = new NormalButton(ButtonNameMessage.DELETE_STUFF);
     private final NormalButton refreshButton = new NormalButton("상품갱신");
     private final String header[] = {"고유번호", "이름", "가격"};
-    public DefaultTableModel tableModel;
+    private DefaultTableModel tableModel;
     public JTable table;
     private final JPanel jPanel = new JPanel();
     private final JPanel buttonPanel = new JPanel(new GridLayout(3, 1));
@@ -88,5 +88,4 @@ public class ManagementFrame extends JFrame {
             });
         }
     }
-
 }

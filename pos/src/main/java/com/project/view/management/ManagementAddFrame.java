@@ -1,7 +1,11 @@
 package com.project.view.management;
 
+import com.google.protobuf.Value;
+import com.project.domain.Product;
 import com.project.utils.InitializationGuiConstant;
 import com.project.view.common.NormalButton;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -14,7 +18,6 @@ public class ManagementAddFrame extends JFrame {
     private final JLabel jLabelNumber = new JLabel("고유번호");
     private final JLabel jLabelStuffName = new JLabel("이름");
     private final JLabel jLabelStuffPrice = new JLabel("가격");
-    private final NormalButton checkButton = new NormalButton("확인");
     private final NormalButton cancelButton = new NormalButton("취소");
     private final NormalButton addButtom = new NormalButton("추가");
 
@@ -22,7 +25,7 @@ public class ManagementAddFrame extends JFrame {
         return instance;
     }
 
-    public ManagementAddFrame() {
+    private ManagementAddFrame() {
         initializePage();
         setVisible(true);
         labelSetting();
@@ -32,7 +35,6 @@ public class ManagementAddFrame extends JFrame {
         add(jTextFieldNumber);
         add(jTextFieldStuffName);
         add(jTextFieldStuffPrice);
-        add(checkButton);
         add(cancelButton);
         add(addButtom);
         jTextFieldNumber.setEditable(false);
@@ -42,7 +44,6 @@ public class ManagementAddFrame extends JFrame {
         jTextFieldNumber.setBounds(150, 55, 250, 30);
         jTextFieldStuffName.setBounds(150, 110, 250, 30);
         jTextFieldStuffPrice.setBounds(150, 160, 250, 30);
-        checkButton.setBounds(175, 220, 100, 50);
         cancelButton.setBounds(300, 220, 100, 50);
         addButtom.setBounds(50, 220, 100, 50);
     }
@@ -61,18 +62,13 @@ public class ManagementAddFrame extends JFrame {
         jLabelStuffPrice.setFont(jLabelStuffPrice.getFont().deriveFont(15f));
     }
 
-    public JTextField getjTextFieldStuffName() {
-        return jTextFieldStuffName;
+    public String getjTextFieldStuffName() {
+        return jTextFieldStuffName.getText();
     }
 
-    public JTextField getjTextFieldStuffPrice() {
-        return jTextFieldStuffPrice;
+    public String getjTextFieldStuffPrice() {
+        return jTextFieldStuffPrice.getText();
     }
-
-    public NormalButton getCheckButton() {
-        return checkButton;
-    }
-
     public NormalButton getCancelButton() {
         return cancelButton;
     }
@@ -80,8 +76,15 @@ public class ManagementAddFrame extends JFrame {
     public NormalButton getAddButtom() {
         return addButtom;
     }
-    public void clearTextField(){
+
+    public void clearTextField() {
         jTextFieldStuffName.setText("");
         jTextFieldStuffPrice.setText("");
+    }
+    public Product getAddedProduct() {
+        String name=jTextFieldStuffName.getText();
+        int price= Integer.parseInt(jTextFieldStuffPrice.getText());
+        Product products = new Product(name, price);
+        return products;
     }
 }

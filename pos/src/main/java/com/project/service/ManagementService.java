@@ -1,32 +1,29 @@
 package com.project.service;
 
+import com.project.domain.Product;
 import com.project.repository.ProductRepository;
+import com.project.view.management.ManagementAddFrame;
+import com.project.view.management.ManagementEditFrame;
 import com.project.view.management.ManagementFrame;
+import java.util.List;
 
 public class ManagementService {
     private final ProductRepository productRepository = ProductRepository.getInstance();
 
-    public void refreshTable() {
-        ManagementFrame managementFrame = ManagementFrame.getInstance();
-        managementFrame.addRowTable(productRepository.findAll());
+    public List<Product> fineAllProducts() {
+     return productRepository.findAll();
     }
 
     public void dropTable() {
-        productRepository.drop();
+        productRepository.dropById(productRepository.findById());
     }
 
-    public void saveList() {
-        productRepository.saveList();
+    public void insert(Product product) {
+        productRepository.insert(product);
     }
 
-    public void insert() {
-        productRepository.insert();
+    public void update(Product product) {
+        productRepository.update(product);
     }
 
-    public void clearList() {
-        productRepository.clearList();
-    }
-    public void update(){
-        productRepository.update();
-    }
 }

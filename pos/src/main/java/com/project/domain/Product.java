@@ -14,13 +14,13 @@ public class Product {
     public int getPrice() {
         return price;
     }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public void setPrice(int price) {
-        this.price = price;
-    }
-    public void setId(Long id) {
-        this.id = id;
+    public Product(Long id,String name,int price){
+    this.id=id;
+    this.name=name;
+    this.price=price;
+   }
+    public Product(String name,int price){
+        this.name=name;
+        this.price=price;
     }
 }

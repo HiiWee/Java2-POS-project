@@ -42,13 +42,11 @@ public class PageController {
 
         // 각 페이지 초기 작업 초기화
         sellController.initSellPage();
-
-        managementController.addActionCheck();
+        managementController.addActionUpdate();
         managementController.addActionDrop();
         managementController.addActionRefresh();
         managementController.addActionSave();
         managementController.addMouesAction();
-        managementController.addActionUpdate();
     }
 
     private void initSellingPage() {
