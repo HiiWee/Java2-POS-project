@@ -17,6 +17,12 @@ public class ManagementController extends MouseAdapter {
     private final ManagementAddFrame managementAddFrame = ManagementAddFrame.getInstance();
     private final ManagementEditFrame managementEditFrame = ManagementEditFrame.getInstance();
 
+    public void initManagementController(){
+        addActionUpdate();
+        addActionDrop();
+        addActionSave();
+        addMouesAction();
+    }
     private void callTable() {
         managementFrame.addRowTable(productService.fineAllProducts());
     }
@@ -40,11 +46,11 @@ public class ManagementController extends MouseAdapter {
         deleteTableRow();
         dropTable();
     }
-    public void addMouesAction() {
+    private void addMouesAction() {
         managementFrame.table.addMouseListener(this);
     }
 
-    public void addActionSave() {
+    private void addActionSave() {
         managementAddFrame.getAddButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -54,7 +60,7 @@ public class ManagementController extends MouseAdapter {
             }
         });
     }
-    public void addActionDrop() {
+    private void addActionDrop() {
         managementEditFrame.getDeleteStuffButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -65,7 +71,7 @@ public class ManagementController extends MouseAdapter {
         });
     }
 
-    public void addActionUpdate() {
+    private void addActionUpdate() {
         managementEditFrame.getEditButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

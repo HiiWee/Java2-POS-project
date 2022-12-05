@@ -24,7 +24,7 @@ public class ManagementFrame extends JFrame {
         return instance;
     }
 
-    private final NormalButton backButtonOnManagementPage = new NormalButton(ButtonNameMessage.BACK);
+    private final NormalButton backButton = new NormalButton(ButtonNameMessage.BACK);
     private final NormalButton addStuffButton = new NormalButton(ButtonNameMessage.ITEM_ADD);
     private final String header[] = {
             ButtonNameMessage.ITEM_NUMBER,
@@ -43,7 +43,7 @@ public class ManagementFrame extends JFrame {
         JScrollPane scrollPane = new JScrollPane(table);
         jPanel.add(scrollPane);
         buttonPanel.add(addStuffButton);
-        buttonPanel.add(backButtonOnManagementPage);
+        buttonPanel.add(backButton);
         add(jPanel);
         add(buttonPanel);
         jPanel.setBounds(50, 50, 500, 500);
@@ -77,5 +77,11 @@ public class ManagementFrame extends JFrame {
                     i.getId(), i.getName(), i.getPrice()
             });
         }
+    }
+    public NormalButton getAddStuffButton(){
+        return addStuffButton;
+    }
+    public NormalButton getBackButton(){
+        return backButton;
     }
 }
