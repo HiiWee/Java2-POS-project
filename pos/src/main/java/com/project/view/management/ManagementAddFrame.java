@@ -2,6 +2,7 @@ package com.project.view.management;
 
 import com.google.protobuf.Value;
 import com.project.domain.Product;
+import com.project.utils.ButtonNameMessage;
 import com.project.utils.InitializationGuiConstant;
 import com.project.view.common.NormalButton;
 import java.util.ArrayList;
@@ -15,11 +16,11 @@ public class ManagementAddFrame extends JFrame {
     private final JTextField jTextFieldNumber = new JTextField();
     private final JTextField jTextFieldStuffName = new JTextField();
     private final JTextField jTextFieldStuffPrice = new JTextField();
-    private final JLabel jLabelNumber = new JLabel("고유번호");
-    private final JLabel jLabelStuffName = new JLabel("이름");
-    private final JLabel jLabelStuffPrice = new JLabel("가격");
-    private final NormalButton cancelButton = new NormalButton("취소");
-    private final NormalButton addButton = new NormalButton("추가");
+    private final JLabel jLabelNumber = new JLabel(ButtonNameMessage.ITEM_NUMBER);
+    private final JLabel jLabelStuffName = new JLabel(ButtonNameMessage.ITEM_NAME);
+    private final JLabel jLabelStuffPrice = new JLabel(ButtonNameMessage.ITEM_PRICE);
+    private final NormalButton cancelButton = new NormalButton(ButtonNameMessage.BACK);
+    private final NormalButton addButton = new NormalButton(ButtonNameMessage.ITEM_ADD);
 
     public static ManagementAddFrame getInstance() {
         return instance;

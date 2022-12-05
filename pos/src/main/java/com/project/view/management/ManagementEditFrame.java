@@ -13,13 +13,13 @@ public class ManagementEditFrame extends JFrame{
     private final JTextField jTextFieldNumber = new JTextField();
     private final JTextField jTextFieldStuffName = new JTextField();
     private final JTextField jTextFieldStuffPrice = new JTextField();
-    private final JLabel jLabelNumber = new JLabel("고유번호");
-    private final JLabel jLabelStuffName = new JLabel("이름");
-    private final JLabel jLabelStuffPrice = new JLabel("가격");
+    private final JLabel jLabelNumber = new JLabel(ButtonNameMessage.ITEM_NUMBER);
+    private final JLabel jLabelStuffName = new JLabel(ButtonNameMessage.ITEM_NAME);
+    private final JLabel jLabelStuffPrice = new JLabel(ButtonNameMessage.ITEM_PRICE);
 
     private final NormalButton deleteStuffButton = new NormalButton(ButtonNameMessage.DELETE_STUFF);
-    private final NormalButton cancelButton = new NormalButton("뒤로");
-    private final NormalButton editButton = new NormalButton("수정");
+    private final NormalButton cancelButton = new NormalButton(ButtonNameMessage.BACK);
+    private final NormalButton editButton = new NormalButton(ButtonNameMessage.ITEM_EDIT);
 
    public static ManagementEditFrame getInstance() {
         return instance;

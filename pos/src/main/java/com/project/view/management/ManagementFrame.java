@@ -25,8 +25,11 @@ public class ManagementFrame extends JFrame {
     }
 
     private final NormalButton backButtonOnManagementPage = new NormalButton(ButtonNameMessage.BACK);
-    private final NormalButton addStuffButton = new NormalButton(ButtonNameMessage.ADD_STUFF);
-    private final String header[] = {"고유번호", "이름", "가격"};
+    private final NormalButton addStuffButton = new NormalButton(ButtonNameMessage.ITEM_ADD);
+    private final String header[] = {
+            ButtonNameMessage.ITEM_NUMBER,
+            ButtonNameMessage.ITEM_NAME,
+            ButtonNameMessage.ITEM_PRICE};
     private DefaultTableModel tableModel;
     public JTable table;
     private final JPanel jPanel = new JPanel();
