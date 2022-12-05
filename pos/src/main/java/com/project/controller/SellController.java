@@ -11,6 +11,7 @@ import com.project.view.sell.listener.DetailTableFrameListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collections;
+import javax.swing.JOptionPane;
 
 public class SellController implements ActionListener {
     private final SellService sellService = new SellService();
@@ -26,6 +27,10 @@ public class SellController implements ActionListener {
         setActionPerformed();
     }
 
+    public void refreshProducts() {
+        detailTableFrame.initProduct(sellService.findAllProduct());
+    }
+
     private void setActionPerformed() {
         detailTableFrame.getOrderButton().addActionListener(this);
         detailTableFrame.getPayButton().addActionListener(this);
@@ -33,17 +38,27 @@ public class SellController implements ActionListener {
 
     // 주문 버튼 클릭시 동작
     private void orderProduct() {
-        sellService.saveSeatProducts(detailTableFrame.getSeatProductList(), detailTableFrame.getTableNumber());
+        try {
+            sellService.saveSeatProducts(detailTableFrame.getSeatProductList(), detailTableFrame.getTableNumber());
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         moveDetailToSellingPanelTab();
         SellingPanelTab.getInstance()
                 .setSeatProductList(detailTableFrame.getSeatProductList(), (int) detailTableFrame.getTableNumber());
     }
 
     private void paySeatProduct() {
-        sellService.paySeatProduct(detailTableFrame.getSeatProductList());
+        try {
+            sellService.paySeatProduct(detailTableFrame.getSeatProductList());
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         detailTableFrame.setPriceLabel("총 가격");
         SellingPanelTab.getInstance()
-                        .setSeatProductList(Collections.emptyList(), (int)detailTableFrame.getTableNumber());
+                .setSeatProductList(Collections.emptyList(), (int) detailTableFrame.getTableNumber());
         sellService.clearSeatProducts(detailTableFrame.getTableNumber());
         moveDetailToSellingPanelTab();
     }
