@@ -30,7 +30,6 @@ public class DetailTableFrame extends JFrame {
     public static final int QUANTITY_COLUMN = 3;
 
     private final NormalButton backButton = new NormalButton(ButtonNameMessage.BACK);
-    private final NormalButton discountButton = new NormalButton(ButtonNameMessage.DISCOUNT);
     private final NormalButton payButton = new NormalButton(ButtonNameMessage.PAYMENT);
     private final NormalButton orderButton = new NormalButton(ButtonNameMessage.ORDER);
     private TableSubPanel tablePanel;
@@ -61,11 +60,11 @@ public class DetailTableFrame extends JFrame {
         add(buttonPanelLeft);
         add(orderButton);
         add(totalPriceLabel);
-        buttonPanelLeft.add(payButton);
-        buttonPanelLeft.add(discountButton);
-        buttonPanelLeft.add(backButton);
-        buttonPanelLeft.setBounds(50, 430, 300, 100);
-        orderButton.setBounds(480, 510, 360, 50);
+        add(payButton);
+        add(backButton);
+        backButton.setBounds(720, 510, 120, 50);
+        payButton.setBounds(480, 510, 120, 50);
+        orderButton.setBounds(600, 510, 120, 50);
         totalPriceLabel.setText("총 가격");
         totalPriceLabel.setBounds(480, 480, 360, 20);
         totalPriceLabel.setOpaque(true);
@@ -74,7 +73,6 @@ public class DetailTableFrame extends JFrame {
 
     private void initializeActionCommandOnButton() {
         orderButton.setActionCommand(ButtonNameMessage.ORDER);
-        discountButton.setActionCommand(ButtonNameMessage.DISCOUNT);
         payButton.setActionCommand(ButtonNameMessage.PAYMENT);
     }
 
@@ -88,7 +86,7 @@ public class DetailTableFrame extends JFrame {
 
     private void setMenuPage() {
         menuPanel = new JPanel(new FlowLayout());
-        menuPanel.setBounds(20, 20, 450, 550);
+        menuPanel.setBounds(20, 20, 450, 450);
         menuPanel.setBackground(Color.WHITE);
         menuPanel.setBorder(new BevelBorder(BevelBorder.RAISED));
         add(menuPanel);
@@ -109,6 +107,7 @@ public class DetailTableFrame extends JFrame {
     public void setTablePanel(TableSubPanel tablePanel) {
         initializeSeatProductTable();
         this.tablePanel = new TableSubPanel(tablePanel.getTableNumber() + "번 테이블", false);
+        initExistSeatProduct(tablePanel.getSeatProductList());
         menuSelectTables[getCurrentSeatIndex()].getTableHeader().setReorderingAllowed(false);
         menuSelectTables[getCurrentSeatIndex()].getTableHeader().setReorderingAllowed(false);
         menuSelectTables[getCurrentSeatIndex()].setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
@@ -117,6 +116,26 @@ public class DetailTableFrame extends JFrame {
         this.tablePanel.add(jScrollPane);
         add(this.tablePanel);
         this.tablePanel.setBounds(480, 20, 360, 450);
+    }
+
+    private void initExistSeatProduct(final List<SeatProduct> seatProductList) {
+        clearSeatProduct((int) tablePanel.getTableNumber());
+        removeExistTablePanel();
+        seatProductList.forEach(seatProduct ->
+                tableModels[getCurrentSeatIndex()].addRow(new String[]{
+                        String.valueOf(seatProduct.getProductId()),
+                        seatProduct.getProductName(),
+                        String.valueOf(seatProduct.getPrice()),
+                        String.valueOf(seatProduct.getQuantity())}
+                )
+        );
+
+    }
+
+    private void clearSeatProduct(final int tableNumber) {
+        for (int row = tableModels[tableNumber - 1].getRowCount() - 1; row >= 0; row--) {
+            tableModels[tableNumber - 1].removeRow(row);
+        }
     }
 
     private void initializeSeatProductTable() {
@@ -153,10 +172,6 @@ public class DetailTableFrame extends JFrame {
         return payButton;
     }
 
-    public NormalButton getDiscountButton() {
-        return payButton;
-    }
-
     public NormalButton getLeftButton() {
         return leftButton;
     }
@@ -167,6 +182,10 @@ public class DetailTableFrame extends JFrame {
 
     public long getTableNumber() {
         return tablePanel.getTableNumber();
+    }
+
+    public void setPriceLabel(final String totalPrice) {
+        totalPriceLabel.setText(totalPrice);
     }
 
     /**
@@ -295,4 +314,5 @@ public class DetailTableFrame extends JFrame {
         }
         return selectedProducts;
     }
+
 }

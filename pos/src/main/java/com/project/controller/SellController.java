@@ -1,13 +1,16 @@
 package com.project.controller;
 
+import com.project.domain.SeatProduct;
 import com.project.service.SellService;
 import com.project.utils.ButtonNameMessage;
 import com.project.view.MainFrame;
+import com.project.view.common.NormalButton;
 import com.project.view.sell.DetailTableFrame;
 import com.project.view.sell.SellingPanelTab;
 import com.project.view.sell.listener.DetailTableFrameListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collections;
 
 public class SellController implements ActionListener {
     private final SellService sellService = new SellService();
@@ -26,23 +29,30 @@ public class SellController implements ActionListener {
     private void setActionPerformed() {
         detailTableFrame.getOrderButton().addActionListener(this);
         detailTableFrame.getPayButton().addActionListener(this);
-        detailTableFrame.getDiscountButton().addActionListener(this);
     }
 
     // 주문 버튼 클릭시 동작
     private void orderProduct() {
         sellService.saveSeatProducts(detailTableFrame.getSeatProductList(), detailTableFrame.getTableNumber());
-        detailTableFrame.setVisible(false);
-        MainFrame.getInstance().setVisible(true);
-        detailTableFrame.removeExistTablePanel();
+        moveDetailToSellingPanelTab();
         SellingPanelTab.getInstance()
                 .setSeatProductList(detailTableFrame.getSeatProductList(), (int) detailTableFrame.getTableNumber());
     }
 
-    private void payProduct() {
-
+    private void paySeatProduct() {
+        sellService.paySeatProduct(detailTableFrame.getSeatProductList());
+        detailTableFrame.setPriceLabel("총 가격");
+        SellingPanelTab.getInstance()
+                        .setSeatProductList(Collections.emptyList(), (int)detailTableFrame.getTableNumber());
+        sellService.clearSeatProducts(detailTableFrame.getTableNumber());
+        moveDetailToSellingPanelTab();
     }
 
+    private void moveDetailToSellingPanelTab() {
+        detailTableFrame.setVisible(false);
+        MainFrame.getInstance().setVisible(true);
+        detailTableFrame.removeExistTablePanel();
+    }
 
     @Override
     public void actionPerformed(final ActionEvent e) {
@@ -51,8 +61,7 @@ public class SellController implements ActionListener {
             orderProduct();
         }
         if (actionCommand.equals(ButtonNameMessage.PAYMENT)) {
-            payProduct();
+            paySeatProduct();
         }
     }
-
 }

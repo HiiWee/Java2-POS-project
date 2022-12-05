@@ -15,7 +15,6 @@ public class SellingPanelTab extends JPanel {
     private final JPanel tablePanel = new JPanel();
     private final TableSubPanel[] tablePanels = new TableSubPanel[TableNumberConstant.NUMBER_OF_TABLE];
     private final NormalButton closeButton = new NormalButton(ButtonNameMessage.CLOSE_POS);
-    private final NormalButton orderButton = new NormalButton(ButtonNameMessage.ORDER);
     private final NormalButton billButton = new NormalButton(ButtonNameMessage.BILL_CHECK);
 
     public static SellingPanelTab getInstance() {
@@ -31,8 +30,7 @@ public class SellingPanelTab extends JPanel {
         setSize(InitializationGuiConstant.FRAME_WIDTH, InitializationGuiConstant.FRAME_HEIGHT);
         add(closeButton);
         add(billButton);
-        add(orderButton);
-        tablePanel.setLayout(new GridLayout(3, 3, 3, 3));
+        tablePanel.setLayout(new GridLayout(3, 3, 5, 5));
 
         for (int i = 0; i < TableNumberConstant.NUMBER_OF_TABLE; i++) {
             tablePanels[i] = new TableSubPanel(String.valueOf(i + 1), true);
@@ -41,16 +39,11 @@ public class SellingPanelTab extends JPanel {
         add(tablePanel);
         tablePanel.setBounds(0, 30, 650, 500);
         billButton.setBounds(650, 330, 150, 100);
-        orderButton.setBounds(650, 430, 150, 100);
         closeButton.setBounds(650, 30, 150, 100);
     }
 
     public JButton getCloseButton() {
         return closeButton;
-    }
-
-    public JButton getOrderButton() {
-        return orderButton;
     }
 
     public JButton getBillButton() {

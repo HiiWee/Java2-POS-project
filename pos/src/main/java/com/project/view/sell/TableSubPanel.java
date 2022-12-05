@@ -4,6 +4,7 @@ import com.project.domain.SeatProduct;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -41,7 +42,6 @@ public class TableSubPanel extends JPanel {
     }
 
     public void addSeatProductList(final List<SeatProduct> seatProducts) {
-        System.out.println(seatProducts.size());
         removeExistSeatProducts();
         seatProducts.forEach(this::addSeatProduct);
     }
@@ -54,10 +54,23 @@ public class TableSubPanel extends JPanel {
 
     public void addSeatProduct(SeatProduct seatProduct) {
         tableModel.addRow(new String[]{
-                String.valueOf(seatProduct.getSeatId()),
+                String.valueOf(seatProduct.getProductId()),
                 seatProduct.getProductName(),
                 String.valueOf(seatProduct.getPrice()),
                 String.valueOf(seatProduct.getQuantity())
         });
+    }
+
+    // 현재 테이블에 있는 product 정보를 가져옴
+    public List<SeatProduct> getSeatProductList() {
+        List<SeatProduct> currentSeatProducts = new ArrayList<>();
+        for (int row = 0; row < tableModel.getRowCount(); row++) {
+            long productId = Long.parseLong((String) tableModel.getValueAt(row, 0));
+            String productName = (String) tableModel.getValueAt(row, 1);
+            int price = Integer.parseInt((String) tableModel.getValueAt(row, 2));
+            long quantity = Long.parseLong((String) tableModel.getValueAt(row, 3));
+            currentSeatProducts.add(new SeatProduct(quantity, price, productId, productName, getTableNumber()));
+        }
+        return currentSeatProducts;
     }
 }
