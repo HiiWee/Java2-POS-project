@@ -38,7 +38,7 @@ public class SeatProductRepository {
     /**
      * 사용자가 선택한 물품들 테이블(SEAT)에 추가
      */
-    public void saveSeatProductList(final List<SeatProduct> selectedProductList) {
+    public void saveAll(final List<SeatProduct> selectedProductList) {
         try {
             Connection connection = getConnection();
 
