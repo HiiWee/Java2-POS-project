@@ -1,5 +1,6 @@
 package com.project.service;
 
+import com.project.controller.dto.SellProductInBillDto;
 import com.project.domain.Product;
 import com.project.domain.SeatProduct;
 import com.project.domain.Sell;
@@ -59,5 +60,9 @@ public class SellService {
     public boolean checkAllProduct(final List<SeatProduct> seatProducts, final Long tableId) {
         List<SeatProduct> actualSeatProducts = findAllSeatProductById(tableId);
         return actualSeatProducts.size() == seatProducts.size();
+    }
+
+    public List<SellProductInBillDto> findAllProductById(final Long sellId) {
+        return sellRepository.findAllById(sellId);
     }
 }
