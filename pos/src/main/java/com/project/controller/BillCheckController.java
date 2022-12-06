@@ -26,9 +26,7 @@ public class BillCheckController {
         if (refundButton.getActionListeners().length > 0) {
             return;
         }
-        billCheckFrame.getRefundButton().addActionListener(e -> {
-            refund();
-        });
+        billCheckFrame.getRefundButton().addActionListener(e -> refund());
     }
 
     private void refund() {

@@ -14,7 +14,7 @@ public class LaunchPage extends JFrame {
     private final NormalButton startButton = new NormalButton(ButtonNameMessage.OPEN_POS);
     private final NormalButton endButton = new NormalButton(ButtonNameMessage.END_APPLICATION);
     private final Container container = getContentPane();
-    private final JTextField jTextFieldTime = new JTextField(String.valueOf(TimeUtil.nowDateTime));
+    private final JTextField jTextFieldTime = new JTextField("현재 날짜: " + TimeUtil.nowDateTime);
 
     public static LaunchPage getInstance() {
         return instance;
@@ -28,7 +28,7 @@ public class LaunchPage extends JFrame {
         container.add(endButton);
         container.add(jTextFieldTime);
         jTextFieldTime.setEditable(false);
-        jTextFieldTime.setBounds(350, 0, 150, 100);
+        jTextFieldTime.setBounds(350, 50, 150, 30);
         startButton.setBounds(350, 100, 150, 150);
         endButton.setBounds(350, 300, 150, 150);
     }
