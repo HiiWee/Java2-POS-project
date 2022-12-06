@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -17,13 +18,14 @@ public class ManagementController extends MouseAdapter {
     private final ManagementAddFrame managementAddFrame = ManagementAddFrame.getInstance();
     private final ManagementEditFrame managementEditFrame = ManagementEditFrame.getInstance();
 
-    public void initManagementController(){
+    public void initManagementController() {
         refreshTable();
         addActionUpdate();
         addActionDrop();
         addActionSave();
         addMouesAction();
     }
+
     private void callTable() {
         managementFrame.addRowTable(productService.fineAllProducts());
     }
@@ -33,20 +35,37 @@ public class ManagementController extends MouseAdapter {
     }
 
     private void insert() {
-        productService.insert(managementAddFrame.getAddedProduct());
+        try {
+            productService.insert(managementAddFrame.getAddedProduct());
+        } catch (NumberFormatException exception) {
+            JOptionPane.showMessageDialog(null, "[ERROR] 상품정보를 올바르게 입력해주세요", "ERROR", JOptionPane.ERROR_MESSAGE);
+
+        } catch (IllegalArgumentException exception) {
+            JOptionPane.showMessageDialog(null, exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
+
     private void update() {
-        productService.update(managementEditFrame.getEditedProduct());
+        try {
+            productService.update(managementEditFrame.getEditedProduct());
+        } catch (NumberFormatException exception) {
+            JOptionPane.showMessageDialog(null, "[ERROR] 상품정보를 올바르게 입력해주세요", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException exception) {
+            JOptionPane.showMessageDialog(null, exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }
-    private void refreshTable(){
+
+    private void refreshTable() {
         initTable();
         callTable();
     }
-    private void deleteStuff(){
+
+    private void deleteStuff() {
         deleteTableRow();
         dropTable();
     }
+
     private void addMouesAction() {
         managementFrame.getTable().addMouseListener(this);
     }
@@ -58,18 +77,19 @@ public class ManagementController extends MouseAdapter {
             refreshTable();
         });
     }
+
     private void addActionDrop() {
         managementEditFrame.getDeleteStuffButton().addActionListener(e -> {
-          deleteStuff();
-          managementEditFrame.clearTextField();
-          refreshTable();
+            deleteStuff();
+            managementEditFrame.clearTextField();
+            refreshTable();
         });
     }
 
     private void addActionUpdate() {
         managementEditFrame.getEditButton().addActionListener(e -> {
             update();
-            managementEditFrame.clearTextField();
+            managementEditFrame.resetTextField(managementFrame.getProduct(managementEditFrame.getEditedProduct()));
             refreshTable();
         });
     }
@@ -78,7 +98,8 @@ public class ManagementController extends MouseAdapter {
         DefaultTableModel tableModel = (DefaultTableModel) managementFrame.getTable().getModel();
         tableModel.setNumRows(0);
     }
-    private void deleteTableRow(){
+
+    private void deleteTableRow() {
         DefaultTableModel tableModel = (DefaultTableModel) managementFrame.getTable().getModel();
         int row = managementFrame.getTable().getSelectedRow();
         if (row < 0) {
@@ -86,6 +107,7 @@ public class ManagementController extends MouseAdapter {
         }
         tableModel.removeRow(row);
     }
+
     @Override
     public void mouseClicked(MouseEvent e) {
         int row = managementFrame.getTable().getSelectedRow();

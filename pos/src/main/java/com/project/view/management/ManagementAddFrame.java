@@ -74,9 +74,10 @@ public class ManagementAddFrame extends JFrame {
         jTextFieldStuffName.setText("");
         jTextFieldStuffPrice.setText("");
     }
+
     public Product getAddedProduct() {
-        String name=jTextFieldStuffName.getText();
-        int price= Integer.parseInt(jTextFieldStuffPrice.getText());
+        String name = jTextFieldStuffName.getText();
+        int price = Integer.parseInt(jTextFieldStuffPrice.getText());
         Product products = new Product(name, price);
         return products;
     }

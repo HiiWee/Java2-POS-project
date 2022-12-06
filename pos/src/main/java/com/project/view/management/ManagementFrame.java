@@ -101,5 +101,18 @@ public class ManagementFrame extends JFrame {
 
     public NormalButton getBackButton() {
         return backButton;
+
+    }
+
+    public Product getProduct(final Product editedProduct) {
+        for (int row = 0; row < tableModel.getRowCount(); row++) {
+            long id = (long) tableModel.getValueAt(row, 0);
+            String name = ((String) tableModel.getValueAt(row, 1));
+            int price = (int) tableModel.getValueAt(row, 2);
+            if (editedProduct.getId() == id) {
+                return new Product(id, name, price);
+            }
+        }
+        return null;
     }
 }

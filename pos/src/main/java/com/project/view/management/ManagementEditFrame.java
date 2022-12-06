@@ -100,4 +100,11 @@ public class ManagementEditFrame extends JFrame {
         int price = Integer.parseInt(productPrice.getText());
         return new Product(id, name, price);
     }
+
+    public void resetTextField(final Product findProduct) {
+        productId.setText(String.valueOf(findProduct.getId()));
+        productName.setText(findProduct.getName());
+        productPrice.setText(String.valueOf(findProduct.getPrice()));
+    }
+
 }
