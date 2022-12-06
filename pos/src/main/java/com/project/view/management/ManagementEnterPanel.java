@@ -12,21 +12,33 @@ public class ManagementEnterPanel extends JPanel {
     private final JPasswordField passwordField = new JPasswordField();
     private final JLabel info = new JLabel("관리자 모드로 진입하기 위해서는 비밀번호가 필요합니다");
     private final NormalButton loginButton = new NormalButton(ButtonNameMessage.LOGIN);
+    private final NormalButton changePasswordButton=new NormalButton(ButtonNameMessage.CHANGE);
 
     public static ManagementEnterPanel getInstance() {
         return instance;
     }
 
-    public ManagementEnterPanel() {
+    private ManagementEnterPanel() {
         setSize(InitializationGuiConstant.FRAME_WIDTH, InitializationGuiConstant.FRAME_HEIGHT);
         this.setLayout(null);
         add(passwordField);
         add(info);
         add(loginButton);
+        add(changePasswordButton);
         info.setBounds(250, 50, 350, 100);
         passwordField.setBounds(300, 150, 200, 30);
         loginButton.setBounds(300, 200, 200, 50);
-        setVisible(true);
+        changePasswordButton.setBounds(300,400,200,100);
     }
 
+    public JPasswordField getPasswordField() {
+        return passwordField;
+    }
+
+    public NormalButton getLoginButton() {
+        return loginButton;
+    }
+    public void clearJpasswordField(){
+        passwordField.setText("");
+    }
 }

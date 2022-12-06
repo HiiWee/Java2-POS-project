@@ -64,7 +64,6 @@ public class ManagementFrame extends JFrame {
         Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation((windowSize.width - frameSize.width) / 2,
                 (windowSize.height - frameSize.height) / 2);
-        setVisible(true);
     }
 
     private void initializePage() {

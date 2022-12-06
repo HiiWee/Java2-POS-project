@@ -1,11 +1,11 @@
 package com.project.controller;
 
 import com.project.service.ManagementService;
+import com.project.service.MemberService;
 import com.project.view.management.ManagementAddFrame;
 import com.project.view.management.ManagementEditFrame;
+import com.project.view.management.ManagementEnterPanel;
 import com.project.view.management.ManagementFrame;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
@@ -14,9 +14,11 @@ import javax.swing.table.TableModel;
 
 public class ManagementController extends MouseAdapter {
     private final ManagementService productService = new ManagementService();
+    private final MemberService memberService = new MemberService();
     private final ManagementFrame managementFrame = ManagementFrame.getInstance();
     private final ManagementAddFrame managementAddFrame = ManagementAddFrame.getInstance();
     private final ManagementEditFrame managementEditFrame = ManagementEditFrame.getInstance();
+    private final ManagementEnterPanel managementEnterPanel = ManagementEnterPanel.getInstance();
 
     public void initManagementController() {
         refreshTable();
@@ -68,6 +70,11 @@ public class ManagementController extends MouseAdapter {
 
     private void addMouesAction() {
         managementFrame.getTable().addMouseListener(this);
+    }
+
+    public boolean checkPassword() {
+        return String.valueOf(managementEnterPanel.getPasswordField()
+                .getPassword()).equals(memberService.getPassword());
     }
 
     private void addActionSave() {

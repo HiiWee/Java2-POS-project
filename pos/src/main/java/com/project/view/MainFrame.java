@@ -12,14 +12,14 @@ public class MainFrame extends JFrame {
     private static final MainFrame instance = new MainFrame();
     private final SellingPanelTab sellingPage = SellingPanelTab.getInstance();
     private final SalesPage salesPage = SalesPage.getInstance();
-    private final ManagementEnterPanel managementEnterPanel = new ManagementEnterPanel();
+    private final ManagementEnterPanel managementEnterPanel = ManagementEnterPanel.getInstance();
     private final JTabbedPane posTab = new JTabbedPane();
 
     public static MainFrame getInstance() {
         return instance;
     }
 
-    public MainFrame() {
+    private MainFrame() {
         setTitle("POS SYSTEM");
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
