@@ -30,6 +30,7 @@ public class ManagementService {
     }
 
     public void update(Product product) {
+        validateProduct(product);
         productRepository.update(product);
     }
 

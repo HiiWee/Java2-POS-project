@@ -39,7 +39,7 @@ public class ManagementController extends MouseAdapter {
         try {
             productService.insert(managementAddFrame.getAddedProduct());
         } catch (NumberFormatException exception) {
-            JOptionPane.showMessageDialog(null, "[ERROR] 가격은 숫자만 입력해야 합니다.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "[ERROR] 상품정보를 올바르게 입력해주세요", "ERROR", JOptionPane.ERROR_MESSAGE);
 
         } catch (IllegalArgumentException exception) {
             JOptionPane.showMessageDialog(null, exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -47,9 +47,14 @@ public class ManagementController extends MouseAdapter {
     }
 
 
-
     private void update() {
-        productService.update(managementEditFrame.getEditedProduct());
+        try{
+            productService.update(managementEditFrame.getEditedProduct());
+        }catch (NumberFormatException exception){
+            JOptionPane.showMessageDialog(null, "[ERROR] 상품정보를 올바르게 입력해주세요", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }catch (IllegalArgumentException exception){
+            JOptionPane.showMessageDialog(null, exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void refreshTable() {
@@ -83,6 +88,7 @@ public class ManagementController extends MouseAdapter {
             public void actionPerformed(ActionEvent e) {
                 deleteStuff();
                 managementEditFrame.getDeleteStuffButton().setEnabled(false);
+                managementEditFrame.getEditButton().setEnabled(false);
                 managementEditFrame.clearTextField();
                 refreshTable();
             }
@@ -94,7 +100,6 @@ public class ManagementController extends MouseAdapter {
             @Override
             public void actionPerformed(ActionEvent e) {
                 update();
-                managementEditFrame.clearTextField();
                 refreshTable();
             }
         });
@@ -125,6 +130,7 @@ public class ManagementController extends MouseAdapter {
         managementEditFrame.getjTextFieldStuffName().setText(name);
         managementEditFrame.getjTextFieldStuffPrice().setText(String.valueOf(price));
         managementEditFrame.getDeleteStuffButton().setEnabled(true);
+        managementEditFrame.getEditButton().setEnabled(true);
         managementEditFrame.setVisible(true);
     }
 }

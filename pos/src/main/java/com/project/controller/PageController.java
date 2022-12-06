@@ -23,7 +23,7 @@ public class PageController {
     private final ManagementFrame managementFrame = ManagementFrame.getInstance();
     private final ManagementAddFrame managementAddFrame = ManagementAddFrame.getInstance();
     private final ManagementEditFrame managementEditFrame = ManagementEditFrame.getInstance();
-    private final ManagementEnterPanel managementEnterPanel=ManagementEnterPanel.getInstance();
+    private final ManagementEnterPanel managementEnterPanel = ManagementEnterPanel.getInstance();
 
     private final SellController sellController = new SellController();
     private final ManagementController managementController = new ManagementController();
@@ -112,7 +112,8 @@ public class PageController {
         managementEditFrame.setVisible(false);
         managementFrame.setVisible(true);
     }
-    private void moveManagementEnterToManagementFrame(){
+
+    private void moveManagementEnterToManagementFrame() {
         mainFrame.setVisible(false);
         managementFrame.setVisible(true);
     }
@@ -160,4 +161,4 @@ public class PageController {
     private void addActionBackButtonOnEdit() {
         managementEditFrame.getCancelButton().addActionListener(e -> moveEditToManagementFrame());
     }
-}
+}// TODO: 2022-12-06 gui 색입히기 랑 뜨는거 이쁘게

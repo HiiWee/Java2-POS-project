@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class ManagementEditFrame extends JFrame{
+public class ManagementEditFrame extends JFrame {
     private static final ManagementEditFrame instance = new ManagementEditFrame();
     private final JTextField jTextFieldNumber = new JTextField();
     private final JTextField jTextFieldStuffName = new JTextField();
@@ -21,7 +21,7 @@ public class ManagementEditFrame extends JFrame{
     private final NormalButton cancelButton = new NormalButton(ButtonNameMessage.BACK);
     private final NormalButton editButton = new NormalButton(ButtonNameMessage.ITEM_EDIT);
 
-   public static ManagementEditFrame getInstance() {
+    public static ManagementEditFrame getInstance() {
         return instance;
     }
 
@@ -47,7 +47,7 @@ public class ManagementEditFrame extends JFrame{
         jTextFieldStuffPrice.setBounds(150, 160, 250, 30);
         cancelButton.setBounds(300, 220, 100, 50);
         editButton.setBounds(50, 220, 100, 50);
-        deleteStuffButton.setBounds(175,220,100,50);
+        deleteStuffButton.setBounds(175, 220, 100, 50);
     }
 
     private void initializePage() {
@@ -75,6 +75,7 @@ public class ManagementEditFrame extends JFrame{
     public JTextField getjTextFieldStuffPrice() {
         return jTextFieldStuffPrice;
     }
+
     public NormalButton getCancelButton() {
         return cancelButton;
     }
@@ -87,16 +88,17 @@ public class ManagementEditFrame extends JFrame{
         return deleteStuffButton;
     }
 
-    public void clearTextField(){
+    public void clearTextField() {
         jTextFieldNumber.setText("");
         jTextFieldStuffName.setText("");
         jTextFieldStuffPrice.setText("");
     }
+
     public Product getEditedProduct() {
-        Long id= Long.valueOf(jTextFieldNumber.getText());
-        String name=jTextFieldStuffName.getText();
-        int price= Integer.parseInt(jTextFieldStuffPrice.getText());
-        Product product = new Product(id,name, price);
+        Long id = Long.valueOf(jTextFieldNumber.getText());
+        String name = jTextFieldStuffName.getText();
+        int price = Integer.parseInt(jTextFieldStuffPrice.getText());
+        Product product = new Product(id, name, price);
         return product;
     }
 }
