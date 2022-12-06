@@ -28,6 +28,7 @@ public class BillCheckFrame extends JFrame {
     private final JTable billTable = new JTable(tableModel);
 
     public BillCheckFrame() {
+        setLocationRelativeTo(null);
         initializePage();
         initializePanel();
         JScrollPane jScrollPane = new JScrollPane(billTable);

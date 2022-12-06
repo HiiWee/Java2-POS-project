@@ -4,7 +4,8 @@ import com.project.view.management.ManagementEnterPanel;
 import com.project.view.sales.SalesPage;
 import com.project.view.sell.SellingPanelTab;
 import com.project.utils.InitializationGuiConstant;
-import java.util.Date;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
@@ -30,6 +31,9 @@ public class MainFrame extends JFrame {
         posTab.addTab("판매", salesPage);
         posTab.addTab("관리", managementEnterPanel);
         add(posTab);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation((dim.width / 2) - (this.getWidth() / 2), (dim.height / 2) - (this.getHeight() / 2));
+
     }
 
 }

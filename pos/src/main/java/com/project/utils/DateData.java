@@ -1,15 +1,19 @@
 package com.project.utils;
 // ...
+
 import java.util.ArrayList;
 import java.util.Collections;
+
 public class DateData {
     public ArrayList<String> date = new ArrayList<>();
     public ArrayList<Integer> dateValue = new ArrayList<>();
     public int max;
-    public DateData(){
+
+    public DateData() {
 
     }
-    public void dailySalesData(){
+
+    public void dailySalesData() {
         date.add("2022-12-01");
         date.add("2022-12-02");
         date.add("2022-12-03");
@@ -22,7 +26,8 @@ public class DateData {
         dateValue.add(400);
         max = Collections.max(dateValue);
     }
-    public void monthlySalesData(){
+
+    public void monthlySalesData() {
         date.add("1월");
         date.add("2월");
         date.add("3월");
@@ -35,7 +40,8 @@ public class DateData {
         dateValue.add(12000);
         max = Collections.max(dateValue);
     }
-    public void salesVolumeByItem(){
+
+    public void salesVolumeByItem() {
         date.add("2022-12-01");
         date.add("2022-12-02");
         date.add("2022-12-03");
@@ -49,7 +55,6 @@ public class DateData {
 
         max = Collections.max(dateValue);
     }
-
 
 
 }

@@ -58,6 +58,10 @@ public class PageController {
         addActionLoginButton();
         //managementFrame->managementEnter
         addActionBackButtonOnManagementFrame();
+        //managementFrame->changePasswordFrame
+        addActionChangePasswordButton();
+        //changePasswordFrame->managementFrame
+        addActionCloseButtonOnManagementChangePasswordFrame();
         // 각 페이지 초기 작업 초기화
         sellController.initSellPage();
         managementController.initManagementController();
@@ -132,6 +136,14 @@ public class PageController {
         mainFrame.setVisible(true);
     }
 
+    private void openChangePasswordFrame() {
+        changePasswordFrame.setVisible(true);
+    }
+
+    private void closeChangePasswordFrame() {
+        changePasswordFrame.setVisible(false);
+    }
+
     private void addActionBackButtonOnDetailPage() {
         detailTableFrame.getBackButton()
                 .addActionListener(e -> {
@@ -191,5 +203,13 @@ public class PageController {
 
     private void addActionBackButtonOnManagementFrame() {
         managementFrame.getBackButton().addActionListener(e -> moveManagementFrameToMainFrame());
+    }
+
+    private void addActionChangePasswordButton() {
+        managementFrame.getChangePasswordButton().addActionListener(e -> openChangePasswordFrame());
+    }
+
+    private void addActionCloseButtonOnManagementChangePasswordFrame() {
+        changePasswordFrame.getCloseButton().addActionListener(e -> closeChangePasswordFrame());
     }
 }

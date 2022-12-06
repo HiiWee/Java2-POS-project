@@ -16,7 +16,7 @@ public class ChangePasswordFrame extends JFrame {
     }
 
     private final JPasswordField currentPasswordField = new JPasswordField();
-    private final JPasswordField NewPasswordField = new JPasswordField();
+    private final JPasswordField newPasswordField = new JPasswordField();
     private final JPasswordField checkNewPasswordField = new JPasswordField();
     private final JLabel current = new JLabel("현재 비밀번호: ");
     private final JLabel anotherPassword = new JLabel("새로운 비밀번호: ");
@@ -26,10 +26,10 @@ public class ChangePasswordFrame extends JFrame {
 
     private ChangePasswordFrame() {
         initializePage();
+        setLocationRelativeTo(null);
         setPasswordField();
         setButton();
         setLabel();
-        setVisible(true);
     }
 
     private void initializePage() {
@@ -43,17 +43,17 @@ public class ChangePasswordFrame extends JFrame {
     private void setPasswordField() {
         add(currentPasswordField);
         add(checkNewPasswordField);
-        add(NewPasswordField);
-        currentPasswordField.setBounds(150,55,250,30);
-        NewPasswordField.setBounds(150,110,250,30);
-        checkNewPasswordField.setBounds(150,160,250,30);
+        add(newPasswordField);
+        currentPasswordField.setBounds(150, 55, 250, 30);
+        newPasswordField.setBounds(150, 110, 250, 30);
+        checkNewPasswordField.setBounds(150, 160, 250, 30);
     }
 
     private void setButton() {
         add(checkButton);
         add(closeButton);
-        checkButton.setBounds(150,220,100,50);
-        closeButton.setBounds(300,220,100,50);
+        checkButton.setBounds(150, 220, 100, 50);
+        closeButton.setBounds(300, 220, 100, 50);
     }
 
     private void setLabel() {
@@ -61,10 +61,11 @@ public class ChangePasswordFrame extends JFrame {
         add(current);
         add(anotherPassword);
         add(checkAnotherPassword);
-        current.setBounds(25,20,150,100);
-        anotherPassword.setBounds(10,75,150,100);
-        checkAnotherPassword.setBounds(90,125,100,100);
+        current.setBounds(25, 20, 150, 100);
+        anotherPassword.setBounds(10, 75, 150, 100);
+        checkAnotherPassword.setBounds(90, 125, 100, 100);
     }
+
     private void labelSetting() {
         current.setFont(current.getFont().deriveFont(15f));
         anotherPassword.setFont(anotherPassword.getFont().deriveFont(15f));
@@ -76,7 +77,7 @@ public class ChangePasswordFrame extends JFrame {
     }
 
     public JPasswordField getNewPasswordField() {
-        return NewPasswordField;
+        return newPasswordField;
     }
 
     public JPasswordField getCheckNewPasswordField() {
@@ -89,5 +90,11 @@ public class ChangePasswordFrame extends JFrame {
 
     public NormalButton getCloseButton() {
         return closeButton;
+    }
+
+    public void clearJPasswordField() {
+        currentPasswordField.setText("");
+        newPasswordField.setText("");
+        checkNewPasswordField.setText("");
     }
 }

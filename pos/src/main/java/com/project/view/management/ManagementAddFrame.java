@@ -29,6 +29,7 @@ public class ManagementAddFrame extends JFrame {
     private ManagementAddFrame() {
         initializePage();
         labelSetting();
+        setLocationRelativeTo(null);
         add(jLabelNumber);
         add(jLabelStuffName);
         add(jLabelStuffPrice);

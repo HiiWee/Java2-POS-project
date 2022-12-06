@@ -32,7 +32,8 @@ public class SellController implements ActionListener {
     public void refreshProducts(TableSubPanel currentTablePanel) {
         if (!sellService.checkAllProduct(currentTablePanel.getSeatProductList(), currentTablePanel.getTableNumber())) {
             JOptionPane.showMessageDialog(null, "판매하지 않는 물품이 존재합니다.", "alert", JOptionPane.PLAIN_MESSAGE);
-            currentTablePanel.addSeatProductList(sellService.findAllSeatProductById(currentTablePanel.getTableNumber()));
+            currentTablePanel.addSeatProductList(
+                    sellService.findAllSeatProductById(currentTablePanel.getTableNumber()));
         }
         detailTableFrame.initProduct(sellService.findAllProduct());
     }

@@ -33,37 +33,31 @@ public class ManagementFrame extends JFrame {
             ButtonNameMessage.ITEM_NAME,
             ButtonNameMessage.ITEM_PRICE};
     private DefaultTableModel tableModel;
-
+    private final NormalButton changePasswordButton = new NormalButton(ButtonNameMessage.CHANGE);
 
     private JTable table;
     private final JPanel jPanel = new JPanel();
-    private final JPanel buttonPanel = new JPanel(new GridLayout(2, 1));
+    private final JPanel buttonPanel = new JPanel(new GridLayout(3, 1));
 
     public ManagementFrame() {
         initializePage();
         setTable();
+        setLocationRelativeTo(null);
         jPanel.setLayout(new BorderLayout());
         jPanel.add(table, BorderLayout.CENTER);
         JScrollPane scrollPane = new JScrollPane(table);
         jPanel.add(scrollPane);
         buttonPanel.add(addStuffButton);
         buttonPanel.add(backButton);
+        buttonPanel.add(changePasswordButton);
         add(jPanel);
         add(buttonPanel);
         jPanel.setBounds(50, 50, 500, 500);
-        buttonPanel.setBounds(600, 125, 150, 250);
-        setFrame();
+        buttonPanel.setBounds(600, 125, 150, 350);
     }
 
     public JTable getTable() {
         return table;
-    }
-
-    private void setFrame() {//가운데로 띄우기
-        Dimension frameSize = getSize();
-        Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
-        setLocation((windowSize.width - frameSize.width) / 2,
-                (windowSize.height - frameSize.height) / 2);
     }
 
     private void initializePage() {
@@ -113,5 +107,9 @@ public class ManagementFrame extends JFrame {
             }
         }
         return null;
+    }
+
+    public NormalButton getChangePasswordButton() {
+        return changePasswordButton;
     }
 }

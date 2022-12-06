@@ -2,10 +2,14 @@ package com.project.controller;
 
 import com.project.service.ManagementService;
 import com.project.service.MemberService;
+import com.project.service.SellService;
+import com.project.view.management.ChangePasswordFrame;
 import com.project.view.management.ManagementAddFrame;
 import com.project.view.management.ManagementEditFrame;
 import com.project.view.management.ManagementEnterPanel;
 import com.project.view.management.ManagementFrame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
@@ -19,6 +23,7 @@ public class ManagementController extends MouseAdapter {
     private final ManagementAddFrame managementAddFrame = ManagementAddFrame.getInstance();
     private final ManagementEditFrame managementEditFrame = ManagementEditFrame.getInstance();
     private final ManagementEnterPanel managementEnterPanel = ManagementEnterPanel.getInstance();
+    private final ChangePasswordFrame changePasswordFrame = ChangePasswordFrame.getInstance();
 
     public void initManagementController() {
         refreshTable();
@@ -26,6 +31,7 @@ public class ManagementController extends MouseAdapter {
         addActionDrop();
         addActionSave();
         addMouesAction();
+        addActionOnChangePassword();
     }
 
     private void callTable() {
@@ -73,8 +79,60 @@ public class ManagementController extends MouseAdapter {
     }
 
     public boolean checkPassword() {
-        return String.valueOf(managementEnterPanel.getPasswordField()
-                .getPassword()).equals(memberService.getPassword());
+        return String.valueOf(managementEnterPanel.getPasswordField().getPassword())
+                .equals(memberService.getPassword());
+    }
+
+    private String changePassword() {
+        if (checkCurrentPassword() && checkNewPasswords())
+            ;
+        return String.valueOf(changePasswordFrame.getNewPasswordField().getPassword());
+    }
+
+    private boolean checkCurrentPassword() {
+        try {
+            validatePassword();
+            String.valueOf(changePasswordFrame.getCurrentPasswordField().getPassword())
+                    .equals(String.valueOf(memberService.getPassword()));
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "alert", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "alert", JOptionPane.INFORMATION_MESSAGE);
+        }
+        return true;
+    }
+
+
+    private boolean checkNewPasswords() {
+        validatePassword();
+        try {
+            String.valueOf(changePasswordFrame.getNewPasswordField().getPassword())
+                    .equals(String.valueOf(changePasswordFrame.getCheckNewPasswordField().getPassword()));
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "alert", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "alert", JOptionPane.INFORMATION_MESSAGE);
+        }
+        return true;
+    }
+
+    private void validatePassword() {
+        if (String.valueOf(changePasswordFrame.getNewPasswordField().getPassword()).equals("")
+                || String.valueOf(changePasswordFrame.getNewPasswordField().getPassword()) == null || String.valueOf(
+                changePasswordFrame.getCurrentPasswordField().getPassword()).equals("")
+                || String.valueOf(changePasswordFrame.getCurrentPasswordField().getPassword()) == null
+                || String.valueOf(changePasswordFrame.getCheckNewPasswordField().getPassword()).equals("")
+                || String.valueOf(changePasswordFrame.getNewPasswordField().getPassword()) == null) {
+            throw new IllegalArgumentException("[ERROR]빈칸을 모두 채워주세요");
+        }
+        if (!String.valueOf(changePasswordFrame.getNewPasswordField().getPassword())
+                .equals(String.valueOf(changePasswordFrame.getCheckNewPasswordField().getPassword()))) {
+            throw new IllegalArgumentException("[ERROR]새로 바뀐 비밀번호가 매칭되지 않습니다");
+        }
+        if (!String.valueOf(changePasswordFrame.getCurrentPasswordField().getPassword())
+                .equals(String.valueOf(memberService.getPassword()))) {
+            throw new IllegalArgumentException("[ERROR]현재 비밀 번호가 다릅니다");
+        }
     }
 
     private void addActionSave() {
@@ -98,6 +156,18 @@ public class ManagementController extends MouseAdapter {
             update();
             managementEditFrame.resetTextField(managementFrame.getProduct(managementEditFrame.getEditedProduct()));
             refreshTable();
+        });
+    }
+
+    private void addActionOnChangePassword() {
+        changePasswordFrame.getCheckButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                memberService.changePassword(changePassword());
+                changePasswordFrame.clearJPasswordField();
+                changePasswordFrame.setVisible(false);
+                managementFrame.setVisible(true);
+            }
         });
     }
 
