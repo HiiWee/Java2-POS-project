@@ -5,6 +5,7 @@ import com.project.view.MainFrame;
 import com.project.view.billcheck.BillCheckPage;
 import com.project.view.common.LaunchPage;
 import com.project.view.management.ManagementAddFrame;
+import com.project.view.management.ManagementChangePasswordFrame;
 import com.project.view.management.ManagementEditFrame;
 import com.project.view.management.ManagementEnterPanel;
 import com.project.view.management.ManagementFrame;
@@ -24,6 +25,7 @@ public class PageController {
     private final ManagementAddFrame managementAddFrame = ManagementAddFrame.getInstance();
     private final ManagementEditFrame managementEditFrame = ManagementEditFrame.getInstance();
     private final ManagementEnterPanel managementEnterPanel = ManagementEnterPanel.getInstance();
+    private final ManagementChangePasswordFrame managementChangePasswordFrame=ManagementChangePasswordFrame.getInstance();
 
     private final SellController sellController = new SellController();
     private final ManagementController managementController = new ManagementController();

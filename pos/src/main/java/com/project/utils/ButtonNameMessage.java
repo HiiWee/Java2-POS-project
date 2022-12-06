@@ -17,6 +17,8 @@ public class ButtonNameMessage {
     public static final String ITEM_EDIT = "수정";
     public static final String ITEM_ADD = "추가";
     public static final String CLOSE="닫기";
+    public static final String CHANGE_PASSWORD="비밀번호변경";
+    public static final String CHECK="확인";
     private ButtonNameMessage() {
     }
 }
