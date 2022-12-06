@@ -1,7 +1,6 @@
 package com.project.domain;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Sell {
     private Long id;
