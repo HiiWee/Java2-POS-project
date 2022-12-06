@@ -2,7 +2,7 @@ package com.project.controller;
 
 
 import com.project.view.MainFrame;
-import com.project.view.billcheck.BillCheckPage;
+import com.project.view.billcheck.BillCheckFrame;
 import com.project.view.common.LaunchPage;
 import com.project.view.management.ManagementAddFrame;
 import com.project.view.management.ManagementEditFrame;
@@ -18,11 +18,12 @@ public class PageController {
     private final LaunchPage launchPage = LaunchPage.getInstance();
     private final SellingPanelTab sellingPanel = SellingPanelTab.getInstance();
     private final DetailTableFrame detailTableFrame = DetailTableFrame.getInstance();
-    private final BillCheckPage billCheckPage = BillCheckPage.getInstance();
+    private final BillCheckFrame billCheckFrame = BillCheckFrame.getInstance();
     private final ManagementFrame managementFrame = ManagementFrame.getInstance();
     private final ManagementAddFrame managementAddFrame = ManagementAddFrame.getInstance();
     private final ManagementEditFrame managementEditFrame = ManagementEditFrame.getInstance();
 
+    private final BillCheckController billCheckController = new BillCheckController();
     private final SellController sellController = new SellController();
     private final ManagementController managementController = new ManagementController();
 
@@ -89,11 +90,11 @@ public class PageController {
 
     private void moveSellingToBillCheckPage() {
         mainFrame.setVisible(false);
-        billCheckPage.setVisible(true);
+        billCheckFrame.setVisible(true);
     }
 
     private void moveBillCheckPageToMainPage() {
-        billCheckPage.setVisible(false);
+        billCheckFrame.setVisible(false);
         mainFrame.setVisible(true);
     }
 
@@ -136,11 +137,14 @@ public class PageController {
     }
 
     private void addActionBillButtonOnSellingPage() {
-        sellingPanel.getBillButton().addActionListener(e -> moveSellingToBillCheckPage());
+        sellingPanel.getBillButton().addActionListener(e -> {
+            billCheckController.initBillCheckFrame();
+            moveSellingToBillCheckPage();
+        });
     }
 
     private void addActionBackButtonOnBillCheckPage() {
-        billCheckPage.getBackButtonOnBillCheckPage().addActionListener(e -> moveBillCheckPageToMainPage());
+        billCheckFrame.getBackButtonOnBillCheckPage().addActionListener(e -> moveBillCheckPageToMainPage());
     }
 
     private void addActionBackButtonOnAdd() {
