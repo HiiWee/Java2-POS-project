@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class DateData {
-    public ArrayList<String> date = new ArrayList<>();
-    public ArrayList<Integer> dateValue = new ArrayList<>();
-    public int max;
+    private ArrayList<String> date = new ArrayList<>();
+    private ArrayList<Integer> dateValue = new ArrayList<>();
+    private int max;
 
     public DateData() {
 
