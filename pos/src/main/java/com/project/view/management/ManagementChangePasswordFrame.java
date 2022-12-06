@@ -43,16 +43,16 @@ public class ManagementChangePasswordFrame extends JFrame {
         add(currentPasswordField);
         add(checkNewPasswordField);
         add(NewPasswordField);
-        currentPasswordField.setBounds(170,30,200,30);
-        NewPasswordField.setBounds(170,95,200,30);
-        checkNewPasswordField.setBounds(170,150,200,30);
+        currentPasswordField.setBounds(150,55,250,30);
+        NewPasswordField.setBounds(150,110,250,30);
+        checkNewPasswordField.setBounds(150,160,250,30);
     }
 
     private void setButton() {
         add(checkButton);
         add(closeButton);
-        checkButton.setBounds(100,200,100,75);
-        closeButton.setBounds(275,200,100,75);
+        checkButton.setBounds(150,220,100,50);
+        closeButton.setBounds(300,220,100,50);
     }
 
     private void setLabel() {
@@ -60,9 +60,9 @@ public class ManagementChangePasswordFrame extends JFrame {
         add(current);
         add(anotherPassword);
         add(checkAnotherPassword);
-        current.setBounds(10,15,150,50);
-        anotherPassword.setBounds(10,85,150,50);
-        checkAnotherPassword.setBounds(60,135,100,50);
+        current.setBounds(25,20,150,100);
+        anotherPassword.setBounds(10,75,150,100);
+        checkAnotherPassword.setBounds(90,125,100,100);
     }
     private void labelSetting() {
         current.setFont(current.getFont().deriveFont(15f));
