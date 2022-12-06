@@ -3,7 +3,11 @@ package com.project.repository;
 import static com.project.repository.JDBCUtil.closeAll;
 import static com.project.repository.JDBCUtil.getConnection;
 
+import com.project.controller.dto.GraphDto;
 import com.project.controller.dto.SellProductInBillDto;
+import com.project.controller.dto.TotalSellProductDto;
+import com.project.domain.Product;
+import com.project.domain.SeatProduct;
 import com.project.domain.Sell;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +17,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class SellRepository {
@@ -103,5 +108,70 @@ public class SellRepository {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<GraphDto> fineBydays() {
+        List<GraphDto> graphDtos = new ArrayList<>();
+        try {
+            Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(
+                    "select DATE_FORMAT(`date`, '%Y-%m-%d') `date`, sum(price * quantity)  total_price from\n"
+                            + "sell_product sp join sell s on\n"
+                            + "sp.sell_id = s.id\n"
+                            + "group by DATE_FORMAT(`date`, '%Y-%m-%d')\n"
+                            + "order by `date` desc");
+            while (resultSet.next()) {
+                int price = resultSet.getInt("total_price");
+                LocalDate date = resultSet.getDate("date").toLocalDate();
+                graphDtos.add(new GraphDto(price, date));
+            }
+            closeAll(resultSet, statement, connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return graphDtos;
+    }
+
+    public List<GraphDto> fineByMonth() {
+        List<GraphDto> graphDtos = new ArrayList<>();
+        try {
+            Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(
+                    "select DATE_FORMAT(`date`, '%Y-%m') `date`, sum(price * quantity) total_price from "
+                            + "sell_product sp join sell s on "
+                            + "sp.sell_id = s.id "
+                            + "group by DATE_FORMAT(`date`, '%Y-%m')\n"
+                            + "order by `date` desc");
+            while (resultSet.next()) {
+                int price = resultSet.getInt("total_price");
+                String parsedDate = resultSet.getString("date");
+                LocalDate date = LocalDate.of(Integer.parseInt(parsedDate.substring(0, 4)), Integer.parseInt(parsedDate.substring(5, 7)), 1);
+                graphDtos.add(new GraphDto(price, date));
+            }
+            closeAll(resultSet, statement, connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return graphDtos;
+    }
+    public List<GraphDto> fineByQuantity() {
+        List<GraphDto> graphDtos = new ArrayList<>();
+        try {
+            Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(
+                    "select product_name, sum(quantity) total_quantity from sell_product sp join sell s on sp.sell_id = s.id group by product_name order by `total_quantity` desc");
+            while (resultSet.next()) {
+                int quantity = resultSet.getInt("total_quantity");
+                String productName=resultSet.getString("product_name");
+                graphDtos.add(new GraphDto(productName, quantity));
+            }
+            closeAll(resultSet, statement, connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return graphDtos;
     }
 }
