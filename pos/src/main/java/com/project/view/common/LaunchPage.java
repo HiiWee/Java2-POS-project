@@ -22,6 +22,7 @@ public class LaunchPage extends JFrame {
 
     private LaunchPage() {
         initializePage();
+        setLocationRelativeTo(null);
         container.setLayout(null);
         container.add(startButton);
         container.add(endButton);

@@ -8,7 +8,7 @@ public class ManagementService {
     private final ProductRepository productRepository = ProductRepository.getInstance();
 
     public List<Product> fineAllProducts() {
-     return productRepository.findAll();
+        return productRepository.findAll();
     }
 
     public void dropProductById(Long id) {

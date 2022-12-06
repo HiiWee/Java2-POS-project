@@ -31,7 +31,8 @@ public class TableSubPanel extends JPanel {
             table.getTableHeader().setReorderingAllowed(false);
             table.getTableHeader().setReorderingAllowed(false);
             table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-            JScrollPane jScrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+            JScrollPane jScrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                    JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
             jScrollPane.setPreferredSize(new Dimension(300, 120));
             add(jScrollPane);
         }

@@ -17,16 +17,27 @@ public class ManagementEnterPanel extends JPanel {
         return instance;
     }
 
-    public ManagementEnterPanel() {
+    private ManagementEnterPanel() {
         setSize(InitializationGuiConstant.FRAME_WIDTH, InitializationGuiConstant.FRAME_HEIGHT);
-        this.setLayout(null);
+        setLayout(null);
         add(passwordField);
         add(info);
         add(loginButton);
         info.setBounds(250, 50, 350, 100);
         passwordField.setBounds(300, 150, 200, 30);
         loginButton.setBounds(300, 200, 200, 50);
-        setVisible(true);
+    }
+
+    public JPasswordField getPasswordField() {
+        return passwordField;
+    }
+
+    public NormalButton getLoginButton() {
+        return loginButton;
+    }
+
+    public void clearJpasswordField() {
+        passwordField.setText("");
     }
 
 }

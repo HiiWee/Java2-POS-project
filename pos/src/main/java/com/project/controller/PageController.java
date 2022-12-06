@@ -1,18 +1,20 @@
 package com.project.controller;
 
 
-import com.project.service.SellService;
 import com.project.view.MainFrame;
 import com.project.view.billcheck.BillCheckFrame;
 import com.project.view.common.LaunchPage;
+import com.project.view.management.ChangePasswordFrame;
 import com.project.view.management.ManagementAddFrame;
 import com.project.view.management.ManagementEditFrame;
+import com.project.view.management.ManagementEnterPanel;
 import com.project.view.management.ManagementFrame;
 import com.project.view.sell.DetailTableFrame;
 import com.project.view.sell.SellingPanelTab;
 import com.project.view.sell.TableSubPanel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JOptionPane;
 
 public class PageController {
     private final MainFrame mainFrame = MainFrame.getInstance();
@@ -27,6 +29,8 @@ public class PageController {
     private final BillCheckController billCheckController = new BillCheckController();
     private final SellController sellController = new SellController();
     private final ManagementController managementController = new ManagementController();
+    private final ChangePasswordFrame changePasswordFrame = ChangePasswordFrame.getInstance();
+    private final ManagementEnterPanel managementEnterPanel = ManagementEnterPanel.getInstance();
 
     public void startPos() {
         launchPage.setVisible(true);
@@ -49,6 +53,14 @@ public class PageController {
         addActionBackButtonOnAdd();
         //edit->managementFrame
         addActionBackButtonOnEdit();
+        //managementEnter->managementFrame
+        addActionLoginButton();
+        //managementFrame->managementEnter
+        addActionBackButtonOnManagementFrame();
+        //managementFrame->changePasswordFrame
+        addActionChangePasswordButton();
+        //changePasswordFrame->managementFrame
+        addActionCloseButtonOnManagementChangePasswordFrame();
         // 각 페이지 초기 작업 초기화
         sellController.initSellPage();
         managementController.initManagementController();
@@ -113,6 +125,24 @@ public class PageController {
         managementFrame.setVisible(true);
     }
 
+    private void moveManagementEnterToManagementFrame() {
+        mainFrame.setVisible(false);
+        managementFrame.setVisible(true);
+    }
+
+    private void moveManagementFrameToMainFrame() {
+        managementFrame.setVisible(false);
+        mainFrame.setVisible(true);
+    }
+
+    private void openChangePasswordFrame() {
+        changePasswordFrame.setVisible(true);
+    }
+
+    private void closeChangePasswordFrame() {
+        changePasswordFrame.setVisible(false);
+    }
+
     private void addActionBackButtonOnDetailPage() {
         detailTableFrame.getBackButton()
                 .addActionListener(e -> {
@@ -159,4 +189,26 @@ public class PageController {
         managementEditFrame.getCancelButton().addActionListener(e -> moveEditToManagementFrane());
     }
 
+    private void addActionLoginButton() {
+        managementEnterPanel.getLoginButton().addActionListener(e -> {
+            if (managementController.checkPassword()) {
+                managementEnterPanel.clearJpasswordField();
+                moveManagementEnterToManagementFrame();
+                return;
+            }
+            JOptionPane.showMessageDialog(null, "비밀번호가 틀렸습니다.", "alert", JOptionPane.INFORMATION_MESSAGE);
+        });
+    }
+
+    private void addActionBackButtonOnManagementFrame() {
+        managementFrame.getBackButton().addActionListener(e -> moveManagementFrameToMainFrame());
+    }
+
+    private void addActionChangePasswordButton() {
+        managementFrame.getChangePasswordButton().addActionListener(e -> openChangePasswordFrame());
+    }
+
+    private void addActionCloseButtonOnManagementChangePasswordFrame() {
+        changePasswordFrame.getCloseButton().addActionListener(e -> closeChangePasswordFrame());
+    }
 }
