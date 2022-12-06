@@ -46,23 +46,6 @@ public class ProductRepository {
         return products;
     }
 
-    public Long findById() {
-        Long id = null;
-        try {
-            Connection conn = getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select id from product");
-
-            while (rs.next()) {
-                id = rs.getLong("id");
-            }
-            closeAll(rs, stmt, conn);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return id;
-    }
-
     public void dropById(Long getId) {
         PreparedStatement psmt = null;
         String query = "delete from product where id=?";

@@ -1,6 +1,7 @@
 package com.project.controller;
 
 
+import com.project.service.SellService;
 import com.project.view.MainFrame;
 import com.project.view.billcheck.BillCheckFrame;
 import com.project.view.common.LaunchPage;
@@ -26,6 +27,8 @@ public class PageController {
     private final BillCheckController billCheckController = new BillCheckController();
     private final SellController sellController = new SellController();
     private final ManagementController managementController = new ManagementController();
+
+    private final SellService sellService = new SellService();
 
     public void startPos() {
         launchPage.setVisible(true);
@@ -59,8 +62,8 @@ public class PageController {
             tablePanel.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(final MouseEvent e) {
-                    sellController.refreshProducts();
                     TableSubPanel tablePanel = (TableSubPanel) e.getSource();
+                    sellController.refreshProducts(tablePanel);
                     detailTableFrame.setTablePanel(tablePanel);
                     mainFrame.setVisible(false);
                     detailTableFrame.setVisible(true);
@@ -111,7 +114,6 @@ public class PageController {
         managementEditFrame.setVisible(false);
         managementFrame.setVisible(true);
     }
-
 
     private void addActionBackButtonOnDetailPage() {
         detailTableFrame.getBackButton()

@@ -7,9 +7,11 @@ import com.project.view.MainFrame;
 import com.project.view.common.NormalButton;
 import com.project.view.sell.DetailTableFrame;
 import com.project.view.sell.SellingPanelTab;
+import com.project.view.sell.TableSubPanel;
 import com.project.view.sell.listener.DetailTableFrameListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.BatchUpdateException;
 import java.util.Collections;
 import javax.swing.JOptionPane;
 
@@ -27,7 +29,11 @@ public class SellController implements ActionListener {
         setActionPerformed();
     }
 
-    public void refreshProducts() {
+    public void refreshProducts(TableSubPanel currentTablePanel) {
+        if (!sellService.checkAllProduct(currentTablePanel.getSeatProductList(), currentTablePanel.getTableNumber())) {
+            JOptionPane.showMessageDialog(null, "판매하지 않는 물품이 존재합니다.", "alert", JOptionPane.PLAIN_MESSAGE);
+            currentTablePanel.addSeatProductList(sellService.findAllSeatProductById(currentTablePanel.getTableNumber()));
+        }
         detailTableFrame.initProduct(sellService.findAllProduct());
     }
 

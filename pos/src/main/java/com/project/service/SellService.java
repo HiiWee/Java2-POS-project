@@ -21,6 +21,11 @@ public class SellService {
         return productRepository.findAll();
     }
 
+    public List<SeatProduct> findAllSeatProductById(Long id) {
+        System.out.println(id);
+        return seatProductRepository.findAllById(id);
+    }
+
     public void saveSeatProducts(final List<SeatProduct> seatProducts, Long tableNumber) {
         if (seatProducts.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 상품을 담아야 주문할 수 있습니다.");
@@ -49,5 +54,10 @@ public class SellService {
 
     public void clearSeatProducts(final long seatId) {
         seatProductRepository.deleteAllBySeatId(seatId);
+    }
+
+    public boolean checkAllProduct(final List<SeatProduct> seatProducts, final Long tableId) {
+        List<SeatProduct> actualSeatProducts = findAllSeatProductById(tableId);
+        return actualSeatProducts.size() == seatProducts.size();
     }
 }

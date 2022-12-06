@@ -33,7 +33,9 @@ public class ManagementFrame extends JFrame {
             ButtonNameMessage.ITEM_NAME,
             ButtonNameMessage.ITEM_PRICE};
     private DefaultTableModel tableModel;
-    public JTable table;
+
+
+    private JTable table;
     private final JPanel jPanel = new JPanel();
     private final JPanel buttonPanel = new JPanel(new GridLayout(2, 1));
 
@@ -51,6 +53,10 @@ public class ManagementFrame extends JFrame {
         jPanel.setBounds(50, 50, 500, 500);
         buttonPanel.setBounds(600, 125, 150, 250);
         setFrame();
+    }
+
+    public JTable getTable() {
+        return table;
     }
 
     private void setFrame() {//가운데로 띄우기
