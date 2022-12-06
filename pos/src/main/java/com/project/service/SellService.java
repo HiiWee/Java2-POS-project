@@ -65,4 +65,8 @@ public class SellService {
     public List<SellProductInBillDto> findAllProductById(final Long sellId) {
         return sellRepository.findAllById(sellId);
     }
+
+    public void deleteBySellId(final long sellId) {
+        sellRepository.deleteBySellId(sellId);
+    }
 }

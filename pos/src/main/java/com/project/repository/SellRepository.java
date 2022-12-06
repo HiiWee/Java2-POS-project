@@ -56,7 +56,6 @@ public class SellRepository {
     public Sell save(final Sell sell) {
         try {
             Connection connection = getConnection();
-            System.out.println("pass");
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "insert into SELL(member_id)"
                             + "values(?)");
@@ -94,5 +93,18 @@ public class SellRepository {
             throw new RuntimeException(e);
         }
         return sellProductInBillDtos;
+    }
+
+    public void deleteBySellId(final long sellId) {
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "delete from SELL_PRODUCT where sell_id = ?");
+            preparedStatement.setLong(1, sellId);
+            preparedStatement.executeUpdate();
+            closeAll(preparedStatement, connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

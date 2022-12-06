@@ -21,8 +21,8 @@ public class BillCheckFrame extends JFrame {
         return instance;
     }
 
-    private final NormalButton billCheckPageBackButton = new NormalButton(ButtonNameMessage.BACK);
-    private final NormalButton billCheckPageRefundButton = new NormalButton(ButtonNameMessage.REFUND);
+    private final NormalButton backButton = new NormalButton(ButtonNameMessage.BACK);
+    private final NormalButton refundButton = new NormalButton(ButtonNameMessage.REFUND);
     private final JPanel panel = new JPanel();
     private JPanel detailBill;
     private final DefaultTableModel tableModel = new DefaultTableModel(new String[]{"id", "판매일", "전체 가격", "총 수량"}, 0) {
@@ -38,10 +38,10 @@ public class BillCheckFrame extends JFrame {
         JScrollPane jScrollPane = new JScrollPane(billTable);
         jScrollPane.setPreferredSize(new Dimension(450, 420));
         panel.add(jScrollPane);
-        add(billCheckPageRefundButton);
-        add(billCheckPageBackButton);
-        billCheckPageBackButton.setBounds(510, 450, 150, 100);
-        billCheckPageRefundButton.setBounds(660, 450, 150, 100);
+        add(refundButton);
+        add(backButton);
+        backButton.setBounds(510, 450, 150, 100);
+        refundButton.setBounds(660, 450, 150, 100);
     }
 
     public void clickBillCell(List<SellProductInBillDto> sellProductInBillDtos) {
@@ -71,8 +71,8 @@ public class BillCheckFrame extends JFrame {
         detailScroll.setPreferredSize(new Dimension(250, 420));
         detailBill.add(detailScroll);
         detailBill.setBounds(500, 10, 300, 500);
-        billCheckPageBackButton.setVisible(false);
-        billCheckPageBackButton.setVisible(true);
+        backButton.setVisible(false);
+        backButton.setVisible(true);
         add(detailBill);
         return detailTableModel;
     }
@@ -90,12 +90,12 @@ public class BillCheckFrame extends JFrame {
         setTitle("POS SYSTEM");
     }
 
-    public JButton getBackButtonOnBillCheckPage() {
-        return billCheckPageBackButton;
+    public JButton getBackButton() {
+        return backButton;
     }
 
-    public JButton getRefundButtonOnBillCheckPage() {
-        return billCheckPageRefundButton;
+    public JButton getRefundButton() {
+        return refundButton;
     }
 
     public void addTotalSellProducts(final List<TotalSellProductDto> allByTotalSellProduct) {
@@ -117,5 +117,11 @@ public class BillCheckFrame extends JFrame {
 
     public JTable getBillTable() {
         return billTable;
+    }
+
+    public void refund() {
+        tableModel.removeRow(billTable.getSelectedRow());
+        detailBill.setVisible(false);
+        remove(detailBill);
     }
 }
