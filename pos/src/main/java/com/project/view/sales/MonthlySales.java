@@ -38,7 +38,7 @@ public class MonthlySales extends JPanel {
             g.drawString(cnt * valueStandard + "", 10, 505 - 40 * cnt);       //그래프 좌측에 판매량 50단위로 String형태로 표시
             g.drawLine(50, 500 - 40 * cnt, 700, 500 - 40 * cnt);    //그래프 선긋기
         }
-        g.drawString("판매량", 10, 40);
+        g.drawString("판매량( 만)", 10, 40);
         g.drawString("날짜", 700, 520);
         g.drawLine(50, 50, 50, 500);    //그래프 y축 그리기
         for (int i = 0; i < date.size(); i++) {
