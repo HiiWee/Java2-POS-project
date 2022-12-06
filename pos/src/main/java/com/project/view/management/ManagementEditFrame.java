@@ -18,7 +18,7 @@ public class ManagementEditFrame extends JFrame {
     private final JLabel jLabelStuffPrice = new JLabel(ButtonNameMessage.ITEM_PRICE);
 
     private final NormalButton deleteStuffButton = new NormalButton(ButtonNameMessage.DELETE_STUFF);
-    private final NormalButton cancelButton = new NormalButton(ButtonNameMessage.BACK);
+    private final NormalButton cancelButton = new NormalButton(ButtonNameMessage.CLOSE);
     private final NormalButton editButton = new NormalButton(ButtonNameMessage.ITEM_EDIT);
 
     public static ManagementEditFrame getInstance() {
@@ -29,6 +29,7 @@ public class ManagementEditFrame extends JFrame {
         initializePage();
         setVisible(false);
         labelSetting();
+        setLocationRelativeTo(null);
         add(jLabelNumber);
         add(jLabelStuffName);
         add(jLabelStuffPrice);

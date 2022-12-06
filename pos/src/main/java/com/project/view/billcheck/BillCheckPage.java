@@ -26,6 +26,7 @@ public class BillCheckPage extends JFrame {
 
     public BillCheckPage() {
         initializePage();
+        setLocationRelativeTo(null);
         container.add(billCheckPageRefundButton);
         container.add(billCheckPageBackButton);
         scroll.setLayout(new BorderLayout());

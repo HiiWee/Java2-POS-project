@@ -19,7 +19,7 @@ public class ManagementAddFrame extends JFrame {
     private final JLabel jLabelNumber = new JLabel(ButtonNameMessage.ITEM_NUMBER);
     private final JLabel jLabelStuffName = new JLabel(ButtonNameMessage.ITEM_NAME);
     private final JLabel jLabelStuffPrice = new JLabel(ButtonNameMessage.ITEM_PRICE);
-    private final NormalButton cancelButton = new NormalButton(ButtonNameMessage.BACK);
+    private final NormalButton cancelButton = new NormalButton(ButtonNameMessage.CLOSE);
     private final NormalButton addButton = new NormalButton(ButtonNameMessage.ITEM_ADD);
 
     public static ManagementAddFrame getInstance() {
@@ -29,6 +29,7 @@ public class ManagementAddFrame extends JFrame {
     private ManagementAddFrame() {
         initializePage();
         labelSetting();
+        setLocationRelativeTo(null);
         add(jLabelNumber);
         add(jLabelStuffName);
         add(jLabelStuffPrice);

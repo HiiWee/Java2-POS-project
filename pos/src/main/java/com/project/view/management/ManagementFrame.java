@@ -40,6 +40,7 @@ public class ManagementFrame extends JFrame {
     public ManagementFrame() {
         initializePage();
         setTable();
+        setLocationRelativeTo(null);
         jPanel.setLayout(new BorderLayout());
         jPanel.add(table, BorderLayout.CENTER);
         JScrollPane scrollPane = new JScrollPane(table);
@@ -50,17 +51,8 @@ public class ManagementFrame extends JFrame {
         add(buttonPanel);
         jPanel.setBounds(50, 50, 500, 500);
         buttonPanel.setBounds(600, 125, 150, 250);
-        setFrame();
-    }
-
-    private void setFrame() {//가운데로 띄우기
-        Dimension frameSize = getSize();
-        Dimension windowSize = Toolkit.getDefaultToolkit().getScreenSize();
-        setLocation((windowSize.width - frameSize.width) / 2,
-                (windowSize.height - frameSize.height) / 2);
         setVisible(true);
     }
-
     private void initializePage() {
         setLayout(null);
         setSize(InitializationGuiConstant.FRAME_WIDTH, InitializationGuiConstant.FRAME_HEIGHT);
