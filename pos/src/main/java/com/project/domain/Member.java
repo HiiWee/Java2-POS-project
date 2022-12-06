@@ -16,4 +16,10 @@ public class Member {
     public String getPassword() {
         return password;
     }
+
+    public Member(Long id, String auth, String password) {
+        this.id = id;
+        this.auth = auth;
+        this.password = password;
+    }
 }

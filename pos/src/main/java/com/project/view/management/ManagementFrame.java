@@ -33,7 +33,7 @@ public class ManagementFrame extends JFrame {
             ButtonNameMessage.ITEM_NAME,
             ButtonNameMessage.ITEM_PRICE};
     private DefaultTableModel tableModel;
-    public JTable table;
+    private JTable table;
     private final JPanel jPanel = new JPanel();
     private final JPanel buttonPanel = new JPanel(new GridLayout(2, 1));
 
@@ -79,6 +79,10 @@ public class ManagementFrame extends JFrame {
                     product.getId(), product.getName(), product.getPrice()
             });
         }
+    }
+
+    public JTable getTable() {
+        return table;
     }
 
     public NormalButton getAddStuffButton() {

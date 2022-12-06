@@ -1,5 +1,6 @@
 package com.project.repository;
 
+import static com.project.repository.JDBCUtil.PASSWORD;
 import static com.project.repository.JDBCUtil.closeAll;
 import static com.project.repository.JDBCUtil.getConnection;
 
@@ -27,7 +28,10 @@ public class MemberRepository {
             ResultSet resultSet = statement.executeQuery("select id,auth,password from member");
 
             while (resultSet.next()) {
-
+                Long id = resultSet.getLong("id");
+                String auth=resultSet.getString("auth");
+                String password=resultSet.getString("password");
+                members.add(new Member(id,auth,password));
             }
             closeAll(resultSet, statement, connection);
         } catch (SQLException e) {

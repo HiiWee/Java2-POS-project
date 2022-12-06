@@ -68,7 +68,7 @@ public class ManagementController extends MouseAdapter {
     }
 
     private void addMouesAction() {
-        managementFrame.table.addMouseListener(this);
+        managementFrame.getTable().addMouseListener(this);
     }
 
     private void addActionSave() {
@@ -106,13 +106,13 @@ public class ManagementController extends MouseAdapter {
     }
 
     private void initTable() {
-        DefaultTableModel tableModel = (DefaultTableModel) managementFrame.table.getModel();
+        DefaultTableModel tableModel = (DefaultTableModel) managementFrame.getTable().getModel();
         tableModel.setNumRows(0);
     }
 
     private void deleteTableRow() {
-        DefaultTableModel tableModel = (DefaultTableModel) managementFrame.table.getModel();
-        int row = managementFrame.table.getSelectedRow();
+        DefaultTableModel tableModel = (DefaultTableModel) managementFrame.getTable().getModel();
+        int row = managementFrame.getTable().getSelectedRow();
         if (row < 0) {
             return;
         }
@@ -121,8 +121,8 @@ public class ManagementController extends MouseAdapter {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int row = managementFrame.table.getSelectedRow();
-        TableModel data = managementFrame.table.getModel();
+        int row = managementFrame.getTable().getSelectedRow();
+        TableModel data = managementFrame.getTable().getModel();
         Long id = (Long) data.getValueAt(row, 0);
         String name = (String) data.getValueAt(row, 1);
         int price = (int) data.getValueAt(row, 2);
