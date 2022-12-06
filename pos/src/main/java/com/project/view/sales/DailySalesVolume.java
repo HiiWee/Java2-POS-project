@@ -2,7 +2,6 @@ package com.project.view.sales;
 
 import com.project.controller.dto.GraphDto;
 import com.project.service.SellService;
-import com.project.utils.DateData;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ public class DailySalesVolume extends JPanel {
     SellService service =new SellService();
     public void paint(Graphics g) {
         dailySalesData(service.dailyList());
-        int valueStandard = (max / 300 + 1) * 30;
+        int valueStandard = (max / 100 + 1) * 10;
         int valueLength = 600 / date.size();
         int rectLength = 200 / date.size();
         super.paint(g);
@@ -46,8 +45,8 @@ public class DailySalesVolume extends JPanel {
         for (int i = 0; i < date.size(); i++) {
             if (dateValue.get(i) > 0) {
                 g.fillRect(valueLength - rectLength / 2 + i * valueLength,
-                        500 - (4 * dateValue.get(i) / ((max / 300 + 1) * 3)), rectLength,
-                        4 * dateValue.get(i) / ((max / 300 + 1) * 3)); //사각 그래프 그리기
+                        500 - (4 * dateValue.get(i) / ((max / 100 + 1) )), rectLength,
+                        4 * dateValue.get(i) / ((max / 100 + 1))); //사각 그래프 그리기
             }
         }
 

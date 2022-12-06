@@ -11,7 +11,6 @@ import com.project.repository.SeatProductRepository;
 import com.project.repository.SellProductRepository;
 import com.project.repository.SellRepository;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -81,7 +80,7 @@ public class SellService {
 
             int dailyMax = i.getPrice();
             LocalDate date = i.getDate();
-            if (localDate.minusDays(5).equals(date)) {
+            if (localDate.getMonth().getValue() > date.getMonth().getValue() || localDate.minusDays(5).equals(date)) {
                 break;
             }
             dailyGraphData.add(new GraphDto(dailyMax / 10000, date));
