@@ -32,7 +32,7 @@ public class ManagementController extends MouseAdapter {
     }
 
     private void dropTable() {
-        productService.dropTable();
+        productService.dropTable(managementEditFrame.getEditedProduct().getId());
     }
 
     private void insert() {

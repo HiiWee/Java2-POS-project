@@ -11,8 +11,8 @@ public class ManagementService {
         return productRepository.findAll();
     }
 
-    public void dropTable() {
-        productRepository.dropById(productRepository.findById());
+    public void dropTable(Long id) {
+        productRepository.dropById(id);
     }
 
     public void insert(Product product) {
