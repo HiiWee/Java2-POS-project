@@ -1,14 +1,16 @@
 package com.project.view;
 
+import com.project.utils.InitializationGuiConstant;
 import com.project.view.management.ManagementEnterPanel;
 import com.project.view.sales.SalesPage;
 import com.project.view.sell.SellingPanelTab;
-import com.project.utils.InitializationGuiConstant;
-import java.util.Date;
+import java.awt.Color;
+import java.awt.Container;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
 public class MainFrame extends JFrame {
+    private final Container ct = getContentPane();
     private static final MainFrame instance = new MainFrame();
     private final SellingPanelTab sellingPage = SellingPanelTab.getInstance();
     private final SalesPage salesPage = SalesPage.getInstance();
@@ -20,6 +22,7 @@ public class MainFrame extends JFrame {
     }
 
     public MainFrame() {
+        ct.setBackground(Color.WHITE);
         setTitle("POS SYSTEM");
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

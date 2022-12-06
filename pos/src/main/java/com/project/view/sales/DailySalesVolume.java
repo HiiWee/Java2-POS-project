@@ -10,7 +10,6 @@ public class DailySalesVolume extends JPanel {
 
 
     public static DailySalesVolume getInstance() {
-
         return instance;
     }
 

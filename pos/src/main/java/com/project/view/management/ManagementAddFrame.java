@@ -1,17 +1,17 @@
 package com.project.view.management;
 
-import com.google.protobuf.Value;
 import com.project.domain.Product;
 import com.project.utils.ButtonNameMessage;
 import com.project.utils.InitializationGuiConstant;
 import com.project.view.common.NormalButton;
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.Color;
+import java.awt.Container;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class ManagementAddFrame extends JFrame {
+    private final Container ct = getContentPane();
     private static final ManagementAddFrame instance = new ManagementAddFrame();
     private final JTextField jTextFieldNumber = new JTextField();
     private final JTextField jTextFieldStuffName = new JTextField();
@@ -54,6 +54,7 @@ public class ManagementAddFrame extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Management Add Page");
+        ct.setBackground(Color.WHITE);
     }
 
     private void labelSetting() {

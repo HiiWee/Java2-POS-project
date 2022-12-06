@@ -5,6 +5,7 @@ import com.project.utils.ButtonNameMessage;
 import com.project.utils.InitializationGuiConstant;
 import com.project.utils.TableNumberConstant;
 import com.project.view.common.NormalButton;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.List;
 import javax.swing.JButton;
@@ -38,8 +39,9 @@ public class SellingPanelTab extends JPanel {
         }
         add(tablePanel);
         tablePanel.setBounds(0, 30, 650, 500);
-        billButton.setBounds(650, 330, 150, 100);
+        billButton.setBounds(650, 430, 150, 100);
         closeButton.setBounds(650, 30, 150, 100);
+        setBackground(Color.WHITE);
     }
 
     public JButton getCloseButton() {

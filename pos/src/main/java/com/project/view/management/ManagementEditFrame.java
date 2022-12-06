@@ -4,11 +4,14 @@ import com.project.domain.Product;
 import com.project.utils.ButtonNameMessage;
 import com.project.utils.InitializationGuiConstant;
 import com.project.view.common.NormalButton;
+import java.awt.Color;
+import java.awt.Container;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class ManagementEditFrame extends JFrame {
+    private final Container ct = getContentPane();
     private static final ManagementEditFrame instance = new ManagementEditFrame();
     private final JTextField productId = new JTextField();
     private final JTextField productName = new JTextField();
@@ -56,6 +59,7 @@ public class ManagementEditFrame extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Management Edit Page");
+        ct.setBackground(Color.WHITE);
     }
 
     private void labelSetting() {

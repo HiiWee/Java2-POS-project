@@ -3,6 +3,8 @@ package com.project.view.billcheck;
 import com.project.utils.ButtonNameMessage;
 import com.project.utils.InitializationGuiConstant;
 import com.project.view.common.NormalButton;
+import java.awt.Color;
+import java.awt.Container;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class BillCheckFrame extends JFrame {
     private static final BillCheckFrame instance = new BillCheckFrame();
-
+    private final Container ct = getContentPane();
     public static BillCheckFrame getInstance() {
         return instance;
     }
@@ -40,6 +42,7 @@ public class BillCheckFrame extends JFrame {
 
     private void initializePanel() {
         panel.setBounds(10, 10, 500, 525);
+        panel.setBackground(Color.WHITE);
         add(panel);
     }
 
@@ -49,6 +52,7 @@ public class BillCheckFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setTitle("POS SYSTEM");
+        ct.setBackground(Color.WHITE);
     }
 
     public JButton getBackButtonOnBillCheckPage() {

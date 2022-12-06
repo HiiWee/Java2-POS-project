@@ -1,18 +1,16 @@
 package com.project.view.management;
 
-import com.project.controller.ManagementController;
 import com.project.domain.Product;
 import com.project.utils.ButtonNameMessage;
 import com.project.utils.InitializationGuiConstant;
 import com.project.view.common.NormalButton;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -34,7 +32,7 @@ public class ManagementFrame extends JFrame {
             ButtonNameMessage.ITEM_PRICE};
     private DefaultTableModel tableModel;
 
-
+    private final Container ct = getContentPane();
     private JTable table;
     private final JPanel jPanel = new JPanel();
     private final JPanel buttonPanel = new JPanel(new GridLayout(2, 1));
@@ -73,6 +71,7 @@ public class ManagementFrame extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Management Page");
+        ct.setBackground(Color.WHITE);
     }
 
     private void setTable() {

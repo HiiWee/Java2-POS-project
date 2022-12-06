@@ -6,11 +6,9 @@ import javax.swing.JTabbedPane;
 
 public class SalesPage extends JPanel {
     private static final SalesPage instance = new SalesPage();
-
     public static SalesPage getInstance() {
         return instance;
     }
-
     private final JTabbedPane salesTab = new JTabbedPane();
     DailySalesVolume dailySalesVolume = DailySalesVolume.getInstance();
     MonthlySales monthlySales = MonthlySales.getInstance();
@@ -23,7 +21,6 @@ public class SalesPage extends JPanel {
         salesTab.addTab("월별판매량", monthlySales);
         salesTab.addTab("품목별판매량", salesVolumeByItem);
         add(salesTab);
-
         setVisible(true);
     }
 

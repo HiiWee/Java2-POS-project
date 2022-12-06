@@ -3,6 +3,7 @@ package com.project.view.management;
 import com.project.utils.ButtonNameMessage;
 import com.project.utils.InitializationGuiConstant;
 import com.project.view.common.NormalButton;
+import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -27,6 +28,7 @@ public class ManagementEnterPanel extends JPanel {
         passwordField.setBounds(300, 150, 200, 30);
         loginButton.setBounds(300, 200, 200, 50);
         setVisible(true);
+        setBackground(Color.WHITE);
     }
 
 }
