@@ -32,7 +32,6 @@ public class PageController {
     private final ChangePasswordFrame changePasswordFrame = ChangePasswordFrame.getInstance();
     private final ManagementEnterPanel managementEnterPanel = ManagementEnterPanel.getInstance();
 
-
     public void startPos() {
         launchPage.setVisible(true);
         initSellingPage();
@@ -40,7 +39,7 @@ public class PageController {
         addActionStartButtonOnLaunchPage();
         // 마감버튼
         addActionCloseButtonOnSellingPage();
-        // 종료버튼
+        // 종료 버튼
         addActionEndButtonOnLaunchPage();
         // 상세 테이블 뒤로 버튼
         addActionBackButtonOnDetailPage();
@@ -175,7 +174,7 @@ public class PageController {
     }
 
     private void addActionBackButtonOnBillCheckPage() {
-        billCheckFrame.getBackButtonOnBillCheckPage().addActionListener(e -> moveBillCheckPageToMainPage());
+        billCheckFrame.getBackButton().addActionListener(e -> moveBillCheckPageToMainPage());
     }
 
     private void addActionBackButtonOnAdd() {
