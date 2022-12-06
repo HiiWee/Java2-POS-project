@@ -18,6 +18,7 @@ public class ManagementController extends MouseAdapter {
     private final ManagementEditFrame managementEditFrame = ManagementEditFrame.getInstance();
 
     public void initManagementController(){
+        refreshTable();
         addActionUpdate();
         addActionDrop();
         addActionSave();
@@ -28,7 +29,7 @@ public class ManagementController extends MouseAdapter {
     }
 
     private void dropTable() {
-        productService.dropTable();
+        productService.dropProductById(managementEditFrame.getEditedProduct().getId());
     }
 
     private void insert() {
@@ -47,48 +48,39 @@ public class ManagementController extends MouseAdapter {
         dropTable();
     }
     private void addMouesAction() {
-        managementFrame.table.addMouseListener(this);
+        managementFrame.getTable().addMouseListener(this);
     }
 
     private void addActionSave() {
-        managementAddFrame.getAddButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                insert();
-                managementAddFrame.clearTextField();
-                refreshTable();
-            }
+        managementAddFrame.getAddButton().addActionListener(e -> {
+            insert();
+            managementAddFrame.clearTextField();
+            refreshTable();
         });
     }
     private void addActionDrop() {
-        managementEditFrame.getDeleteStuffButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-              deleteStuff();
-              managementEditFrame.clearTextField();
-              refreshTable();
-            }
+        managementEditFrame.getDeleteStuffButton().addActionListener(e -> {
+          deleteStuff();
+          managementEditFrame.clearTextField();
+          refreshTable();
         });
     }
 
     private void addActionUpdate() {
-        managementEditFrame.getEditButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                update();
-                managementEditFrame.clearTextField();
-                refreshTable();
-            }
+        managementEditFrame.getEditButton().addActionListener(e -> {
+            update();
+            managementEditFrame.clearTextField();
+            refreshTable();
         });
     }
 
     private void initTable() {
-        DefaultTableModel tableModel = (DefaultTableModel) managementFrame.table.getModel();
+        DefaultTableModel tableModel = (DefaultTableModel) managementFrame.getTable().getModel();
         tableModel.setNumRows(0);
     }
     private void deleteTableRow(){
-        DefaultTableModel tableModel = (DefaultTableModel) managementFrame.table.getModel();
-        int row = managementFrame.table.getSelectedRow();
+        DefaultTableModel tableModel = (DefaultTableModel) managementFrame.getTable().getModel();
+        int row = managementFrame.getTable().getSelectedRow();
         if (row < 0) {
             return;
         }
@@ -96,14 +88,14 @@ public class ManagementController extends MouseAdapter {
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-        int row = managementFrame.table.getSelectedRow();
-        TableModel data = managementFrame.table.getModel();
+        int row = managementFrame.getTable().getSelectedRow();
+        TableModel data = managementFrame.getTable().getModel();
         Long id = (Long) data.getValueAt(row, 0);
         String name = (String) data.getValueAt(row, 1);
         int price = (int) data.getValueAt(row, 2);
-        managementEditFrame.getjTextFieldNumber().setText(String.valueOf(id));
-        managementEditFrame.getjTextFieldStuffName().setText(name);
-        managementEditFrame.getjTextFieldStuffPrice().setText(String.valueOf(price));
+        managementEditFrame.getProductId().setText(String.valueOf(id));
+        managementEditFrame.getProductName().setText(name);
+        managementEditFrame.getProductPrice().setText(String.valueOf(price));
         managementEditFrame.setVisible(true);
     }
 }

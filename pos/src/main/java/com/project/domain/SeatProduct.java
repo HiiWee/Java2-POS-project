@@ -1,5 +1,7 @@
 package com.project.domain;
 
+import java.util.Objects;
+
 public class SeatProduct {
     private Long id;
     private final long quantity;

@@ -3,10 +3,14 @@ package com.project.repository;
 import static com.project.repository.JDBCUtil.closeAll;
 import static com.project.repository.JDBCUtil.getConnection;
 
+import com.project.domain.Product;
 import com.project.domain.SeatProduct;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SeatProductRepository {
@@ -67,4 +71,30 @@ public class SeatProductRepository {
         preparedStatement.clearParameters();
     }
 
+    public List<SeatProduct> findAllById(final Long tableId) {
+        List<SeatProduct> seatProducts = new ArrayList<>();
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "select * from seat_product where seat_id = ?");
+            preparedStatement.setLong(1, tableId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Long id = resultSet.getLong("id");
+                long quantity = resultSet.getLong("quantity");
+                int price = resultSet.getInt("price");
+                Long productId = resultSet.getLong("product_id");
+                String productName = resultSet.getString("product_name");
+                Long seatId = resultSet.getLong("seat_id");
+
+                seatProducts.add(new SeatProduct(id, quantity, price, productId, productName, seatId));
+            }
+            resultSet.close();
+            closeAll(preparedStatement, connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return seatProducts;
+    }
 }

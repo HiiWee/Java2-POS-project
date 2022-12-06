@@ -8,11 +8,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class ManagementEditFrame extends JFrame{
+public class ManagementEditFrame extends JFrame {
     private static final ManagementEditFrame instance = new ManagementEditFrame();
-    private final JTextField jTextFieldNumber = new JTextField();
-    private final JTextField jTextFieldStuffName = new JTextField();
-    private final JTextField jTextFieldStuffPrice = new JTextField();
+    private final JTextField productId = new JTextField();
+    private final JTextField productName = new JTextField();
+    private final JTextField productPrice = new JTextField();
     private final JLabel jLabelNumber = new JLabel(ButtonNameMessage.ITEM_NUMBER);
     private final JLabel jLabelStuffName = new JLabel(ButtonNameMessage.ITEM_NAME);
     private final JLabel jLabelStuffPrice = new JLabel(ButtonNameMessage.ITEM_PRICE);
@@ -21,7 +21,7 @@ public class ManagementEditFrame extends JFrame{
     private final NormalButton cancelButton = new NormalButton(ButtonNameMessage.BACK);
     private final NormalButton editButton = new NormalButton(ButtonNameMessage.ITEM_EDIT);
 
-   public static ManagementEditFrame getInstance() {
+    public static ManagementEditFrame getInstance() {
         return instance;
     }
 
@@ -32,22 +32,22 @@ public class ManagementEditFrame extends JFrame{
         add(jLabelNumber);
         add(jLabelStuffName);
         add(jLabelStuffPrice);
-        add(jTextFieldNumber);
-        add(jTextFieldStuffName);
-        add(jTextFieldStuffPrice);
+        add(productId);
+        add(productName);
+        add(productPrice);
         add(cancelButton);
         add(editButton);
         add(deleteStuffButton);
-        jTextFieldNumber.setEditable(false);
+        productId.setEditable(false);
         jLabelNumber.setBounds(50, 20, 100, 100);
         jLabelStuffName.setBounds(75, 75, 100, 100);
         jLabelStuffPrice.setBounds(75, 125, 100, 100);
-        jTextFieldNumber.setBounds(150, 55, 250, 30);
-        jTextFieldStuffName.setBounds(150, 110, 250, 30);
-        jTextFieldStuffPrice.setBounds(150, 160, 250, 30);
+        productId.setBounds(150, 55, 250, 30);
+        productName.setBounds(150, 110, 250, 30);
+        productPrice.setBounds(150, 160, 250, 30);
         cancelButton.setBounds(300, 220, 100, 50);
         editButton.setBounds(50, 220, 100, 50);
-        deleteStuffButton.setBounds(175,220,100,50);
+        deleteStuffButton.setBounds(175, 220, 100, 50);
     }
 
     private void initializePage() {
@@ -64,17 +64,18 @@ public class ManagementEditFrame extends JFrame{
         jLabelStuffPrice.setFont(jLabelStuffPrice.getFont().deriveFont(15f));
     }
 
-    public JTextField getjTextFieldNumber() {
-        return jTextFieldNumber;
+    public JTextField getProductId() {
+        return productId;
     }
 
-    public JTextField getjTextFieldStuffName() {
-        return jTextFieldStuffName;
+    public JTextField getProductName() {
+        return productName;
     }
 
-    public JTextField getjTextFieldStuffPrice() {
-        return jTextFieldStuffPrice;
+    public JTextField getProductPrice() {
+        return productPrice;
     }
+
     public NormalButton getCancelButton() {
         return cancelButton;
     }
@@ -87,16 +88,16 @@ public class ManagementEditFrame extends JFrame{
         return deleteStuffButton;
     }
 
-    public void clearTextField(){
-        jTextFieldNumber.setText("");
-        jTextFieldStuffName.setText("");
-        jTextFieldStuffPrice.setText("");
+    public void clearTextField() {
+        productId.setText("");
+        productName.setText("");
+        productPrice.setText("");
     }
+
     public Product getEditedProduct() {
-        Long id= Long.valueOf(jTextFieldNumber.getText());
-        String name=jTextFieldStuffName.getText();
-        int price= Integer.parseInt(jTextFieldStuffPrice.getText());
-        Product product = new Product(id,name, price);
-        return product;
+        Long id = Long.valueOf(productId.getText());
+        String name = productName.getText();
+        int price = Integer.parseInt(productPrice.getText());
+        return new Product(id, name, price);
     }
 }
