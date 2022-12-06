@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.project.service.MemberService</OriginalElement>
+  <nodes>
+    <node x="116.07024391870615" y="-442.98861074026536">com.project.view.billcheck.BillCheckFrame</node>
+    <node x="944.446626318161" y="-20.0">com.project.service.MemberService</node>
+    <node x="209.5" y="221.41187050359713">com.project.repository.SellRepository</node>
+    <node x="971.4466263181611" y="-453.5719981767563">com.project.view.management.ManagementFrame</node>
+    <node x="931.946626318161" y="221.41187050359713">com.project.repository.MemberRepository</node>
+    <node x="473.3346107968526" y="-245.19713047768573">com.project.controller.SellController</node>
+    <node x="657.3139477631862" y="-20.0">com.project.service.ManagementService</node>
+    <node x="705.3139477631862" y="-500.4382604545913">com.project.view.MainFrame</node>
+    <node x="368.70622431127015" y="-442.98861074026536">com.project.view.sell.DetailTableFrame</node>
+    <node x="406.0520833333333" y="212.90662782171523">com.project.repository.SeatProductRepository</node>
+    <node x="406.0520833333333" y="-20.0">com.project.service.SellService</node>
+    <node x="-24.5" y="221.41187050359713">com.project.repository.SellProductRepository</node>
+    <node x="113.79021890348037" y="-20.0">com.project.service.BillCheckService</node>
+    <node x="678.3139477631862" y="-245.19700098128286">com.project.controller.PageController</node>
+    <node x="139.21471936906897" y="-245.19713047768573">com.project.controller.BillCheckController</node>
+    <node x="724.946626318161" y="221.41187050359713">com.project.repository.ProductRepository</node>
+    <node x="944.446626318161" y="-245.19713047768573">com.project.controller.ManagementController</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.project.controller.PageController" target="com.project.view.MainFrame" relationship="TO_ONE">
+      <point x="15.000052236813758" y="-14.0" />
+      <point x="1.500052236813758" y="14.0" />
+    </edge>
+    <edge source="com.project.service.SellService" target="com.project.repository.ProductRepository" relationship="TO_ONE">
+      <point x="14.999916666666707" y="14.0" />
+      <point x="487.052" y="151.5" />
+      <point x="677.0" y="151.5" />
+      <point x="677.0" y="235.412" />
+      <point x="-93.49962631816095" y="1.294964028772938E-4" />
+    </edge>
+    <edge source="com.project.controller.ManagementController" target="com.project.service.MemberService" relationship="TO_ONE">
+      <point x="-26.5" y="14.0" />
+      <point x="0.0" y="-14.0" />
+    </edge>
+    <edge source="com.project.controller.BillCheckController" target="com.project.service.SellService" relationship="TO_ONE">
+      <point x="95.500280630931" y="1.3047768572960194E-4" />
+      <point x="369.0" y="-231.197" />
+      <point x="369.0" y="-6.0" />
+      <point x="-66.0000833333333" y="0.0" />
+    </edge>
+    <edge source="com.project.service.BillCheckService" target="com.project.repository.SellProductRepository" relationship="TO_ONE">
+      <point x="-2.1890348037345575E-4" y="14.0" />
+      <point x="200.29" y="111.0" />
+      <point x="82.5" y="111.0" />
+      <point x="0.0" y="-13.999870503597123" />
+    </edge>
+    <edge source="com.project.controller.PageController" target="com.project.view.billcheck.BillCheckFrame" relationship="TO_ONE">
+      <point x="5.223681375809974E-5" y="-13.999999018717148" />
+      <point x="757.814" y="-330.0" />
+      <point x="198.57" y="-330.0" />
+      <point x="-2.439187061611392E-4" y="13.999610740265382" />
+    </edge>
+    <edge source="com.project.controller.ManagementController" target="com.project.view.management.ManagementFrame" relationship="TO_ONE">
+      <point x="3.7368183893704554E-4" y="-13.99986952231427" />
+      <point x="1053.947" y="-287.0" />
+      <point x="1067.447" y="-287.0" />
+      <point x="3.7368183870967187E-4" y="13.999998176756321" />
+    </edge>
+    <edge source="com.project.controller.ManagementController" target="com.project.service.ManagementService" relationship="TO_ONE">
+      <point x="-109.5" y="0.0" />
+      <point x="854.8139477631862" y="-231.19713047768573" />
+      <point x="97.0" y="-14.0" />
+    </edge>
+    <edge source="com.project.service.SellService" target="com.project.repository.SellRepository" relationship="TO_ONE">
+      <point x="-15.000083333333293" y="14.0" />
+      <point x="457.052" y="55.5" />
+      <point x="279.29021890348037" y="55.5" />
+      <point x="-8.209781096519635" y="-14.0" />
+    </edge>
+    <edge source="com.project.service.MemberService" target="com.project.repository.MemberRepository" relationship="TO_ONE">
+      <point x="0.0" y="14.0" />
+      <point x="0.0" y="-14.0" />
+    </edge>
+    <edge source="com.project.service.SellService" target="com.project.repository.SeatProductRepository" relationship="TO_ONE">
+      <point x="43.99999999999994" y="14.0" />
+      <point x="0.0" y="-14.0" />
+    </edge>
+    <edge source="com.project.controller.PageController" target="com.project.view.management.ManagementFrame" relationship="TO_ONE">
+      <point x="-14.999947763186242" y="-13.999999018717148" />
+      <point x="742.814" y="-287.0" />
+      <point x="1067.447" y="-287.0" />
+      <point x="3.7368183870967187E-4" y="13.999998176756321" />
+    </edge>
+    <edge source="com.project.controller.BillCheckController" target="com.project.service.BillCheckService" relationship="TO_ONE">
+      <point x="-34.42450046558861" y="14.0" />
+      <point x="0.0" y="-14.0" />
+    </edge>
+    <edge source="com.project.controller.SellController" target="com.project.service.SellService" relationship="TO_ONE">
+      <point x="-74.49961079685255" y="1.3047768572960194E-4" />
+      <point x="369.0" y="-231.197" />
+      <point x="369.0" y="-6.0" />
+      <point x="-66.0000833333333" y="0.0" />
+    </edge>
+    <edge source="com.project.service.ManagementService" target="com.project.repository.ProductRepository" relationship="TO_ONE">
+      <point x="5.223681375809974E-5" y="14.0" />
+      <point x="757.814" y="151.5" />
+      <point x="677.0" y="151.5" />
+      <point x="677.0" y="235.412" />
+      <point x="-93.49962631816095" y="1.294964028772938E-4" />
+    </edge>
+    <edge source="com.project.controller.SellController" target="com.project.view.sell.DetailTableFrame" relationship="TO_ONE">
+      <point x="74.5003892031475" y="1.3047768572960194E-4" />
+      <point x="651.0" y="-231.197" />
+      <point x="651.0" y="-428.989" />
+      <point x="88.49977568872987" y="-3.892597346180082E-4" />
+    </edge>
+    <edge source="com.project.controller.BillCheckController" target="com.project.view.billcheck.BillCheckFrame" relationship="TO_ONE">
+      <point x="2.806309310301458E-4" y="-13.99986952231427" />
+      <point x="234.715" y="-330.0" />
+      <point x="198.57" y="-330.0" />
+      <point x="-2.439187061611392E-4" y="13.999610740265382" />
+    </edge>
+    <edge source="com.project.service.SellService" target="com.project.repository.SellProductRepository" relationship="TO_ONE">
+      <point x="-8.333333329346715E-5" y="14.0" />
+      <point x="472.052" y="111.0" />
+      <point x="82.5" y="111.0" />
+      <point x="0.0" y="-13.999870503597123" />
+    </edge>
+    <edge source="com.project.controller.PageController" target="com.project.view.sell.DetailTableFrame" relationship="TO_ONE">
+      <point x="-79.49994776318624" y="9.812828523081407E-7" />
+      <point x="651.0" y="-231.197" />
+      <point x="651.0" y="-428.989" />
+      <point x="88.49977568872987" y="-3.892597346180082E-4" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.7111854136048922" showDependencies="true" x="599.7933120727539" y="-95.88623214968675" />
+  <SelectedNodes>
+    <node>com.project.service.MemberService</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

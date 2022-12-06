@@ -1,17 +1,14 @@
 package com.project.controller;
 
-import com.project.domain.SeatProduct;
 import com.project.service.SellService;
 import com.project.utils.ButtonNameMessage;
 import com.project.view.MainFrame;
-import com.project.view.common.NormalButton;
 import com.project.view.sell.DetailTableFrame;
 import com.project.view.sell.SellingPanelTab;
 import com.project.view.sell.TableSubPanel;
 import com.project.view.sell.listener.DetailTableFrameListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.BatchUpdateException;
 import java.util.Collections;
 import javax.swing.JOptionPane;
 

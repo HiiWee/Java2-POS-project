@@ -9,7 +9,6 @@ import com.project.controller.dto.TotalSellProductDto;
 import com.project.domain.Product;
 import com.project.domain.SeatProduct;
 import com.project.domain.Sell;
-import com.project.domain.SellProduct;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -3,8 +3,6 @@ package com.project.repository;
 import static com.project.repository.JDBCUtil.closeAll;
 import static com.project.repository.JDBCUtil.getConnection;
 
-import com.project.domain.Member;
-import com.project.domain.Product;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

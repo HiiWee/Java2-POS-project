@@ -1,12 +1,9 @@
 package com.project.view.management;
 
-import com.google.protobuf.Value;
 import com.project.domain.Product;
 import com.project.utils.ButtonNameMessage;
 import com.project.utils.InitializationGuiConstant;
 import com.project.view.common.NormalButton;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;

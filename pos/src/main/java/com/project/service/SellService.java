@@ -33,7 +33,7 @@ public class SellService {
 
     public void saveSeatProducts(final List<SeatProduct> seatProducts, Long tableNumber) {
         if (seatProducts.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 상품을 담아야 주문할 수 있습니다.");
+            throw new IllegalArgumentException("상품을 담아야 주문할 수 있습니다.");
         }
         seatProductRepository.deleteAllBySeatId(tableNumber);
         seatProductRepository.saveAll(seatProducts);
@@ -41,7 +41,7 @@ public class SellService {
 
     public void paySeatProduct(final List<SeatProduct> seatProducts) {
         if (seatProducts.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR 상품을 주문하지 않으면 결제할 수 없습니다.]");
+            throw new IllegalArgumentException("상품을 주문하지 않으면 결제할 수 없습니다.]");
         }
         Sell savedSell = sellRepository.save(new Sell(1L));
         sellProductRepository.saveAll(convertSeatToSellProduct(seatProducts, savedSell.getId()));

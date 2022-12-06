@@ -1,9 +1,9 @@
 package com.project.view;
 
+import com.project.utils.InitializationGuiConstant;
 import com.project.view.management.ManagementEnterPanel;
 import com.project.view.sales.SalesPage;
 import com.project.view.sell.SellingPanelTab;
-import com.project.utils.InitializationGuiConstant;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
