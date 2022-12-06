@@ -26,6 +26,11 @@ public class SellController implements ActionListener {
         setActionPerformed();
     }
 
+    private void setActionPerformed() {
+        detailTableFrame.getOrderButton().addActionListener(this);
+        detailTableFrame.getPayButton().addActionListener(this);
+    }
+
     public void refreshProducts(TableSubPanel currentTablePanel) {
         if (!sellService.checkAllProduct(currentTablePanel.getSeatProductList(), currentTablePanel.getTableNumber())) {
             JOptionPane.showMessageDialog(null, "판매하지 않는 물품이 존재합니다.", "alert", JOptionPane.PLAIN_MESSAGE);
@@ -35,10 +40,6 @@ public class SellController implements ActionListener {
         detailTableFrame.initProduct(sellService.findAllProduct());
     }
 
-    private void setActionPerformed() {
-        detailTableFrame.getOrderButton().addActionListener(this);
-        detailTableFrame.getPayButton().addActionListener(this);
-    }
 
     // 주문 버튼 클릭시 동작
     private void orderProduct() {

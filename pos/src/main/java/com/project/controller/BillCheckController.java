@@ -11,6 +11,9 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 
 public class BillCheckController {
+    public static final int TARGET_LISTENER_COUNT = 2;
+    public static final int INIT_LISTENER_COUNT = 0;
+
     private final BillCheckFrame billCheckFrame = BillCheckFrame.getInstance();
     private final BillCheckService billCheckService = new BillCheckService();
     private final SellService sellService = new SellService();
@@ -23,7 +26,7 @@ public class BillCheckController {
 
     private void addListenerToRefundButton() {
         JButton refundButton = billCheckFrame.getRefundButton();
-        if (refundButton.getActionListeners().length > 0) {
+        if (refundButton.getActionListeners().length > INIT_LISTENER_COUNT) {
             return;
         }
         billCheckFrame.getRefundButton().addActionListener(e -> refund());
@@ -38,7 +41,7 @@ public class BillCheckController {
 
     private void addListenerToTable() {
         JTable billTable = billCheckFrame.getBillTable();
-        if (billTable.getMouseListeners().length > 2) {
+        if (billTable.getMouseListeners().length > TARGET_LISTENER_COUNT) {
             return;
         }
         billTable.addMouseListener(new MouseAdapter() {
