@@ -46,7 +46,7 @@ public class ManagementController extends MouseAdapter {
         try {
             productService.insert(managementAddFrame.getAddedProduct());
         } catch (NumberFormatException exception) {
-            JOptionPane.showMessageDialog(null, "[ERROR] 상품정보를 올바르게 입력해주세요", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "상품정보를 올바르게 입력해주세요", "ERROR", JOptionPane.ERROR_MESSAGE);
 
         } catch (IllegalArgumentException exception) {
             JOptionPane.showMessageDialog(null, exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -58,7 +58,7 @@ public class ManagementController extends MouseAdapter {
         try {
             productService.update(managementEditFrame.getEditedProduct());
         } catch (NumberFormatException exception) {
-            JOptionPane.showMessageDialog(null, "[ERROR] 상품정보를 올바르게 입력해주세요", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "상품정보를 올바르게 입력해주세요", "ERROR", JOptionPane.ERROR_MESSAGE);
         } catch (IllegalArgumentException exception) {
             JOptionPane.showMessageDialog(null, exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
@@ -83,55 +83,19 @@ public class ManagementController extends MouseAdapter {
                 .equals(memberService.getPassword());
     }
 
-    private String changePassword() {
-        if (checkCurrentPassword() && checkNewPasswords())
-            ;
-        return String.valueOf(changePasswordFrame.getNewPasswordField().getPassword());
-    }
-
-    private boolean checkCurrentPassword() {
-        try {
-            validatePassword();
-            String.valueOf(changePasswordFrame.getCurrentPasswordField().getPassword())
-                    .equals(String.valueOf(memberService.getPassword()));
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "alert", JOptionPane.INFORMATION_MESSAGE);
-        } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "alert", JOptionPane.INFORMATION_MESSAGE);
-        }
-        return true;
-    }
-
-
-    private boolean checkNewPasswords() {
-        validatePassword();
-        try {
-            String.valueOf(changePasswordFrame.getNewPasswordField().getPassword())
-                    .equals(String.valueOf(changePasswordFrame.getCheckNewPasswordField().getPassword()));
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "alert", JOptionPane.INFORMATION_MESSAGE);
-        } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "alert", JOptionPane.INFORMATION_MESSAGE);
-        }
-        return true;
-    }
-
     private void validatePassword() {
-        if (String.valueOf(changePasswordFrame.getNewPasswordField().getPassword()).equals("")
-                || String.valueOf(changePasswordFrame.getNewPasswordField().getPassword()) == null || String.valueOf(
-                changePasswordFrame.getCurrentPasswordField().getPassword()).equals("")
-                || String.valueOf(changePasswordFrame.getCurrentPasswordField().getPassword()) == null
-                || String.valueOf(changePasswordFrame.getCheckNewPasswordField().getPassword()).equals("")
-                || String.valueOf(changePasswordFrame.getNewPasswordField().getPassword()) == null) {
-            throw new IllegalArgumentException("[ERROR]빈칸을 모두 채워주세요");
+        if (String.valueOf(changePasswordFrame.getNewPasswordField().getPassword()).equals("") ||
+                String.valueOf(changePasswordFrame.getCurrentPasswordField().getPassword()).equals("") ||
+                String.valueOf(changePasswordFrame.getCheckNewPasswordField().getPassword()).equals("")) {
+            throw new IllegalArgumentException("빈칸을 모두 채워주세요");
         }
         if (!String.valueOf(changePasswordFrame.getNewPasswordField().getPassword())
                 .equals(String.valueOf(changePasswordFrame.getCheckNewPasswordField().getPassword()))) {
-            throw new IllegalArgumentException("[ERROR]새로 바뀐 비밀번호가 매칭되지 않습니다");
+            throw new IllegalArgumentException("새로 바뀐 비밀번호가 매칭되지 않습니다");
         }
         if (!String.valueOf(changePasswordFrame.getCurrentPasswordField().getPassword())
                 .equals(String.valueOf(memberService.getPassword()))) {
-            throw new IllegalArgumentException("[ERROR]현재 비밀 번호가 다릅니다");
+            throw new IllegalArgumentException("현재 비밀 번호가 다릅니다");
         }
     }
 
@@ -160,13 +124,16 @@ public class ManagementController extends MouseAdapter {
     }
 
     private void addActionOnChangePassword() {
-        changePasswordFrame.getCheckButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                memberService.changePassword(changePassword());
+        changePasswordFrame.getCheckButton().addActionListener(e -> {
+            try {
+                validatePassword();
+                memberService.changePassword(
+                        String.valueOf(changePasswordFrame.getNewPasswordField().getPassword()));
                 changePasswordFrame.clearJPasswordField();
                 changePasswordFrame.setVisible(false);
                 managementFrame.setVisible(true);
+            } catch (IllegalArgumentException exception) {
+                JOptionPane.showMessageDialog(null, exception.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         });
     }
