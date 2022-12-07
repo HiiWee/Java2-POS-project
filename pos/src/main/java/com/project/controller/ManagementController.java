@@ -115,7 +115,6 @@ public class ManagementController extends MouseAdapter {
     private void addActionUpdate() {
         managementEditFrame.getEditButton().addActionListener(e -> {
             update();
-            managementEditFrame.resetTextField(managementFrame.getProduct(managementEditFrame.getEditedProduct()));
             refreshTable();
         });
     }
@@ -143,9 +142,6 @@ public class ManagementController extends MouseAdapter {
     private void deleteTableRow() {
         DefaultTableModel tableModel = (DefaultTableModel) managementFrame.getTable().getModel();
         int row = managementFrame.getTable().getSelectedRow();
-        if (row < 0) {
-            return;
-        }
         tableModel.removeRow(row);
     }
 

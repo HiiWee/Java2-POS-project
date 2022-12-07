@@ -12,20 +12,19 @@ import java.util.List;
 import javax.swing.JPanel;
 
 public class MonthlySales extends JPanel {
-    private final static MonthlySales instance=new MonthlySales();
-    public static MonthlySales getInstance(){
-        return instance;
-    }
+    private final static MonthlySales instance = new MonthlySales();
+    
     private ArrayList<String> date;
     private ArrayList<Integer> dateValue;
     private int max;
-    SellService service = new SellService();
+    GraphService graphService = new GraphService();
 
-    private MonthlySales() {
-
+    public static MonthlySales getInstance(){
+        return instance;
     }
 
-    GraphService graphService = new GraphService();
+    private MonthlySales() {
+    }
 
     public void paint(Graphics g) {
         DateData dateData = new DateData();

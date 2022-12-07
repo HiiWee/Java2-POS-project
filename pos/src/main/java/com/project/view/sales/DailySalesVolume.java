@@ -12,6 +12,9 @@ import javax.swing.JPanel;
 
 public class DailySalesVolume extends JPanel {
     private final static DailySalesVolume instance = new DailySalesVolume();
+    private List<String> date;
+    private List<Integer> dateValue;
+    private int max;
 
     public static DailySalesVolume getInstance() {
         return instance;
@@ -25,7 +28,7 @@ public class DailySalesVolume extends JPanel {
     }
 
     GraphService graphService = new GraphService();
-
+    
     public void paint(Graphics g) {
         dailySalesData(graphService.dailyList());
         int valueStandard = (max / 100 + 1) * 10;
