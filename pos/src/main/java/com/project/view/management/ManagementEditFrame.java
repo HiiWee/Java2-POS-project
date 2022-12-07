@@ -6,6 +6,7 @@ import com.project.utils.InitializationGuiConstant;
 import com.project.view.common.NormalButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class ManagementEditFrame extends JFrame {
@@ -96,9 +97,15 @@ public class ManagementEditFrame extends JFrame {
     }
 
     public Product getEditedProduct() {
-        Long id = Long.valueOf(productId.getText());
-        String name = productName.getText();
-        int price = Integer.parseInt(productPrice.getText());
+        Long id = null;
+        String name = null;
+        int price = 0;
+        try {
+            id = Long.valueOf(productId.getText());
+            name = productName.getText();
+            price = Integer.parseInt(productPrice.getText());
+        } catch (NumberFormatException exception) {
+        }
         return new Product(id, name, price);
     }
 

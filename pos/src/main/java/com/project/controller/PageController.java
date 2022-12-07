@@ -191,13 +191,20 @@ public class PageController {
 
     private void addActionLoginButton() {
         managementEnterPanel.getLoginButton().addActionListener(e -> {
-            if (managementController.checkPassword()) {
+            try {
+                validateLoginPassword();
                 managementEnterPanel.clearJpasswordField();
                 moveManagementEnterToManagementFrame();
-                return;
+            }catch (IllegalArgumentException exception){
+                JOptionPane.showMessageDialog(null, exception.getMessage(), "alert", JOptionPane.INFORMATION_MESSAGE);
             }
-            JOptionPane.showMessageDialog(null, "비밀번호가 틀렸습니다.", "alert", JOptionPane.INFORMATION_MESSAGE);
         });
+    }
+    private void validateLoginPassword(){
+        if(String.valueOf(managementEnterPanel.getPasswordField().getPassword()).equals(""))
+            throw new IllegalArgumentException("비밀번호는 공백이 될수 없습니다");
+        if(!managementController.checkPassword())
+            throw new IllegalArgumentException("비밀번호가 틀렸습니다");
     }
 
     private void addActionBackButtonOnManagementFrame() {
