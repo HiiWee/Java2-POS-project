@@ -11,17 +11,17 @@ import javax.swing.JPanel;
 
 public class DailySalesVolume extends JPanel {
     private static final DailySalesVolume instance = new DailySalesVolume();
-    private ArrayList<String> date;
-    private ArrayList<Integer> dateValue;
+    private List<String> date;
+    private List<Integer> dateValue;
     private int max;
 
     public static DailySalesVolume getInstance() {
-
         return instance;
     }
 
     private DailySalesVolume() {
     }
+
     SellService service =new SellService();
     public void paint(Graphics g) {
         dailySalesData(service.dailyList());

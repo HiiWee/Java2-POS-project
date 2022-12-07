@@ -33,7 +33,7 @@ public class ManagementFrame extends JFrame {
     private final JPanel jPanel = new JPanel();
     private final JPanel buttonPanel = new JPanel(new GridLayout(3, 1));
 
-    public ManagementFrame() {
+    private ManagementFrame() {
         initializePage();
         setTable();
         setLocationRelativeTo(null);

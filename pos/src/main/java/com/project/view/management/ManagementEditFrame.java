@@ -25,7 +25,7 @@ public class ManagementEditFrame extends JFrame {
         return instance;
     }
 
-    public ManagementEditFrame() {
+    private ManagementEditFrame() {
         initializePage();
         setVisible(false);
         setLocationRelativeTo(null);

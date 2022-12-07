@@ -13,15 +13,16 @@ import javax.swing.JPanel;
 public class MonthlySales extends JPanel {
     private static final MonthlySales instance = new MonthlySales();
 
-    public static MonthlySales getInstance() {
-        return instance;
-    }
     private ArrayList<String> date;
     private ArrayList<Integer> dateValue;
     private int max;
-    SellService service=new SellService();
-    public MonthlySales() {
+    SellService service = new SellService();
 
+    public static MonthlySales getInstance() {
+        return instance;
+    }
+
+    private MonthlySales() {
     }
 
     public void paint(Graphics g) {
@@ -46,18 +47,19 @@ public class MonthlySales extends JPanel {
         }    //그래프 x축에 날짜 넣기
         g.setColor(Color.YELLOW);
         for (int i = 0; i < date.size(); i++) {
-                g.fillRect(valueLength - RectLength / 2 + i * valueLength,
-                        500 - (4 * dateValue.get(i) / ((max / 500 + 1) * 5)), RectLength,
-                        (4 * dateValue.get(i) / ((max / 500 + 1) * 5))); //사각 그래프 그리기
-            }
+            g.fillRect(valueLength - RectLength / 2 + i * valueLength,
+                    500 - (4 * dateValue.get(i) / ((max / 500 + 1) * 5)), RectLength,
+                    (4 * dateValue.get(i) / ((max / 500 + 1) * 5))); //사각 그래프 그리기
         }
+    }
+
     public void monthlySalesData(List<GraphDto> graphDtos) {
         date = new ArrayList<>();
         dateValue = new ArrayList<>();
-        for(GraphDto i:graphDtos){
+        for (GraphDto i : graphDtos) {
             date.add(String.valueOf(i.getDate()));
             dateValue.add(i.getPrice());
         }
         max = Collections.max(dateValue);
     }
-    }
+}

@@ -26,7 +26,6 @@ public class SellService {
     }
 
     public List<SeatProduct> findAllSeatProductById(Long id) {
-        System.out.println(id);
         return seatProductRepository.findAllById(id);
     }
 

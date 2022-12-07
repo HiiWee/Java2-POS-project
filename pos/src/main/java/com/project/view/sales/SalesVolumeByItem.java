@@ -20,7 +20,6 @@ public class SalesVolumeByItem extends JPanel {
     private ArrayList<Integer> dateValue;
     private int max;
     SalesVolumeByItem() {
-
     }
     SellService service =new SellService();
     public void paint(Graphics g) {
