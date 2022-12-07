@@ -1,6 +1,7 @@
 package com.project.view.sales;
 
 import com.project.controller.dto.GraphDto;
+import com.project.service.GraphService;
 import com.project.service.SellService;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -10,7 +11,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 public class DailySalesVolume extends JPanel {
-    private static final DailySalesVolume instance = new DailySalesVolume();
+    private final static DailySalesVolume instance = new DailySalesVolume();
     private List<String> date;
     private List<Integer> dateValue;
     private int max;
@@ -19,12 +20,17 @@ public class DailySalesVolume extends JPanel {
         return instance;
     }
 
+    private ArrayList<String> date;
+    private ArrayList<Integer> dateValue;
+    private int max;
+
     private DailySalesVolume() {
     }
 
-    SellService service =new SellService();
+    GraphService graphService = new GraphService();
+    
     public void paint(Graphics g) {
-        dailySalesData(service.dailyList());
+        dailySalesData(graphService.dailyList());
         int valueStandard = (max / 100 + 1) * 10;
         int valueLength = 600 / date.size();
         int rectLength = 200 / date.size();
@@ -45,16 +51,17 @@ public class DailySalesVolume extends JPanel {
         for (int i = 0; i < date.size(); i++) {
             if (dateValue.get(i) > 0) {
                 g.fillRect(valueLength - rectLength / 2 + i * valueLength,
-                        500 - (4 * dateValue.get(i) / ((max / 100 + 1) )), rectLength,
+                        500 - (4 * dateValue.get(i) / ((max / 100 + 1))), rectLength,
                         4 * dateValue.get(i) / ((max / 100 + 1))); //사각 그래프 그리기
             }
         }
 
     }
+
     private void dailySalesData(List<GraphDto> graphDtos) {
         date = new ArrayList<>();
         dateValue = new ArrayList<>();
-        for(GraphDto i:graphDtos){
+        for (GraphDto i : graphDtos) {
             date.add(String.valueOf(i.getDate()));
             dateValue.add(i.getPrice());
         }

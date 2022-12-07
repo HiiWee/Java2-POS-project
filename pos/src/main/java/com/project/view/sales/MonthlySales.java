@@ -1,6 +1,7 @@
 package com.project.view.sales;
 
 import com.project.controller.dto.GraphDto;
+import com.project.service.GraphService;
 import com.project.service.SellService;
 import com.project.utils.DateData;
 import java.awt.Color;
@@ -11,14 +12,14 @@ import java.util.List;
 import javax.swing.JPanel;
 
 public class MonthlySales extends JPanel {
-    private static final MonthlySales instance = new MonthlySales();
-
+    private final static MonthlySales instance = new MonthlySales();
+    
     private ArrayList<String> date;
     private ArrayList<Integer> dateValue;
     private int max;
-    SellService service = new SellService();
+    GraphService graphService = new GraphService();
 
-    public static MonthlySales getInstance() {
+    public static MonthlySales getInstance(){
         return instance;
     }
 
@@ -28,7 +29,7 @@ public class MonthlySales extends JPanel {
     public void paint(Graphics g) {
         DateData dateData = new DateData();
         dateData.monthlySalesData();
-        monthlySalesData(service.monthlyList());
+        monthlySalesData(graphService.monthlyList());
         int valueStandard = (max / 500 + 1) * 50;
         int valueLength = 600 / date.size();
         int RectLength = 200 / dateValue.size();

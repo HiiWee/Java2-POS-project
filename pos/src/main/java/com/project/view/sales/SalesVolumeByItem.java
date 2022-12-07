@@ -1,6 +1,7 @@
 package com.project.view.sales;
 
 import com.project.controller.dto.GraphDto;
+import com.project.service.GraphService;
 import com.project.service.SellService;
 import com.project.utils.DateData;
 import java.awt.Color;
@@ -11,21 +12,21 @@ import java.util.List;
 import javax.swing.JPanel;
 
 public class SalesVolumeByItem extends JPanel {
-    private static final SalesVolumeByItem instance = new SalesVolumeByItem();
-
-    public static SalesVolumeByItem getInstance() {
+    private final static SalesVolumeByItem instance =new SalesVolumeByItem();
+    public static SalesVolumeByItem getInstance(){
         return instance;
     }
     private ArrayList<String> date;
     private ArrayList<Integer> dateValue;
     private int max;
-    SalesVolumeByItem() {
+    private SalesVolumeByItem() {
+
     }
-    SellService service =new SellService();
+    GraphService graphService=new GraphService();
     public void paint(Graphics g) {
         DateData dateData = new DateData();
         dateData.salesVolumeByItem();
-        salesVolumeByItem(service.quantityList());
+        salesVolumeByItem(graphService.quantityList());
         int valueStandard = (max / 100 + 1) * 10;
         int valueLength = 600 / date.size();
         int rectLength = 200 / date.size();

@@ -55,11 +55,8 @@ public class DetailTableFrame extends JFrame {
     }
 
     private DetailTableFrame() {
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation((dim.width / 2) - (this.getWidth() / 2), (dim.height / 2) - (this.getHeight() / 2));
         initializeFrame();
         initializeActionCommandOnButton();
-
         add(buttonPanelLeft);
         add(orderButton);
         add(totalPriceLabel);
@@ -72,6 +69,7 @@ public class DetailTableFrame extends JFrame {
         totalPriceLabel.setBounds(480, 480, 360, 20);
         totalPriceLabel.setOpaque(true);
         totalPriceLabel.setBackground(Color.WHITE);
+        setLocationRelativeTo(null);
     }
 
     private void initializeActionCommandOnButton() {
@@ -82,6 +80,7 @@ public class DetailTableFrame extends JFrame {
     private void initializeFrame() {
         setLayout(null);
         setMenuPage();
+        setTitle("POS SYSTEM");
         setSize(InitializationGuiConstant.FRAME_WIDTH, InitializationGuiConstant.FRAME_HEIGHT);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
