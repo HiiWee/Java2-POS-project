@@ -2,7 +2,6 @@ package com.project.view.sales;
 
 import com.project.controller.dto.GraphDto;
 import com.project.service.GraphService;
-import com.project.service.SellService;
 import com.project.utils.DateData;
 import java.awt.Color;
 import java.awt.Graphics;

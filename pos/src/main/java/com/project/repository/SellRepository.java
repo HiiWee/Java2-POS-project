@@ -5,9 +5,6 @@ import static com.project.repository.JDBCUtil.getConnection;
 
 import com.project.controller.dto.GraphDto;
 import com.project.controller.dto.SellProductInBillDto;
-import com.project.controller.dto.TotalSellProductDto;
-import com.project.domain.Product;
-import com.project.domain.SeatProduct;
 import com.project.domain.Sell;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,7 +14,6 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class SellRepository {

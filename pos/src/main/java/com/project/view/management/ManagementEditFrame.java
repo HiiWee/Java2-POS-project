@@ -6,7 +6,6 @@ import com.project.utils.InitializationGuiConstant;
 import com.project.view.common.NormalButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class ManagementEditFrame extends JFrame {

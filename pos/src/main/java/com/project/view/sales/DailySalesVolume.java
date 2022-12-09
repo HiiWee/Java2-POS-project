@@ -2,7 +2,6 @@ package com.project.view.sales;
 
 import com.project.controller.dto.GraphDto;
 import com.project.service.GraphService;
-import com.project.service.SellService;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -20,15 +19,11 @@ public class DailySalesVolume extends JPanel {
         return instance;
     }
 
-    private ArrayList<String> date;
-    private ArrayList<Integer> dateValue;
-    private int max;
-
     private DailySalesVolume() {
     }
 
     GraphService graphService = new GraphService();
-    
+
     public void paint(Graphics g) {
         dailySalesData(graphService.dailyList());
         int valueStandard = (max / 100 + 1) * 10;

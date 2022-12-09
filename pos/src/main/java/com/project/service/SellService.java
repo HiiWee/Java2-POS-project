@@ -1,6 +1,5 @@
 package com.project.service;
 
-import com.project.controller.dto.GraphDto;
 import com.project.controller.dto.SellProductInBillDto;
 import com.project.domain.Product;
 import com.project.domain.SeatProduct;
@@ -10,8 +9,6 @@ import com.project.repository.ProductRepository;
 import com.project.repository.SeatProductRepository;
 import com.project.repository.SellProductRepository;
 import com.project.repository.SellRepository;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

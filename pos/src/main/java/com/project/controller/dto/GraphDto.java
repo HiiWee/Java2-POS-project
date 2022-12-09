@@ -1,7 +1,6 @@
 package com.project.controller.dto;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class GraphDto {
     private String name;
