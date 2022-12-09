@@ -143,7 +143,8 @@ public class SellRepository {
             while (resultSet.next()) {
                 int price = resultSet.getInt("total_price");
                 String parsedDate = resultSet.getString("date");
-                LocalDate date = LocalDate.of(Integer.parseInt(parsedDate.substring(0, 4)), Integer.parseInt(parsedDate.substring(5, 7)), 1);
+                LocalDate date = LocalDate.of(Integer.parseInt(parsedDate.substring(0, 4)),
+                        Integer.parseInt(parsedDate.substring(5, 7)), 1);
                 graphDtos.add(new GraphDto(price, date));
             }
             closeAll(resultSet, statement, connection);
@@ -152,6 +153,7 @@ public class SellRepository {
         }
         return graphDtos;
     }
+
     public List<GraphDto> fineByQuantity() {
         List<GraphDto> graphDtos = new ArrayList<>();
         try {
@@ -161,7 +163,7 @@ public class SellRepository {
                     "select product_name, sum(quantity) total_quantity from sell_product sp join sell s on sp.sell_id = s.id group by product_name order by `total_quantity` desc");
             while (resultSet.next()) {
                 int quantity = resultSet.getInt("total_quantity");
-                String productName=resultSet.getString("product_name");
+                String productName = resultSet.getString("product_name");
                 graphDtos.add(new GraphDto(productName, quantity));
             }
             closeAll(resultSet, statement, connection);

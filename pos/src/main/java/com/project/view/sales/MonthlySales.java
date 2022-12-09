@@ -12,13 +12,13 @@ import javax.swing.JPanel;
 
 public class MonthlySales extends JPanel {
     private final static MonthlySales instance = new MonthlySales();
-    
+
     private ArrayList<String> date;
     private ArrayList<Integer> dateValue;
     private int max;
     GraphService graphService = new GraphService();
 
-    public static MonthlySales getInstance(){
+    public static MonthlySales getInstance() {
         return instance;
     }
 

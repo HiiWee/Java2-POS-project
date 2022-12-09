@@ -7,6 +7,7 @@ public class GraphDto {
     private int quantity;
     private int price;
     private LocalDate date;
+
     public GraphDto(int price, LocalDate date) {
         this.price = price;
         this.date = date;

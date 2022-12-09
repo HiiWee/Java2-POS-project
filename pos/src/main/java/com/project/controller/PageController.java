@@ -195,16 +195,19 @@ public class PageController {
                 validateLoginPassword();
                 managementEnterPanel.clearJpasswordField();
                 moveManagementEnterToManagementFrame();
-            }catch (IllegalArgumentException exception){
+            } catch (IllegalArgumentException exception) {
                 JOptionPane.showMessageDialog(null, exception.getMessage(), "alert", JOptionPane.INFORMATION_MESSAGE);
             }
         });
     }
-    private void validateLoginPassword(){
-        if(String.valueOf(managementEnterPanel.getPasswordField().getPassword()).equals(""))
+
+    private void validateLoginPassword() {
+        if (String.valueOf(managementEnterPanel.getPasswordField().getPassword()).equals("")) {
             throw new IllegalArgumentException("비밀번호는 공백이 될수 없습니다");
-        if(!managementController.checkPassword())
+        }
+        if (!managementController.checkPassword()) {
             throw new IllegalArgumentException("비밀번호가 틀렸습니다");
+        }
     }
 
     private void addActionBackButtonOnManagementFrame() {

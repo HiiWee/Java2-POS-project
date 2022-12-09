@@ -11,17 +11,22 @@ import java.util.List;
 import javax.swing.JPanel;
 
 public class SalesVolumeByItem extends JPanel {
-    private final static SalesVolumeByItem instance =new SalesVolumeByItem();
-    public static SalesVolumeByItem getInstance(){
+    private final static SalesVolumeByItem instance = new SalesVolumeByItem();
+
+    public static SalesVolumeByItem getInstance() {
         return instance;
     }
+
     private ArrayList<String> date;
     private ArrayList<Integer> dateValue;
     private int max;
+
     private SalesVolumeByItem() {
 
     }
-    GraphService graphService=new GraphService();
+
+    GraphService graphService = new GraphService();
+
     public void paint(Graphics g) {
         DateData dateData = new DateData();
         dateData.salesVolumeByItem();
@@ -44,21 +49,23 @@ public class SalesVolumeByItem extends JPanel {
         }    //그래프 x축에 날짜 넣기
         g.setColor(Color.GREEN);
         for (int i = 0; i < date.size(); i++) {
-                g.fillRect(valueLength - rectLength / 2 + i * valueLength,
-                        500 - (4 * dateValue.get(i) / ((max / 100 + 1))), rectLength,
-                        4 * dateValue.get(i) / ((max / 100 + 1))); //사각 그래프 그리기
+            g.fillRect(valueLength - rectLength / 2 + i * valueLength,
+                    500 - (4 * dateValue.get(i) / ((max / 100 + 1))), rectLength,
+                    4 * dateValue.get(i) / ((max / 100 + 1))); //사각 그래프 그리기
 
         }
 
     }
-    public void salesVolumeByItem(List<GraphDto>graphDtos) {
+
+    public void salesVolumeByItem(List<GraphDto> graphDtos) {
         date = new ArrayList<>();
         dateValue = new ArrayList<>();
-        for(GraphDto i:graphDtos){
+        for (GraphDto i : graphDtos) {
             date.add(i.getName());
             dateValue.add(i.getQuantity());
-           if(date.contains(null))
-               Collections.replaceAll(date,null,"삭제된 품목입니다");
+            if (date.contains(null)) {
+                Collections.replaceAll(date, null, "삭제된 품목입니다");
+            }
         }
         max = Collections.max(dateValue);
     }

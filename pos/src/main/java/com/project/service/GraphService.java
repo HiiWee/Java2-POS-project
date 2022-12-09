@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GraphService {
-    SellRepository sellRepository=SellRepository.getInstance();
+    SellRepository sellRepository = SellRepository.getInstance();
+
     public List<GraphDto> getDailyGraphList(List<GraphDto> graphDtos) {
         List<GraphDto> dailyGraphData = new ArrayList<>();
         LocalDate localDate = LocalDate.now();
@@ -31,10 +32,11 @@ public class GraphService {
                 .collect(Collectors.toList());
         return monthlyGraphData;
     }
-    public List<GraphDto> getQuantityGraphList(List<GraphDto> graphDtos){
-        List<GraphDto> quantityGraphData= graphDtos.stream()
+
+    public List<GraphDto> getQuantityGraphList(List<GraphDto> graphDtos) {
+        List<GraphDto> quantityGraphData = graphDtos.stream()
                 .limit(5)
-                .map(graphDto -> new GraphDto(graphDto.getName(),graphDto.getQuantity()))
+                .map(graphDto -> new GraphDto(graphDto.getName(), graphDto.getQuantity()))
                 .collect(Collectors.toList());
         return quantityGraphData;
     }
@@ -46,7 +48,8 @@ public class GraphService {
     public List<GraphDto> monthlyList() {
         return getMonthlyGraphList(sellRepository.fineByMonth());
     }
-    public List<GraphDto> quantityList(){
+
+    public List<GraphDto> quantityList() {
         return getQuantityGraphList(sellRepository.fineByQuantity());
     }
 }
